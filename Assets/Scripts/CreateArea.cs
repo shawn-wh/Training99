@@ -8,6 +8,7 @@ public class CreateArea : MonoBehaviour
     public float m_Y = 0;
 
     private float m_Time = 0;
+    // mTime
 
     private void Awake()
     {
