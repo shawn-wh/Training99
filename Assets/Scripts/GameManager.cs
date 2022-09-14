@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject bulletNode = null;
 
     public Color[] colors = new Color[3];
+    public Sprite[] sprites = new Sprite[3];
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
                 //Debug.Log("Child color: " + bullet.GetComponentInChildren<Renderer>().material.color);
                 //bullet.GetComponentInChildren<Renderer>().material.color = colors[Random.Range(0, colors.Length)];
                 bullet.transform.GetChild(0).GetComponent<Image>().color = colors[Random.Range(0, colors.Length)];
+                bullet.transform.GetChild(0).GetComponent<Image>().sprite = sprites[Random.Range(0, sprites.Length)];
                 ca.NextTime();
             }
         }

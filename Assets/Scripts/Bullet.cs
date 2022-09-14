@@ -7,8 +7,6 @@ public class Bullet : MonoBehaviour
 {
 
     public GameObject player = null;
-    public Color[] colors = new Color[3];
-    
 
 
     // Start is called before the first frame update
