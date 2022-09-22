@@ -64,3 +64,6 @@ connectwebgl.zip
 
 .DS_Store
 .vsconfig
+
+WebGL Builds/
+webgl_sharing
