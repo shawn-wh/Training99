@@ -11,9 +11,14 @@ public class PlayerMovement : MonoBehaviour
 
     Player player = new Player(100, 0, "Player");
 
+    public HealthBar healthBar;
+
     public TextMeshProUGUI m_HpText = null;
     public TextMeshProUGUI m_TimeText = null;
     public int m_Hp = 10;
+
+    public int maxHealth = 10;
+    public int currentHealth;
 
     public Color[] colors = new Color[3];
     public float timeToChange = 5f;
@@ -33,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         RefreshHpText();
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -88,6 +95,9 @@ public class PlayerMovement : MonoBehaviour
         if ( playerColor != bulletColor)
         {
             m_Hp += damage;
+            currentHealth = m_Hp;
+            healthBar.SetHealth(currentHealth);
+
 
             // Show damage text
             FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
