@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -71,7 +72,13 @@ public class PlayerMovement : MonoBehaviour
         {
             m_Hp--;
         }
-        
+
+        // Game over condition
+        if (m_Hp <= 0)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
+
         RefreshHpText();
     }
 
