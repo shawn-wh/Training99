@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
                 Bullet bullet = Instantiate(clone, pos, Quaternion.identity, bulletNode.transform);
                 //Debug.Log("Child color: " + bullet.GetComponentInChildren<Renderer>().material.color);
                 //bullet.GetComponentInChildren<Renderer>().material.color = colors[Random.Range(0, colors.Length)];
-                bullet.transform.GetChild(0).GetComponent<Image>().color = colors[Random.Range(0, colors.Length)];
+                bullet.SetColor(colors[Random.Range(0, colors.Length)]);
                 bullet.transform.GetChild(0).GetComponent<Image>().sprite = sprites[Random.Range(0, sprites.Length)];
                 ca.NextTime();
             }

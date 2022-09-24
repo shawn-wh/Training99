@@ -6,7 +6,11 @@ using UnityEngine.UI;
 public class Bullet : MonoBehaviour
 {
     public GameObject player = null;
+    
     private float bulletSpeed = 0.7f;     // adjustable bullet speed
+    private bool _hitted = false;
+    private float _hittedTime;
+    private Color _color;
 
     // Start is called before the first frame update
     void Start()
@@ -24,11 +28,40 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.forward * Time.deltaTime * bulletSpeed);
+        if (_hitted) 
+        {
+            Color newColor = new Color(_color.r, _color.g, _color.b, 0.5f);
+            gameObject.transform.GetChild(0).GetComponent<Image>().color = newColor;
+            transform.Translate(Vector3.back * Time.deltaTime * bulletSpeed * 3);
+            // Destroy after 1 seconds of bullet gets hitted
+            if (Time.time - _hittedTime >= 1f) 
+            {
+                Destroy(gameObject);
+            }
+        }
+        else 
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * bulletSpeed);
+        }
+    }
+    
+    public void SetColor(Color newColor)
+    {
+        _color = newColor;
+        gameObject.transform.GetChild(0).GetComponent<Image>().color = newColor;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+        Color playerColor = collision.GetComponent<Image>().color;
+        if (playerColor == _color)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _hitted = true;
+            _hittedTime = Time.time;
+        }
     }
 }
