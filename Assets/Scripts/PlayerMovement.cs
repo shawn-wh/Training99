@@ -54,8 +54,9 @@ public class PlayerMovement : MonoBehaviour
         pos.y += v * speed * Time.deltaTime;
 
         transform.position = pos;
-
-        m_TimeText.text = "Time: " + Time.time.ToString("0.0");
+        
+        // Time.timeSinceLevelLoad  will reset time when loading new scence.
+        m_TimeText.text = "Survived: " + Time.timeSinceLevelLoad.ToString("0.0"); 
 
         ChangeColor();
     }
