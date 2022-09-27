@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
 {
     public GameObject player = null;
     
-    private float bulletSpeed = 0.7f;     // adjustable bullet speed
+    public float bulletSpeed = 0.7f;     // adjustable bullet speed
     private bool _hitted = false;
     private float _hittedTime;
     private Color _color;
