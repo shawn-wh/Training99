@@ -2,15 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class Bullet : MonoBehaviour
 {
     public GameObject player = null;
     
-    public float bulletSpeed = 0.7f;     // adjustable bullet speed
+    public float bulletSpeed = 0.7f;     // adjustable bullet speed default 0.7f
     private bool _hitted = false;
     private float _hittedTime;
     private Color _color;
+    
+    // [Endless] player change rate
+    private float[] speed = {1, 2, 2, 2, 5, 8, 8, 8};
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +32,18 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_hitted) 
+        // [Endless] bullet speed change
+        // Debug.Log("Now Time: " + Time.timeSinceLevelLoad);
+        // Debug.Log("Floor Time: " + Math.Floor(Time.timeSinceLevelLoad / 10.0));
+        // Debug.Log("Speed Rate: " + speed[Convert.ToInt32(Math.Floor(Time.timeSinceLevelLoad / 10.0))]);
+        if (Time.timeSinceLevelLoad >= 60.0) {
+            bulletSpeed = 8;
+        }else {
+            bulletSpeed = speed[Convert.ToInt32(Math.Floor(Time.timeSinceLevelLoad / 10.0))];
+        }
+        // [Endless] end
+
+        if (_hitted)
         {
             Color newColor = new Color(_color.r, _color.g, _color.b, 0.5f);
             gameObject.transform.GetChild(0).GetComponent<Image>().color = newColor;

@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public int currentHealth;
 
     public Color[] colors = new Color[3];
-    public float timeToChange = 5f;
+    public float timeToChange = 5f; // default 5f
     private float timeSinceChange = 0f;
 
     // UI show collectables (Collect 3 types of bullets)
@@ -33,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
     // Prefab to show damage/collectable text
     public GameObject floatingTextPrefab;
     
+    // [Endless] player change rate
+    public int[] changeRate = {5, 5, 5, 3, 3, 3, 1};
 
     // Start is called before the first frame update
     void Start()
@@ -54,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
         pos.y += v * speed * Time.deltaTime;
 
         transform.position = pos;
-        
+
         // Time.timeSinceLevelLoad  will reset time when loading new scence.
         m_TimeText.text = "Survived: " + Time.timeSinceLevelLoad.ToString("0.0"); 
 
@@ -63,15 +66,26 @@ public class PlayerMovement : MonoBehaviour
 
     private void ChangeColor()
     {
+        // [Endless]
+        // Debug.Log("Now Time: " + Time.timeSinceLevelLoad);
+        // Debug.Log("Floor Time: " + Math.Floor(Time.timeSinceLevelLoad / 10.0));
+        // Debug.Log("Change Rate: " + changeRate[Convert.ToInt32(Math.Floor(Time.timeSinceLevelLoad / 10.0))]);
+        if (Time.timeSinceLevelLoad >= 60) {
+            timeToChange = 1;
+        }else {
+            timeToChange = changeRate[Convert.ToInt32(Math.Floor(Time.timeSinceLevelLoad / 10.0))];
+        }
+        // [Endless] end
+
         timeSinceChange += Time.deltaTime;
 
         if (timeSinceChange >= timeToChange)
         {
-            Color newColor = colors[Random.Range(0, colors.Length)];
+            Color newColor = colors[UnityEngine.Random.Range(0, colors.Length)];
 
             while (newColor == gameObject.GetComponent<Image>().color)
             {
-                newColor = colors[Random.Range(0, colors.Length)];
+                newColor = colors[UnityEngine.Random.Range(0, colors.Length)];
             }
             gameObject.GetComponent<Image>().color = newColor;
             timeSinceChange = 0f;
