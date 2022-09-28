@@ -294,6 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 515943665}
+  bulletSpeed: 0.7
 --- !u!58 &252017336
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -451,6 +452,7 @@ GameObject:
   - component: {fileID: 515943667}
   - component: {fileID: 515943671}
   - component: {fileID: 515943670}
+  - component: {fileID: 515943672}
   m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
@@ -506,6 +508,7 @@ MonoBehaviour:
   UI_Collectable2: {fileID: 1976251124}
   UI_Collectable3: {fileID: 555512810}
   floatingTextPrefab: {fileID: 3774115643177232834, guid: a555ffc023e5346c0805edf4da8038bf, type: 3}
+  changeRate: 05000000050000000500000003000000030000000300000001000000
 --- !u!114 &515943668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,6 +584,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 18
+--- !u!114 &515943672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515943665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed05556b655d54f458fd7f34cc0a0cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  URL: https://docs.google.com/forms/u/1/d/e/1FAIpQLSfKNrOTpYJb-gMMYHeqQQgS4JqxlZFVN-k1uwohcMCM21acLg/formResponse
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
