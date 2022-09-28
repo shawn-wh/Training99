@@ -4,13 +4,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System;
 
-public class PlayerMovement : MonoBehaviour
+public class LV_PlayerMovement : MonoBehaviour
 {
-    public float speed = 5f;
-
-    Player player = new Player(100, 0, "Player");
+    public float playerSpeed = 5f;
 
     public HealthBar healthBar;
 
@@ -21,8 +18,10 @@ public class PlayerMovement : MonoBehaviour
     public int maxHealth = 10;
     public int currentHealth;
 
-    public Color[] colors = new Color[3];
-    public float timeToChange = 5f; // default 5f
+    // Colors = red, yellow, blue ; // set aphla = 1
+    // private Color[] coloris = { new Color(162,52,25,255), new Color(244,187,15,255), new Color(47,55,91,255)};
+    public Color[] colors;
+    public float timeToChange = 5f;
     private float timeSinceChange = 0f;
 
     // UI show collectables (Collect 3 types of bullets)
@@ -34,17 +33,23 @@ public class PlayerMovement : MonoBehaviour
     // Prefab to show damage/collectable text
     public GameObject floatingTextPrefab;
     
-    // [Endless] player change rate
-    public int[] changeRate = {5, 5, 5, 3, 3, 3, 1};
+    // SpriteRenderer
+    private SpriteRenderer sRenderer;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        sRenderer = GetComponent<SpriteRenderer>();
+        Debug.Log(sRenderer);
+        
         RefreshHpText();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        
     }
-
+    
+    
     // Update is called once per frame
     void Update()
     {
@@ -53,55 +58,43 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 pos = transform.position;
 
-        pos.x += h * speed * Time.deltaTime;
-        pos.y += v * speed * Time.deltaTime;
+        pos.x += h * playerSpeed * Time.deltaTime;
+        pos.y += v * playerSpeed * Time.deltaTime;
 
         transform.position = pos;
 
         // Time.timeSinceLevelLoad  will reset time when loading new scence.
-        m_TimeText.text = "Survived: " + Time.timeSinceLevelLoad.ToString("0.0"); 
+        m_TimeText.text = "Survived: " + Time.timeSinceLevelLoad.ToString("0.0");
 
-        ChangeColor();
+        // Change player color every "timeToChange" sec
+        ChangeColor(); 
     }
 
     private void ChangeColor()
     {
-        // [Endless]
-        // Debug.Log("Now Time: " + Time.timeSinceLevelLoad);
-        // Debug.Log("Floor Time: " + Math.Floor(Time.timeSinceLevelLoad / 10.0));
-        // Debug.Log("Change Rate: " + changeRate[Convert.ToInt32(Math.Floor(Time.timeSinceLevelLoad / 10.0))]);
-        if (Time.timeSinceLevelLoad >= 60) {
-            timeToChange = 1;
-        }else {
-            timeToChange = changeRate[Convert.ToInt32(Math.Floor(Time.timeSinceLevelLoad / 10.0))];
-        }
-        // [Endless] end
-
         timeSinceChange += Time.deltaTime;
+        Color newColor = colors[Random.Range(0, colors.Length)];
 
         if (timeSinceChange >= timeToChange)
         {
-            Color newColor = colors[UnityEngine.Random.Range(0, colors.Length)];
 
-            while (newColor == gameObject.GetComponent<Image>().color)
+            while (newColor == gameObject.GetComponent<SpriteRenderer>().color)
             {
-                newColor = colors[UnityEngine.Random.Range(0, colors.Length)];
+                newColor = colors[Random.Range(0, colors.Length)];
             }
-            gameObject.GetComponent<Image>().color = newColor;
+
+			newColor.a = 1f;
+            gameObject.GetComponent<SpriteRenderer>().color = newColor;
             timeSinceChange = 0f;
         }
-        
 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.LogError("OnTriggerEnter2D");
-        // Debug.Log("Collision obj color: " + collision.transform.GetChild(0).GetComponent<Image>().color);
-        // Debug.Log("Collision player color: " + gameObject.GetComponent<Image>().color);
         
-        Color bulletColor = collision.transform.GetChild(0).GetComponent<Image>().color;
-        Color playerColor = gameObject.GetComponent<Image>().color;
+        Color bulletColor = collision.GetComponent<SpriteRenderer>().color;
+        Color playerColor = gameObject.GetComponent<SpriteRenderer>().color;
         Debug.Log("Collision obj color: " + bulletColor); 
         Debug.Log("Collision player color: " + playerColor);
         
@@ -121,8 +114,8 @@ public class PlayerMovement : MonoBehaviour
         // Same color: player can collect the bullet as resources
         else
         {
-            Sprite bulletType = collision.transform.GetChild(0).GetComponent<Image>().sprite;
-            if (bulletType.name == "Knob") 
+            Sprite bulletType = collision.GetComponent<SpriteRenderer>().sprite;
+            if (bulletType.name == "Circle") 
             {
                 collectables[0] += 1;
             }
@@ -130,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 collectables[1] += 1;
             }
-            else if (bulletType.name == "UISprite") 
+            else if (bulletType.name == "Square") 
             {
                 collectables[2] += 1;
             }
@@ -143,10 +136,6 @@ public class PlayerMovement : MonoBehaviour
         // Game over condition
         if (m_Hp <= 0)
         {
-            DataManager dm = gameObject.GetComponent<DataManager>();
-            // Debug.Log(Time.timeSinceLevelLoad.ToString("0.0"));
-            dm.Send("Endless", Time.timeSinceLevelLoad.ToString("0.0"));
-            Destroy(gameObject);
             SceneManager.LoadScene("GameOver");
         }
 
