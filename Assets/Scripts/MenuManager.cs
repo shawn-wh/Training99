@@ -12,9 +12,6 @@ using TMPro;
 
 public class MenuManager : MonoBehaviour
 {
-    private const string url = "http://dreamlo.com/lb/";
-    private const string privateCode = "pvRmq2uOCkS2mOf4UkgrrQ4H6IwWeH5E6IIdSedi4CCg";
-    private const string publicCode = "6330fb5a8f40bc0fe885f629";
     private string[] leaderName = new string[10];
     private int[] leaderScore = new int[10];
     
@@ -30,7 +27,7 @@ public class MenuManager : MonoBehaviour
     }
 
     IEnumerator GetHighestScore() {
-        string getUrl = url + publicCode + "/json/";
+        string getUrl = GameManager.url + GameManager.publicCode + "/json/";
         Debug.Log(getUrl);
         UnityWebRequest webRequest = UnityWebRequest.Get(getUrl);
         yield return webRequest.SendWebRequest();
@@ -59,7 +56,7 @@ public class MenuManager : MonoBehaviour
                         leaderScore[i] = Int32.Parse(userData[i]["score"].ToString());
                     }
                     for(int i = 0; i < 10; i++) {
-                        leaderboard += ((i+1).ToString() + ". \t" + leaderName[i] + "\t " + leaderScore[i] + "\n");
+                        leaderboard += ((i+1).ToString() + ". \t" + leaderName[i] + "\t\t " + leaderScore[i] + "\n");
                     }
                     LeaderBoardTop10.text = leaderboard;
                     // int rank = 1;
@@ -76,27 +73,6 @@ public class MenuManager : MonoBehaviour
                 break;
         }
         
-    }
-
-    IEnumerator SubmitNewScore(string userName, int score) {
-        string getUrl = url + privateCode + "/add/" + UnityWebRequest.EscapeURL(userName) + "/" + score;
-        Debug.Log(getUrl);
-        UnityWebRequest webRequest = UnityWebRequest.Get(getUrl);
-        yield return webRequest.SendWebRequest();
-
-        switch (webRequest.result)
-        {
-            case UnityWebRequest.Result.ConnectionError:
-            case UnityWebRequest.Result.DataProcessingError:
-                Debug.LogError("Error: " + webRequest.error);
-                break;
-            case UnityWebRequest.Result.ProtocolError:
-                Debug.LogError("HTTP Error: " + webRequest.error);
-                break;
-            case UnityWebRequest.Result.Success:
-                Debug.Log("Received: " + webRequest.downloadHandler.text);
-                break;
-        }
     }
 
     public void onStartGame(string SceneName) {
