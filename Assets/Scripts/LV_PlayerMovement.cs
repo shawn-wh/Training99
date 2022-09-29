@@ -157,6 +157,12 @@ public class LV_PlayerMovement : MonoBehaviour
         // Game over condition
         if (m_Hp <= 0)
         {
+            DataManager dm = gameObject.GetComponent<DataManager>();
+            // Debug.Log(Time.timeSinceLevelLoad.ToString("0.0"));
+            float levelTimeScore =  Time.timeSinceLevelLoad;
+            // GameManager.endlessTimeScore = endlessTimeScore;
+            // dm.Send("Level", endlessTimeScore.ToString("0.0"));
+            Destroy(gameObject);
             SceneManager.LoadScene("GameOver");
         }
 
