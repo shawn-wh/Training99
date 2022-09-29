@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     // global variable
     public static float endlessTimeScore = 0f;
-    public const string url = "http://dreamlo.com/lb/";
+    public const string url = "https://www.dreamlo.com/lb/";
     public const string privateCode = "pvRmq2uOCkS2mOf4UkgrrQ4H6IwWeH5E6IIdSedi4CCg";
     public const string publicCode = "6330fb5a8f40bc0fe885f629";
 
