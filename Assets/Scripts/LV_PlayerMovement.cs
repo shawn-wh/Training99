@@ -24,6 +24,9 @@ public class LV_PlayerMovement : MonoBehaviour
     public float timeToChange = 5f;
     private float timeSinceChange = 0f;
 
+    public float timeToWarn = 3f;
+    private float timeSinceWarn = 0f;
+
     // UI show collectables (Collect 3 types of bullets)
     public TextMeshProUGUI UI_Collectable1 = null;
     public TextMeshProUGUI UI_Collectable2 = null;
@@ -37,7 +40,11 @@ public class LV_PlayerMovement : MonoBehaviour
 
     // Prefab to show damage/collectable text
     public GameObject floatingTextPrefab;
-    
+
+    //prefab to show warning text
+    public GameObject warnTextPrefab;
+
+
     // SpriteRenderer
     private SpriteRenderer sRenderer;
 
@@ -84,11 +91,24 @@ public class LV_PlayerMovement : MonoBehaviour
     private void ChangeColor()
     {
         timeSinceChange += Time.deltaTime;
+        timeSinceWarn += Time.deltaTime;
         Color newColor = colors[Random.Range(0, colors.Length)];
+       
+        
 
+        if(timeSinceWarn >= timeToWarn)
+        {
+            WarnText printer = Instantiate(warnTextPrefab, transform.position, Quaternion.identity).GetComponent<WarnText>();
+
+           
+            timeSinceWarn = 0f;
+            
+        }
+        
+        
         if (timeSinceChange >= timeToChange)
         {
-
+            
             while (newColor == gameObject.GetComponent<SpriteRenderer>().color)
             {
                 newColor = colors[Random.Range(0, colors.Length)];
@@ -96,6 +116,7 @@ public class LV_PlayerMovement : MonoBehaviour
 
 			newColor.a = 1f;
             gameObject.GetComponent<SpriteRenderer>().color = newColor;
+            timeSinceWarn = 0f;
             timeSinceChange = 0f;
         }
 
@@ -151,13 +172,23 @@ public class LV_PlayerMovement : MonoBehaviour
                 printer.SetFloatingValue(+1);   // gain = positive value
             }
     
-            // Game over condition
-            if (m_Hp <= 0)
-            {
-                SceneManager.LoadScene("GameOver");
-            }
-    
             RefreshHpText();
+
+            // Show gain text
+            FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
+            printer.SetFloatingValue(+1);   // gain = positive value
+        }
+
+        // Game over condition
+        if (m_Hp <= 0)
+        {
+            DataManager dm = gameObject.GetComponent<DataManager>();
+            // Debug.Log(Time.timeSinceLevelLoad.ToString("0.0"));
+            float levelTimeScore =  Time.timeSinceLevelLoad;
+            // GameManager.endlessTimeScore = endlessTimeScore;
+            // dm.Send("Level", endlessTimeScore.ToString("0.0"));
+            Destroy(gameObject);
+            SceneManager.LoadScene("GameOver");
         }
         
     }
