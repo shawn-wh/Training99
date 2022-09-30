@@ -7,12 +7,11 @@ using UnityEngine.SceneManagement;
 
 public class VersusPlayer : MonoBehaviour
 {
-    // public string name;
     public float speed = 5f;
     public int maxHealth = 10;
     public int m_Hp = 10;
     public HealthBar healthBar;
-    public string controlSet = null;
+    public string controlSet = null;  // Valid values: Player1, Player2
     // Prefab to show damage/collectable text
     public GameObject floatingTextPrefab;
     
@@ -27,14 +26,6 @@ public class VersusPlayer : MonoBehaviour
     {
         float h = Input.GetAxis(controlSet + " Horizontal"); // player1: A, D; player2: left, right
         float v = Input.GetAxis(controlSet + " Vertical");   // player1: W, S; player2: up, down
-        if (Input.GetKeyDown("a"))
-        {
-            print("a was pressed");
-        }
-        if (Input.GetKeyDown("down"))
-        {
-            print("down was pressed");
-        }
 
         Vector2 pos = transform.position;
 
