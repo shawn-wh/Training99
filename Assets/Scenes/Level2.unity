@@ -2628,6 +2628,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
+      propertyPath: warnTextPrefab
+      value: 
+      objectReference: {fileID: 3774115643177232834, guid: eb67f2cdbdd42c0438bf2f8487cb4b70, type: 3}
+    - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
       propertyPath: UI_Collectable1
       value: 
       objectReference: {fileID: 752906289}
