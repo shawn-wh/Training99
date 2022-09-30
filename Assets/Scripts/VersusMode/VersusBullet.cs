@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 public class VersusBullet : MonoBehaviour
 {
-    public GameObject player = null;
+    public GameObject[] players;
 
-    public float bulletSpeed = 0.7f;     // adjustable bullet speed default 0.7f
+    public float bulletSpeed;
     public Color color;
 
     // Start is called before the first frame update
     void Start()
     {
+        GameObject player = players[Random.Range(0, players.Length)];
         transform.LookAt(player.transform);
     }
 

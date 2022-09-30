@@ -325,8 +325,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b91e773bab2a947da9d17d5833ef5221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 515943665}
-  bulletSpeed: 8
+  players:
+  - {fileID: 515943665}
+  - {fileID: 710505773}
+  bulletSpeed: 2
   color: {r: 0.95686275, g: 0.73333335, b: 0.05882353, a: 1}
 --- !u!1 &349025317
 GameObject:
@@ -584,8 +586,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  maxHealth: 10
-  m_Hp: 10
   healthBar: {fileID: 1526053942}
   controlSet: Player1
   floatingTextPrefab: {fileID: 3774115643177232834, guid: a555ffc023e5346c0805edf4da8038bf, type: 3}
@@ -802,8 +802,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  maxHealth: 10
-  m_Hp: 10
   healthBar: {fileID: 241102640}
   controlSet: Player2
   floatingTextPrefab: {fileID: 3774115643177232834, guid: a555ffc023e5346c0805edf4da8038bf, type: 3}
@@ -1248,6 +1246,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health bar2
       objectReference: {fileID: 0}
+    - target: {fileID: 249239762702079470, guid: 5dcfaa3d5a8a75b43b1d25540013ba29, type: 3}
+      propertyPath: m_Value
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 249239762702079470, guid: 5dcfaa3d5a8a75b43b1d25540013ba29, type: 3}
+      propertyPath: m_MaxValue
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dcfaa3d5a8a75b43b1d25540013ba29, type: 3}
 --- !u!1 &2086573526
@@ -1404,6 +1410,18 @@ PrefabInstance:
     - target: {fileID: 249239762702079469, guid: 5dcfaa3d5a8a75b43b1d25540013ba29, type: 3}
       propertyPath: m_Name
       value: Health bar1
+      objectReference: {fileID: 0}
+    - target: {fileID: 249239762702079470, guid: 5dcfaa3d5a8a75b43b1d25540013ba29, type: 3}
+      propertyPath: m_Value
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 249239762702079470, guid: 5dcfaa3d5a8a75b43b1d25540013ba29, type: 3}
+      propertyPath: m_MaxValue
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3436994906725598177, guid: 5dcfaa3d5a8a75b43b1d25540013ba29, type: 3}
+      propertyPath: m_text
+      value: 00
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dcfaa3d5a8a75b43b1d25540013ba29, type: 3}
