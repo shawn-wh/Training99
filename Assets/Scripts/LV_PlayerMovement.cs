@@ -148,26 +148,28 @@ public class LV_PlayerMovement : MonoBehaviour
             else
             {
                 Sprite bulletType = collision.GetComponent<SpriteRenderer>().sprite;
-                if (bulletType.name == "Circle") 
+                if (bulletType.name == "Circle")
                 {
                     collectables[0] += 1;
                 }
-                else if (bulletType.name == "Triangle")  
+                else if (bulletType.name == "Triangle")
                 {
                     collectables[1] += 1;
                 }
-                else if (bulletType.name == "Square") 
+                else if (bulletType.name == "Square")
                 {
                     collectables[2] += 1;
                 }
-                
+
                 // player collects required type and number of bullets, show the key
-                if (collectables[0] == CIRCLE_GOAL && collectables[1] == TRIANGLE_GOAL && collectables[2] == SQUARE_GOAL)
+                if (collectables[0] == CIRCLE_GOAL && collectables[1] == TRIANGLE_GOAL &&
+                    collectables[2] == SQUARE_GOAL)
                 {
                     _key.SetActive(true);
                 }
-    
+
                 // Show gain text
+
                 FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
                 printer.SetFloatingValue(+1);   // gain = positive value
             }
@@ -175,7 +177,6 @@ public class LV_PlayerMovement : MonoBehaviour
             RefreshHpText();
             
 
-           
         }
 
         // Game over condition
