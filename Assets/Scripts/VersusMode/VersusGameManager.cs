@@ -8,8 +8,8 @@ public class VersusGameManager : MonoBehaviour
     public CreateArea[] createAreas = null;
     public VersusBullet clone = null;
     public GameObject bulletNode = null;
-
     public Sprite sprite = null;
+    public static string winner = null;
 
     // Start is called before the first frame update
     void Start()

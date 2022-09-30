@@ -8,17 +8,15 @@ using UnityEngine.SceneManagement;
 public class VersusPlayer : MonoBehaviour
 {
     public float speed = 5f;
-    public int maxHealth = 10;
-    public int m_Hp = 10;
+    private int m_Hp = 3;
     public HealthBar healthBar;
     public string controlSet = null;  // Valid values: Player1, Player2
-    // Prefab to show damage/collectable text
-    public GameObject floatingTextPrefab;
-    
+    public GameObject floatingTextPrefab; // Prefab to show damage/collectable text
+
     // Start is called before the first frame update
     void Start()
     {
-        healthBar.SetMaxHealth(maxHealth);
+        healthBar.SetMaxHealth(m_Hp);
     }
 
     // Update is called once per frame
@@ -49,7 +47,13 @@ public class VersusPlayer : MonoBehaviour
         // Game over condition
         if (m_Hp <= 0)
         {
-            SceneManager.LoadScene("GameOver");
+            string winner = "Player1";
+            if (name == "Player1")
+            {
+                winner = "Player2";
+            }
+            VersusGameManager.winner = winner;
+            SceneManager.LoadScene("VersusGameOver");
         }
     }
 } // class
