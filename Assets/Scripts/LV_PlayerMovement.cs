@@ -171,10 +171,9 @@ public class LV_PlayerMovement : MonoBehaviour
                 FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
                 printer.SetFloatingValue(+1);   // gain = positive value
             }
-    
-         
-            RefreshHpText();
 
+            RefreshHpText();
+            
 
            
         }
