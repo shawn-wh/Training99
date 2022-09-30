@@ -173,12 +173,9 @@ public class LV_PlayerMovement : MonoBehaviour
                     .GetComponent<FloatingText>();
                 printer.SetFloatingValue(+1); // gain = positive value
             }
-
+            
             RefreshHpText();
-
-            // Show gain text
-            FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
-            printer.SetFloatingValue(+1);   // gain = positive value
+            
         }
 
         // Game over condition

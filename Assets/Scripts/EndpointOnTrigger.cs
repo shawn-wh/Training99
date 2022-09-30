@@ -24,7 +24,15 @@ public class EndpointOnTrigger : MonoBehaviour
         if (collision.gameObject == _player)
         {
             Debug.Log("Player found the endpoint!");
-            SceneManager.LoadScene("Level2");
+            if (SceneManager.GetActiveScene().name == "Level2")
+            {
+                SceneManager.LoadScene("GameOver");
+            }
+            else
+            {
+                SceneManager.LoadScene("Level2");
+            }
+            
         }
     }
 }
