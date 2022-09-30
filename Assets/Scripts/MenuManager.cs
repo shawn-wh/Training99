@@ -15,7 +15,8 @@ public class MenuManager : MonoBehaviour
     private string[] leaderName = new string[10];
     private int[] leaderScore = new int[10];
     
-    public TMP_Text LeaderBoardTop10;
+    public TMP_Text LeaderBoardTop10Player;
+    public TMP_Text LeaderBoardTop10Score;
     
 
     private void Start() {
@@ -50,15 +51,20 @@ public class MenuManager : MonoBehaviour
                 if (userData.IsArray) {
                     Debug.Log(userData.Count);
                     int leaderCnt = Math.Min(userData.Count, 10);
-                    string leaderboard = "";
+                    string leaderBoardPlayer = "";
+                    string leaderBoardScore = "";
                     for(int i = 0; i < leaderCnt; i++) {
                         leaderName[i] = userData[i]["name"].ToString();
                         leaderScore[i] = Int32.Parse(userData[i]["score"].ToString());
                     }
                     for(int i = 0; i < 10; i++) {
-                        leaderboard += ((i+1).ToString() + ". \t" + leaderName[i] + "\t\t " + leaderScore[i] + "\n");
+                        leaderBoardPlayer += ((i+1).ToString() + ". \t" + leaderName[i] + "\n");
+                        TimeSpan time = TimeSpan.FromSeconds((((float)leaderScore[i]) / 1000f));
+                        String ts = string.Format("{0}:{1:D2}.{2}", (int)time.TotalMinutes, time.Seconds, time.Milliseconds);
+                        leaderBoardScore += (ts + "\n");
                     }
-                    LeaderBoardTop10.text = leaderboard;
+                    LeaderBoardTop10Player.text = leaderBoardPlayer;
+                    LeaderBoardTop10Score.text = leaderBoardScore;
                     // int rank = 1;
                     // string leaderboard = "";
                     // foreach(JsonData user in userData) {

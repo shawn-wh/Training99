@@ -16,7 +16,7 @@ public class GameOverManager : MonoBehaviour
     {
         Debug.Log(GameManager.endlessTimeScore);
         Score.text = GameManager.endlessTimeScore.ToString("0.0");
-        curScore = (int)Mathf.Round(GameManager.endlessTimeScore * 10);
+        curScore = (int)Mathf.Round(GameManager.endlessTimeScore * 1000);
     }
 
     public void onSubmit() {
