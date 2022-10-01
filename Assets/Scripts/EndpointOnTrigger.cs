@@ -26,7 +26,7 @@ public class EndpointOnTrigger : MonoBehaviour
             Debug.Log("Player found the endpoint!");
             if (SceneManager.GetActiveScene().name == "Level2")
             {
-                SceneManager.LoadScene("GameOver");
+                SceneManager.LoadScene("LV_GameOver");
             }
             else
             {
