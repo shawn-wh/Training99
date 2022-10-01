@@ -33,6 +33,11 @@ public class LV_PlayerMovement : MonoBehaviour
     public TextMeshProUGUI UI_Collectable3 = null;
     private int[] collectables = new int[3]; // Record values for collectables. 
 
+    // Required type and number of bullets
+    private const int CIRCLE_GOAL = 0;
+    private const int TRIANGLE_GOAL = 1;
+    private const int SQUARE_GOAL = 0;
+
     // Prefab to show damage/collectable text
     public GameObject floatingTextPrefab;
 
@@ -42,6 +47,9 @@ public class LV_PlayerMovement : MonoBehaviour
 
     // SpriteRenderer
     private SpriteRenderer sRenderer;
+
+    [SerializeField] private GameObject _key;
+    [SerializeField] private GameObject _endpoint;
 
 
     // Start is called before the first frame update
@@ -54,6 +62,9 @@ public class LV_PlayerMovement : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         
+        // _key & _endpoint invisible
+        _key.SetActive(false);
+        _endpoint.SetActive(false);
     }
     
     
@@ -113,45 +124,59 @@ public class LV_PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-        Color bulletColor = collision.GetComponent<SpriteRenderer>().color;
-        Color playerColor = gameObject.GetComponent<SpriteRenderer>().color;
-        Debug.Log("Collision obj color: " + bulletColor); 
-        Debug.Log("Collision player color: " + playerColor);
-        
-        int damage = -1; 
-        // Different color, player take damage
-        if ( playerColor != bulletColor)
+        if (collision.gameObject != _key && collision.gameObject != _endpoint)
         {
-            m_Hp += damage;
-            currentHealth = m_Hp;
-            healthBar.SetHealth(currentHealth);
-
-
-            // Show damage text
-            FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
-            printer.SetFloatingValue(damage);   // damage = negative value
-        }
-        // Same color: player can collect the bullet as resources
-        else
-        {
-            Sprite bulletType = collision.GetComponent<SpriteRenderer>().sprite;
-            if (bulletType.name == "Circle") 
+            Color bulletColor = collision.GetComponent<SpriteRenderer>().color;
+            Color playerColor = gameObject.GetComponent<SpriteRenderer>().color;
+            Debug.Log("Collision obj color: " + bulletColor); 
+            Debug.Log("Collision player color: " + playerColor);
+            
+            int damage = -1; 
+            // Different color, player take damage
+            if ( playerColor != bulletColor)
             {
-                collectables[0] += 1;
+                m_Hp += damage;
+                currentHealth = m_Hp;
+                healthBar.SetHealth(currentHealth);
+    
+    
+                // Show damage text
+                FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
+                printer.SetFloatingValue(damage);   // damage = negative value
             }
-            else if (bulletType.name == "Triangle")  
+            // Same color: player can collect the bullet as resources
+            else
             {
-                collectables[1] += 1;
-            }
-            else if (bulletType.name == "Square") 
-            {
-                collectables[2] += 1;
+                Sprite bulletType = collision.GetComponent<SpriteRenderer>().sprite;
+                if (bulletType.name == "Circle")
+                {
+                    collectables[0] += 1;
+                }
+                else if (bulletType.name == "Triangle")
+                {
+                    collectables[1] += 1;
+                }
+                else if (bulletType.name == "Square")
+                {
+                    collectables[2] += 1;
+                }
+
+                // player collects required type and number of bullets, show the key
+                if (collectables[0] == CIRCLE_GOAL && collectables[1] == TRIANGLE_GOAL &&
+                    collectables[2] == SQUARE_GOAL)
+                {
+                    _key.SetActive(true);
+                }
+
+                // Show gain text
+
+                FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
+                printer.SetFloatingValue(+1);   // gain = positive value
             }
 
-            // Show gain text
-            FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
-            printer.SetFloatingValue(+1);   // gain = positive value
+            RefreshHpText();
+            
+
         }
 
         // Game over condition
@@ -165,8 +190,7 @@ public class LV_PlayerMovement : MonoBehaviour
             Destroy(gameObject);
             SceneManager.LoadScene("GameOver");
         }
-
-        RefreshHpText();
+        
     }
 
     private void RefreshHpText()

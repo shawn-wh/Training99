@@ -13,6 +13,7 @@ public class LV_Bullet : MonoBehaviour
     private Color _color;
     private SpriteRenderer spriteRenderer;
     
+    
 
     // Start is called before the first frame update
     void Start()
@@ -25,8 +26,13 @@ public class LV_Bullet : MonoBehaviour
         {
             targetPlayer = GameObject.FindGameObjectsWithTag("Player")[0];
         }
-
-        transform.LookAt(targetPlayer.transform);
+        
+        // https://www.youtube.com/watch?v=mJi0NwSsJig
+        // This video explains why LookAt won't work
+        // transform.LookAt(targetPlayer.transform);
+        
+        Vector2 direction = targetPlayer.transform.position - gameObject.transform.position;
+        transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
         
     }
 
@@ -38,16 +44,17 @@ public class LV_Bullet : MonoBehaviour
         {
             Color newColor = new Color(_color.r, _color.g, _color.b, 0.5f);
             gameObject.GetComponent<SpriteRenderer>().color = newColor;
-            transform.Translate(Vector3.back * Time.deltaTime * bulletSpeed * 3);
+            transform.Translate(Vector3.down * Time.deltaTime * bulletSpeed * 1);
             // Destroy after 1 seconds of bullet gets hitted
             if (Time.time - _hittedTime >= 1f)
             {
+                Debug.Log("gameObject get destroyed");
                 Destroy(gameObject);
             }
         }
         else
         {
-            transform.Translate(Vector3.forward * Time.fixedDeltaTime * bulletSpeed);
+            transform.Translate(Vector3.up * Time.fixedDeltaTime * bulletSpeed * 0.3f);
         }
     }
 
