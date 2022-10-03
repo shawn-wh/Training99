@@ -9,7 +9,9 @@ public class VersusGameManager : MonoBehaviour
     public VersusBullet clone = null;
     public GameObject bulletNode = null;
     public Sprite sprite = null;
+    public GameObject propSelectPanel = null;
     public static string winner = null;
+    public static bool isPaused = false;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,20 @@ public class VersusGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (isPaused)
+            {
+                propSelectPanel.SetActive(true);
+                Time.timeScale = 0;
+            }
+            else
+            {
+                propSelectPanel.SetActive(false);
+                Time.timeScale = 1;
+            }
+            isPaused = !isPaused;
+        }
         for (int i = 0; i < createAreas.Length; i++)
         {
             CreateArea ca = createAreas[i];
