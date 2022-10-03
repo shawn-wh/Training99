@@ -8,6 +8,7 @@ public class LV_Bullet : MonoBehaviour
     private GameObject targetPlayer = null;
 
     public float bulletSpeed = 1f;     // adjustable bullet speed
+    public float liveTime = 15f;    // adjustable bullet live time
     private bool _hitted = false;
     private float _hittedTime;
     private Color _color;
@@ -36,6 +37,12 @@ public class LV_Bullet : MonoBehaviour
         
     }
 
+    private void OnEnable()
+    {
+        _hitted = false;
+        liveTime = 15f;
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -49,12 +56,19 @@ public class LV_Bullet : MonoBehaviour
             if (Time.time - _hittedTime >= 1f)
             {
                 Debug.Log("gameObject get destroyed");
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
         else
         {
             transform.Translate(Vector3.up * Time.fixedDeltaTime * bulletSpeed * 0.3f);
+        }
+
+        liveTime -= Time.deltaTime;
+        if (liveTime <= 0)
+        {
+            gameObject.SetActive(false);
         }
     }
 
@@ -69,7 +83,8 @@ public class LV_Bullet : MonoBehaviour
         Color playerColor = collision.GetComponent<SpriteRenderer>().color;
         if (playerColor == _color)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         else
         {

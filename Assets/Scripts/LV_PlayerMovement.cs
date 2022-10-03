@@ -162,8 +162,8 @@ public class LV_PlayerMovement : MonoBehaviour
                 }
 
                 // player collects required type and number of bullets, show the key
-                if (collectables[0] == CIRCLE_GOAL && collectables[1] == TRIANGLE_GOAL &&
-                    collectables[2] == SQUARE_GOAL)
+                if (collectables[0] >= CIRCLE_GOAL && collectables[1] >= TRIANGLE_GOAL &&
+                    collectables[2] >= SQUARE_GOAL)
                 {
                     _key.SetActive(true);
                 }
@@ -187,8 +187,9 @@ public class LV_PlayerMovement : MonoBehaviour
             float levelTimeScore =  Time.timeSinceLevelLoad;
             // GameManager.endlessTimeScore = endlessTimeScore;
             // dm.Send("Level", endlessTimeScore.ToString("0.0"));
-            Destroy(gameObject);
-            SceneManager.LoadScene("GameOver");
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
+            SceneManager.LoadScene("LV_GameOver");
         }
         
     }
