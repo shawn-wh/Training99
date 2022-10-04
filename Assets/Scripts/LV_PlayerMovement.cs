@@ -47,6 +47,8 @@ public class LV_PlayerMovement : MonoBehaviour
 
     // SpriteRenderer
     private SpriteRenderer sRenderer;
+    private GameObject movingCameraBound = null;
+
 
     [SerializeField] private GameObject _key;
     [SerializeField] private GameObject _endpoint;
@@ -56,8 +58,11 @@ public class LV_PlayerMovement : MonoBehaviour
     void Start()
     {
         sRenderer = GetComponent<SpriteRenderer>();
-        Debug.Log(sRenderer);
-        
+        if (movingCameraBound == null )
+        {
+            movingCameraBound = GameObject.Find("MovingCameraBound");
+        }
+
         RefreshHpText();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
@@ -74,12 +79,15 @@ public class LV_PlayerMovement : MonoBehaviour
         float h = Input.GetAxis("Horizontal"); // key: A, D, left, right
         float v = Input.GetAxis("Vertical"); // key: W, S, up, down
 
-        Vector2 pos = transform.position;
+        // Normalized to have the same moving speed for all directions
+        Vector3 direction = new Vector3(h, v, 0).normalized;
+        transform.position += direction * playerSpeed * Time.deltaTime;
 
-        pos.x += h * playerSpeed * Time.deltaTime;
-        pos.y += v * playerSpeed * Time.deltaTime;
-
-        transform.position = pos;
+        // Replaced codes (Degree 45, 135, 225, 315 will be faster than 4 directions)
+        // Vector2 pos = transform.position;
+        // pos.x += h * playerSpeed * Time.deltaTime;
+        // pos.y += v * playerSpeed * Time.deltaTime;
+        // transform.position = pos;
 
         // Time.timeSinceLevelLoad  will reset time when loading new scence.
         m_TimeText.text = "Survived: " + Time.timeSinceLevelLoad.ToString("0.0");
@@ -124,7 +132,10 @@ public class LV_PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject != _key && collision.gameObject != _endpoint)
+        Debug.Log("Collision name = " + collision);
+        Debug.Log("Collision gameObject = " + movingCameraBound);
+  
+        if (collision.gameObject != _key && collision.gameObject != _endpoint && collision.gameObject != movingCameraBound) 
         {
             Color bulletColor = collision.GetComponent<SpriteRenderer>().color;
             Color playerColor = gameObject.GetComponent<SpriteRenderer>().color;
@@ -162,7 +173,8 @@ public class LV_PlayerMovement : MonoBehaviour
                 }
 
                 // player collects required type and number of bullets, show the key
-                if (collectables[0] >= CIRCLE_GOAL && collectables[1] >= TRIANGLE_GOAL &&
+                if (collectables[0] >= CIRCLE_GOAL && 
+                    collectables[1] >= TRIANGLE_GOAL &&
                     collectables[2] >= SQUARE_GOAL)
                 {
                     _key.SetActive(true);
