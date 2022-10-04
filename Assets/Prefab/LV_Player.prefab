@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3318553283824375941}
   - component: {fileID: 3318553283824375940}
   - component: {fileID: 3318553283824375939}
+  - component: {fileID: 7160798802907528549}
   m_Layer: 0
   m_Name: LV_Player
   m_TagString: Player
@@ -136,15 +137,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0129979d241a64781ba7975808afa4a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  playerSpeed: 5
   healthBar: {fileID: 0}
   m_HpText: {fileID: 0}
   m_TimeText: {fileID: 0}
   m_Hp: 10
   maxHealth: 10
   currentHealth: 0
+  colors: []
   timeToChange: 5
+  timeToWarn: 3
   UI_Collectable1: {fileID: 0}
   UI_Collectable2: {fileID: 0}
   UI_Collectable3: {fileID: 0}
   floatingTextPrefab: {fileID: 3774115643177232834, guid: a555ffc023e5346c0805edf4da8038bf, type: 3}
+  warnTextPrefab: {fileID: 0}
+  _key: {fileID: 0}
+  _endpoint: {fileID: 0}
+--- !u!114 &7160798802907528549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3318553283824375938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed05556b655d54f458fd7f34cc0a0cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  URL: https://docs.google.com/forms/u/1/d/e/1FAIpQLSfKNrOTpYJb-gMMYHeqQQgS4JqxlZFVN-k1uwohcMCM21acLg/formResponse

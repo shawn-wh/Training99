@@ -20,8 +20,8 @@ public class WarnText : MonoBehaviour
     private void Start()
     {
         _warnText.color = new Color32(0, 0, 0, 255);
-        _rigidbody.velocity = new Vector2(0, 4);
-        _warnText.SetText("CAUTION!!!");
+        _rigidbody.velocity = new Vector2(0, 0.4f);  //  y= up speed
+        _warnText.SetText("Color changing !!!");
         _warnText.fontSize = 0.3f;
         Destroy(gameObject, AppearTime);
     }

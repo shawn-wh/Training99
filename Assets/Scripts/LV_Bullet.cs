@@ -52,8 +52,8 @@ public class LV_Bullet : MonoBehaviour
             Color newColor = new Color(_color.r, _color.g, _color.b, 0.5f);
             gameObject.GetComponent<SpriteRenderer>().color = newColor;
             transform.Translate(Vector3.down * Time.deltaTime * bulletSpeed * 1);
-            // Destroy after 1 seconds of bullet gets hitted
-            if (Time.time - _hittedTime >= 1f)
+            // Destroy after 0.5 seconds of bullet gets hitted
+            if (Time.time - _hittedTime >= 0.5f)
             {
                 Debug.Log("gameObject get destroyed");
                 //Destroy(gameObject);
