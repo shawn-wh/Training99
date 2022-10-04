@@ -21,6 +21,9 @@ public class LV_PlayerMovement : MonoBehaviour
     // Colors = red, yellow, blue ; // set aphla = 1
     // private Color[] coloris = { new Color(162,52,25,255), new Color(244,187,15,255), new Color(47,55,91,255)};
     public Color[] colors;
+    public Color nextColor;
+    public TextMeshProUGUI nextColorText;
+    public string returnColor;
     public float timeToChange = 5f;
     private float timeSinceChange = 0f;
 
@@ -70,6 +73,17 @@ public class LV_PlayerMovement : MonoBehaviour
         // _key & _endpoint invisible
         _key.SetActive(false);
         _endpoint.SetActive(false);
+
+        //Generate next color
+        nextColor = colors[Random.Range(0, colors.Length)];
+        while (nextColor == gameObject.GetComponent<SpriteRenderer>().color)
+        {
+            nextColor = colors[Random.Range(0, colors.Length)];
+        }
+        nextColor.a = 1f;
+
+        //initialize nextColorText
+        RefreshNextColorText();
     }
     
     
@@ -93,7 +107,8 @@ public class LV_PlayerMovement : MonoBehaviour
         m_TimeText.text = "Survived: " + Time.timeSinceLevelLoad.ToString("0.0");
 
         // Change player color every "timeToChange" sec
-        ChangeColor(); 
+        ChangeColor();
+        RefreshNextColorText();
     }
 
     private void ChangeColor()
@@ -106,24 +121,21 @@ public class LV_PlayerMovement : MonoBehaviour
 
         if(timeSinceWarn >= timeToWarn)
         {
-            WarnText printer = Instantiate(warnTextPrefab, transform.position, Quaternion.identity).GetComponent<WarnText>();
-
-           
-            timeSinceWarn = 0f;
-            
+            WarnText printer = Instantiate(warnTextPrefab, transform.position, Quaternion.identity).GetComponent<WarnText>();  
+            timeSinceWarn = 0f;       
         }
         
         
         if (timeSinceChange >= timeToChange)
         {
+            gameObject.GetComponent<SpriteRenderer>().color = nextColor;
             
-            while (newColor == gameObject.GetComponent<SpriteRenderer>().color)
+            while (nextColor == gameObject.GetComponent<SpriteRenderer>().color)
             {
-                newColor = colors[Random.Range(0, colors.Length)];
+                nextColor = colors[Random.Range(0, colors.Length)];
             }
 
-			newColor.a = 1f;
-            gameObject.GetComponent<SpriteRenderer>().color = newColor;
+			nextColor.a = 1f;
             timeSinceWarn = 0f;
             timeSinceChange = 0f;
         }
@@ -212,5 +224,28 @@ public class LV_PlayerMovement : MonoBehaviour
         UI_Collectable1.text = collectables[0].ToString();  // Circle	
         UI_Collectable2.text = collectables[1].ToString();  // Triangle	
         UI_Collectable3.text = collectables[2].ToString();  // Square	
+    }
+
+    private string ConvertColorToString()
+    {
+        if (nextColor == colors[0])
+        {
+            return "Blue";
+        }
+        else if (nextColor == colors[1])
+        {
+            return "Red";
+        }
+        else
+        {
+            return "Yellow";
+        }
+    }
+    
+    private void RefreshNextColorText()
+    {
+        returnColor = ConvertColorToString();
+        nextColorText.text = "Next Color: " + returnColor;
+        
     }
 } // class
