@@ -142,67 +142,8 @@ public class LV_PlayerMovement : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void checkGameOver()
     {
-        Debug.Log("Collision name = " + collision);
-        Debug.Log("Collision gameObject = " + movingCameraBound);
-  
-        if (collision.gameObject != _key && collision.gameObject != _endpoint && collision.gameObject != movingCameraBound) 
-        {
-            Color bulletColor = collision.GetComponent<SpriteRenderer>().color;
-            Color playerColor = gameObject.GetComponent<SpriteRenderer>().color;
-            Debug.Log("Collision obj color: " + bulletColor); 
-            Debug.Log("Collision player color: " + playerColor);
-            
-            int damage = -1; 
-            // Different color, player take damage
-            if ( playerColor != bulletColor)
-            {
-                m_Hp += damage;
-                currentHealth = m_Hp;
-                healthBar.SetHealth(currentHealth);
-    
-    
-                // Show damage text
-                FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
-                printer.SetFloatingValue(damage);   // damage = negative value
-            }
-            // Same color: player can collect the bullet as resources
-            else
-            {
-                Sprite bulletType = collision.GetComponent<SpriteRenderer>().sprite;
-                if (bulletType.name == "Circle")
-                {
-                    collectables[0] += 1;
-                }
-                else if (bulletType.name == "Triangle")
-                {
-                    collectables[1] += 1;
-                }
-                else if (bulletType.name == "Square")
-                {
-                    collectables[2] += 1;
-                }
-
-                // player collects required type and number of bullets, show the key
-                if (collectables[0] >= CIRCLE_GOAL && 
-                    collectables[1] >= TRIANGLE_GOAL &&
-                    collectables[2] >= SQUARE_GOAL)
-                {
-                    _key.SetActive(true);
-                }
-
-                // Show gain text
-
-                FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
-                printer.SetFloatingValue(+1);   // gain = positive value
-            }
-
-            RefreshHpText();
-            
-
-        }
-
         // Game over condition
         if (m_Hp <= 0)
         {
@@ -214,8 +155,85 @@ public class LV_PlayerMovement : MonoBehaviour
             gameObject.SetActive(false);
             SceneManager.LoadScene("LV_GameOver");
         }
-        
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        ProcessCollision(collision.gameObject);
+        checkGameOver();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        ProcessCollision(collision.gameObject);
+        checkGameOver();
+    }
+
+    // A Better Way To Manage Collision in Unity 
+    // https://www.youtube.com/watch?v=TRvnN4bfAxM&t=163s&ab_channel=LostRelicGames
+    private void ProcessCollision(GameObject collider)
+    {
+        if (collider.CompareTag("Bullets"))
+        {
+            DamageOrGain(collider);
+        }
+    }
+
+    // Generic Method for both Collision2D & Collider2D
+    private void DamageOrGain(GameObject other)
+    {
+        Color bulletColor = other.GetComponent<SpriteRenderer>().color;
+        Color playerColor = gameObject.GetComponent<SpriteRenderer>().color;
+        Debug.Log("Collision obj color: " + bulletColor); 
+        Debug.Log("Collision player color: " + playerColor);
+        
+        int damage = -1; 
+        // Different color, player take damage
+        if ( playerColor != bulletColor)
+        {
+            m_Hp += damage;
+            currentHealth = m_Hp;
+            healthBar.SetHealth(currentHealth);
+
+
+            // Show damage text
+            FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
+            printer.SetFloatingValue(damage);   // damage = negative value
+        }
+        // Same color: player can collect the bullet as resources
+        else
+        {
+            Sprite bulletType = other.GetComponent<SpriteRenderer>().sprite;
+            if (bulletType.name == "Circle")
+            {
+                collectables[0] += 1;
+            }
+            else if (bulletType.name == "Triangle")
+            {
+                collectables[1] += 1;
+            }
+            else if (bulletType.name == "Square")
+            {
+                collectables[2] += 1;
+            }
+
+            // player collects required type and number of bullets, show the key
+            if (collectables[0] >= CIRCLE_GOAL && 
+                collectables[1] >= TRIANGLE_GOAL &&
+                collectables[2] >= SQUARE_GOAL)
+            {
+                _key.SetActive(true);
+            }
+
+            // Show gain text
+
+            FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
+            printer.SetFloatingValue(+1);   // gain = positive value
+        }
+
+        RefreshHpText();
+    }
+
 
     private void RefreshHpText()
     {
@@ -224,6 +242,7 @@ public class LV_PlayerMovement : MonoBehaviour
         UI_Collectable2.text = collectables[1].ToString();  // Triangle	
         UI_Collectable3.text = collectables[2].ToString();  // Square	
     }
+
 
     private string ConvertColorToString()
     {
