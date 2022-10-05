@@ -148,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
             float endlessTimeScore =  Time.timeSinceLevelLoad;
             GameManager.endlessTimeScore = endlessTimeScore;
             dm.Send("Endless", endlessTimeScore.ToString("0.0"));
-            Destroy(gameObject);
+            Destroy(dm);
             SceneManager.LoadScene("GameOver");
         }
 
