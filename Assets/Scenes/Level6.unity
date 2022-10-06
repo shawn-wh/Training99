@@ -148,7 +148,7 @@ MonoBehaviour:
   m_X: 15
   m_Y: 1
   bulletObj: {fileID: 1077200001}
-  pooledAmount: 15
+  pooledAmount: 10
 --- !u!1001 &29481576
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -930,7 +930,7 @@ MonoBehaviour:
   m_X: 1
   m_Y: 15
   bulletObj: {fileID: 1077200001}
-  pooledAmount: 15
+  pooledAmount: 10
 --- !u!114 &555512810 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1665568743194422798, guid: b3a4af7f3b9a64aef8716b29eec68bcd, type: 3}
@@ -2133,7 +2133,7 @@ MonoBehaviour:
   m_X: 1
   m_Y: 15
   bulletObj: {fileID: 1077200001}
-  pooledAmount: 15
+  pooledAmount: 10
 --- !u!1001 &1077200000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2143,7 +2143,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1737422996272542697, guid: 56d8e9bacf3f648f89f5d54a2b6ac39b, type: 3}
       propertyPath: bulletSpeed
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6486143862430887266, guid: 56d8e9bacf3f648f89f5d54a2b6ac39b, type: 3}
       propertyPath: m_Name
@@ -3054,7 +3054,7 @@ MonoBehaviour:
   m_X: 15
   m_Y: 1
   bulletObj: {fileID: 1077200001}
-  pooledAmount: 15
+  pooledAmount: 10
 --- !u!1001 &1393788812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3940,6 +3940,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 822102610}
     - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
+      propertyPath: m_Hp
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
       propertyPath: m_HpText
       value: 
       objectReference: {fileID: 1211048650}
@@ -3951,6 +3955,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1526053942}
+    - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
       propertyPath: m_TimeText
       value: 

@@ -1897,7 +1897,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1737422996272542697, guid: 56d8e9bacf3f648f89f5d54a2b6ac39b, type: 3}
       propertyPath: bulletSpeed
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6486143862430887266, guid: 56d8e9bacf3f648f89f5d54a2b6ac39b, type: 3}
       propertyPath: m_Name
@@ -3359,6 +3359,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 822102610}
     - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
+      propertyPath: m_Hp
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
       propertyPath: m_HpText
       value: 
       objectReference: {fileID: 1211048650}
@@ -3370,6 +3374,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1526053942}
+    - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
       propertyPath: m_TimeText
       value: 
