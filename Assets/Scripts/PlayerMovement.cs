@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public int currentHealth;
 
     public Color[] colors = new Color[3];
-    public float timeToChange = 5f; // default 5f
+    public float timeToChange = 3f; // default 5f
     private float timeSinceChange = 0f;
 
     // UI show collectables (Collect 3 types of bullets)
@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject floatingTextPrefab;
     
     // [Endless] player change rate
-    public int[] changeRate = {5, 5, 5, 3, 3, 3, 1};
+    // public int[] changeRate = {5, 5, 5, 3, 3, 3, 1};
 
     // Start is called before the first frame update
     void Start()
@@ -70,11 +70,11 @@ public class PlayerMovement : MonoBehaviour
         // Debug.Log("Now Time: " + Time.timeSinceLevelLoad);
         // Debug.Log("Floor Time: " + Math.Floor(Time.timeSinceLevelLoad / 10.0));
         // Debug.Log("Change Rate: " + changeRate[Convert.ToInt32(Math.Floor(Time.timeSinceLevelLoad / 10.0))]);
-        if (Time.timeSinceLevelLoad >= 60) {
-            timeToChange = 1;
-        }else {
-            timeToChange = changeRate[Convert.ToInt32(Math.Floor(Time.timeSinceLevelLoad / 10.0))];
-        }
+        // if (Time.timeSinceLevelLoad >= 60) {
+        //     timeToChange = 1;
+        // }else {
+        //     timeToChange = changeRate[Convert.ToInt32(Math.Floor(Time.timeSinceLevelLoad / 10.0))];
+        // }
         // [Endless] end
 
         timeSinceChange += Time.deltaTime;
