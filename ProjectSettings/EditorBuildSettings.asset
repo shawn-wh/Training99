@@ -24,6 +24,21 @@ EditorBuildSettings:
     path: Assets/Scenes/VersusGameOver.unity
     guid: 6b149a1d8ee5f4f6e8ccb44e3fdee9fb
   - enabled: 1
+    path: Assets/Scenes/Level4.unity
+    guid: a1f6f3ffb6efa40fd88b5fd4b808eb76
+  - enabled: 1
+    path: Assets/Scenes/Level5.unity
+    guid: ae7c51a6f78254407a5632928f0d95a5
+  - enabled: 1
+    path: Assets/Scenes/Level6.unity
+    guid: bf0ef715c29dd45bab075ade97c650ea
+  - enabled: 1
+    path: Assets/Scenes/LevelCleared.unity
+    guid: 69b0744af792e418882d164e2c136970
+  - enabled: 1
+    path: Assets/Scenes/LevelMenu.unity
+    guid: a990b85080c7c4addbff3d71ee80d822
+  - enabled: 1
     path: Assets/Scenes/VersusScene.unity
     guid: 2ce59463169f94a57942fc804b17a25a
   - enabled: 1
