@@ -8,7 +8,8 @@ public class LV_Bullet : MonoBehaviour
     private GameObject targetPlayer = null;
 
     public float bulletSpeed = 1f;     // adjustable bullet speed
-    public float liveTime = 15f;    // adjustable bullet live time
+    public float liveTime_Const = 15f;    // adjustable bullet live time
+    private float liveTime;
     private bool _hitted = false;
     private float _hittedTime;
     private Color _color;
@@ -19,6 +20,7 @@ public class LV_Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        liveTime = liveTime_Const;
         spriteRenderer = GetComponent<SpriteRenderer>();
         Debug.Log(spriteRenderer);
         
@@ -40,7 +42,7 @@ public class LV_Bullet : MonoBehaviour
     private void OnEnable()
     {
         _hitted = false;
-        liveTime = 15f;
+        liveTime = liveTime_Const;
     }
 
 

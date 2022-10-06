@@ -19,8 +19,8 @@ public class LV_BulletPatrol : MonoBehaviour
     // Variables for patroling
     public Transform[] waypoints;   // Given patroling waypoints
     private int pointIndex = 0;
-    private float waitTime = 1f;    // patroling the spot for 1 second
-    public float startWaitTime = 3f;
+    private float waitTime = 8f;   
+    public float startWaitTime = 5f;    // Wait 8 sec to start moving
 
     // Start is called before the first frame update
     void Start()
