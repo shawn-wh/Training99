@@ -9,9 +9,9 @@ public class VersusGameManager : MonoBehaviour
     public VersusBullet clone = null;
     public GameObject bulletNode = null;
     public Sprite sprite = null;
-    
-    public GameObject propSelectPanel = null;
-    public CardController[] availableCards;
+
+    [SerializeField] private GameObject propSelectPanel = null;
+    [SerializeField] private CardController[] availableCards;
 
     public VersusPlayer[] players;
     public static string winner = null;
@@ -25,11 +25,11 @@ public class VersusGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Transform propsRoot = propSelectPanel.transform.Find("Props");
-        card0 = Instantiate(availableCards[0], propsRoot);
-        card1 = Instantiate(availableCards[0], propsRoot);
-        card2 = Instantiate(availableCards[0], propsRoot);
-        card3 = Instantiate(availableCards[0], propsRoot);
+        Transform cardsRoot = propSelectPanel.transform.Find("Cards");
+        card0 = Instantiate(availableCards[0], cardsRoot);
+        card1 = Instantiate(availableCards[0], cardsRoot);
+        card2 = Instantiate(availableCards[0], cardsRoot);
+        card3 = Instantiate(availableCards[0], cardsRoot);
     }
 
     // Update is called once per frame
@@ -39,6 +39,30 @@ public class VersusGameManager : MonoBehaviour
         {
             PropPrototype prop = Instantiate(card0.prop, players[0].transform);
             prop.AssignAndEnable(players[0]);
+            propSelectPanel.SetActive(false);
+            Time.timeScale = 1;
+            isPaused = false;
+        }
+        else if (isPaused && Input.GetKeyDown(KeyCode.D))
+        {
+            PropPrototype prop = Instantiate(card1.prop, players[0].transform);
+            prop.AssignAndEnable(players[0]);
+            propSelectPanel.SetActive(false);
+            Time.timeScale = 1;
+            isPaused = false;
+        }
+        else if (isPaused && Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            PropPrototype prop = Instantiate(card2.prop, players[1].transform);
+            prop.AssignAndEnable(players[1]);
+            propSelectPanel.SetActive(false);
+            Time.timeScale = 1;
+            isPaused = false;
+        }
+        else if (isPaused && Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            PropPrototype prop = Instantiate(card3.prop, players[1].transform);
+            prop.AssignAndEnable(players[1]);
             propSelectPanel.SetActive(false);
             Time.timeScale = 1;
             isPaused = false;
