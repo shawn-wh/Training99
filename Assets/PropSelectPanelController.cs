@@ -33,7 +33,7 @@ public class PropSelectPanelController : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(15);
             Show();
             panelTimeLeft = 5.0f;
             isPlayer1Confirmed = false;
