@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class PropPrototype : MonoBehaviour
 {
-    [SerializeField]
-    protected VersusPlayer owner;
+    [SerializeField] protected VersusPlayer owner;
 
     public void Awake()
     {
