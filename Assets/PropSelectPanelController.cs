@@ -13,6 +13,7 @@ public class PropSelectPanelController : MonoBehaviour
     private float panelTimeLeft = 5.0f;
     private bool isPlayer1Confirmed = false;
     private bool isPlayer2Confirmed = false;
+    private bool isFirstFrame = true;
     
     private CardController card0;
     private CardController card1;
@@ -35,16 +36,16 @@ public class PropSelectPanelController : MonoBehaviour
         {
             yield return new WaitForSeconds(15);
             Show();
-            panelTimeLeft = 5.0f;
-            isPlayer1Confirmed = false;
-            isPlayer2Confirmed = false;
-            player1ConfirmedText.enabled = false;
-            player2ConfirmedText.enabled = false;
         }
     }
     
-    void Show()
+    public void Show()
     {
+        panelTimeLeft = 5.0f;
+        isPlayer1Confirmed = false;
+        isPlayer2Confirmed = false;
+        player1ConfirmedText.enabled = false;
+        player2ConfirmedText.enabled = false;
         gameObject.SetActive(true);
         Time.timeScale = 0;
         VersusGameManager.isPaused = true;
@@ -52,6 +53,7 @@ public class PropSelectPanelController : MonoBehaviour
     
     void Hide()
     {
+        isFirstFrame = false;
         gameObject.SetActive(false);
         Time.timeScale = 1;
         VersusGameManager.isPaused = false;
@@ -62,7 +64,7 @@ public class PropSelectPanelController : MonoBehaviour
     {
         if (VersusGameManager.isPaused)
         {
-            if (panelTimeLeft < 0)
+            if (!isFirstFrame && panelTimeLeft < 0)
             {
                 Hide();
                 panelTimeLeft = 0;
@@ -111,8 +113,12 @@ public class PropSelectPanelController : MonoBehaviour
                     Hide();
                 }
             }
-            panelTimeLeft -= Time.unscaledDeltaTime;
-            panelTimer.text = "Time Left: " + panelTimeLeft.ToString("0.0") + " seconds";
+            if (!isFirstFrame)
+            {
+                panelTimeLeft -= Time.unscaledDeltaTime;
+                panelTimer.text = "Time Left: " + panelTimeLeft.ToString("0.0") + " seconds";
+            }
+            
         }
     }
 }

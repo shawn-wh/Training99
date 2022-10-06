@@ -15,12 +15,13 @@ public class VersusGameManager : MonoBehaviour
 
     public VersusPlayer[] players;
     public static string winner = null;
-    public static bool isPaused = false;
+    public static bool isPaused = true;
     
     void Start()
     {
         IEnumerator panelCoroutine = panel.ShowPanelInterval();
         StartCoroutine(panelCoroutine);
+        panel.Show();
     }
 
     // Update is called once per frame
