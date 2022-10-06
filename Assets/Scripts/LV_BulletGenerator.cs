@@ -52,7 +52,7 @@ public class LV_BulletGenerator : MonoBehaviour
     public void NextTime()
     {
         //m_Time = Time.time + Random.Range(0.5f, 1.5f);
-        m_Time = Time.time + Random.Range(1f, 5f);
+        m_Time = Time.time + Random.Range(1f, 3f);
     }
 
     public bool CheckTime()

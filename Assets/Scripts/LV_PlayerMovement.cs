@@ -13,9 +13,9 @@ public class LV_PlayerMovement : MonoBehaviour
 
     public TextMeshProUGUI m_HpText = null;
     public TextMeshProUGUI m_TimeText = null;
-    public int m_Hp = 10;
+    public int m_Hp = 5;
 
-    public int maxHealth = 10;
+    public int maxHealth = 5;
     public int currentHealth;
 
     // Colors = red, yellow, blue ; // set aphla = 1
