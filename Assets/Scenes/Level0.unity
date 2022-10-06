@@ -426,11 +426,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1737422996272542697, guid: 56d8e9bacf3f648f89f5d54a2b6ac39b, type: 3}
       propertyPath: bulletSpeed
-      value: 1
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 1737422996272542697, guid: 56d8e9bacf3f648f89f5d54a2b6ac39b, type: 3}
       propertyPath: liveTime_Const
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5199064337975940067, guid: 56d8e9bacf3f648f89f5d54a2b6ac39b, type: 3}
       propertyPath: m_Color.b
@@ -458,11 +458,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7996605568404892046, guid: 56d8e9bacf3f648f89f5d54a2b6ac39b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.29
+      value: 2.82
       objectReference: {fileID: 0}
     - target: {fileID: 7996605568404892046, guid: 56d8e9bacf3f648f89f5d54a2b6ac39b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.97
+      value: -7.57
       objectReference: {fileID: 0}
     - target: {fileID: 7996605568404892046, guid: 56d8e9bacf3f648f89f5d54a2b6ac39b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2054,7 +2054,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Collect one circle by touching the same color bullets
+  m_text: 'Collect one circle by touching the same color bullet
 
     Quantity of
     each shape will be updated on the upper left corner'
@@ -2211,11 +2211,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5651082094762964863, guid: 5ebf2572fa3904012a778c4df001df64, type: 3}
       propertyPath: bulletSpeed
-      value: 1
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 5651082094762964863, guid: 5ebf2572fa3904012a778c4df001df64, type: 3}
       propertyPath: liveTime_Const
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ebf2572fa3904012a778c4df001df64, type: 3}
@@ -2803,11 +2803,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8432628311726438422, guid: 5b930881c3e5044b9962d3e255770b7f, type: 3}
       propertyPath: bulletSpeed
-      value: 1
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 8432628311726438422, guid: 5b930881c3e5044b9962d3e255770b7f, type: 3}
       propertyPath: liveTime_Const
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b930881c3e5044b9962d3e255770b7f, type: 3}
