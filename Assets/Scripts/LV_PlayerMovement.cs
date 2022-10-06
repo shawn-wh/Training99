@@ -148,11 +148,10 @@ public class LV_PlayerMovement : MonoBehaviour
         if (m_Hp <= 0)
         {
             DataManager dm = gameObject.GetComponent<DataManager>();
-            // Debug.Log(Time.timeSinceLevelLoad.ToString("0.0"));
-            float levelTimeScore =  Time.timeSinceLevelLoad;
-            // GameManager.endlessTimeScore = endlessTimeScore;
-            // dm.Send("Level", endlessTimeScore.ToString("0.0"));
-            //Destroy(gameObject);
+            // Debug.Log("player dead time: " + Time.timeSinceLevelLoad.ToString("0.0"));
+            string currentLevel = SceneManager.GetActiveScene().name;
+            dm.Send(currentLevel, "-1");
+            Destroy(dm);
             gameObject.SetActive(false);
             SceneManager.LoadScene("LV_GameOver");
         }
