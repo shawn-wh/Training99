@@ -24,6 +24,7 @@ public class EndpointOnTrigger : MonoBehaviour
         if (collision.gameObject == _player)
         {
             Debug.Log("Player found the endpoint!");
+<<<<<<< HEAD
             
             if (SceneManager.GetActiveScene().name == "Level2")
             {
@@ -44,6 +45,9 @@ public class EndpointOnTrigger : MonoBehaviour
                 SceneManager.LoadScene("Level2");
             }
             
+=======
+
+>>>>>>> a5d09fe (add level4 - level6 map, add level menu)
         }
     }
 }
