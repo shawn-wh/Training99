@@ -37,9 +37,9 @@ public class LV_PlayerMovement : MonoBehaviour
     private int[] collectables = new int[3]; // Record values for collectables. 
 
     // Required type and number of bullets
-    private const int CIRCLE_GOAL = 0;
-    private const int TRIANGLE_GOAL = 1;
-    private const int SQUARE_GOAL = 0;
+    public int CIRCLE_GOAL = 1;
+    public int TRIANGLE_GOAL = 0;
+    public int SQUARE_GOAL = 0;
 
     // Prefab to show damage/collectable text
     public GameObject floatingTextPrefab;
@@ -69,7 +69,7 @@ public class LV_PlayerMovement : MonoBehaviour
         RefreshHpText();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
-        
+
         // _key & _endpoint invisible
         _key.SetActive(false);
         _endpoint.SetActive(false);
@@ -116,7 +116,6 @@ public class LV_PlayerMovement : MonoBehaviour
         timeSinceChange += Time.deltaTime;
         timeSinceWarn += Time.deltaTime;
         Color newColor = colors[Random.Range(0, colors.Length)];
-       
         
 
         if(timeSinceWarn >= timeToWarn)
@@ -238,9 +237,9 @@ public class LV_PlayerMovement : MonoBehaviour
     private void RefreshHpText()
     {
         m_HpText.text = "HP: " + m_Hp;
-        UI_Collectable1.text = collectables[0].ToString();  // Circle	
-        UI_Collectable2.text = collectables[1].ToString();  // Triangle	
-        UI_Collectable3.text = collectables[2].ToString();  // Square	
+        UI_Collectable1.text = collectables[0].ToString() + " / " + CIRCLE_GOAL.ToString();  // Circle	
+        UI_Collectable2.text = collectables[1].ToString() + " / " + TRIANGLE_GOAL.ToString();  // Triangle	
+        UI_Collectable3.text = collectables[2].ToString() + " / " + SQUARE_GOAL.ToString();  // Square	
     }
 
 
