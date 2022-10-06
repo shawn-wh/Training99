@@ -67,7 +67,7 @@ public class PropSelectPanelController : MonoBehaviour
                 Hide();
                 panelTimeLeft = 0;
             }
-            else if (!isPlayer1Confirmed && Input.GetKeyDown(KeyCode.A))
+            else if (!isPlayer1Confirmed && Input.GetKeyDown(KeyCode.F))
             {
                 PropPrototype prop = Instantiate(card0.prop, manager.players[0].transform);
                 prop.AssignAndEnable(manager.players[0]);
@@ -78,7 +78,7 @@ public class PropSelectPanelController : MonoBehaviour
                     Hide();
                 }
             }
-            else if (!isPlayer1Confirmed && Input.GetKeyDown(KeyCode.D))
+            else if (!isPlayer1Confirmed && Input.GetKeyDown(KeyCode.G))
             {
                 PropPrototype prop = Instantiate(card1.prop, manager.players[0].transform);
                 prop.AssignAndEnable(manager.players[0]);
@@ -89,7 +89,7 @@ public class PropSelectPanelController : MonoBehaviour
                     Hide();
                 }
             }
-            else if (!isPlayer2Confirmed && Input.GetKeyDown(KeyCode.LeftArrow))
+            else if (!isPlayer2Confirmed && Input.GetKeyDown(KeyCode.Comma))
             {
                 PropPrototype prop = Instantiate(card2.prop, manager.players[1].transform);
                 prop.AssignAndEnable(manager.players[1]);
@@ -100,7 +100,7 @@ public class PropSelectPanelController : MonoBehaviour
                     Hide();
                 }
             }
-            else if (!isPlayer2Confirmed && Input.GetKeyDown(KeyCode.RightArrow))
+            else if (!isPlayer2Confirmed && Input.GetKeyDown(KeyCode.Period))
             {
                 PropPrototype prop = Instantiate(card3.prop, manager.players[1].transform);
                 prop.AssignAndEnable(manager.players[1]);
