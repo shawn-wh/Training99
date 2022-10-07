@@ -426,7 +426,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1737422996272542697, guid: 56d8e9bacf3f648f89f5d54a2b6ac39b, type: 3}
       propertyPath: bulletSpeed
-      value: 0.6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1737422996272542697, guid: 56d8e9bacf3f648f89f5d54a2b6ac39b, type: 3}
       propertyPath: liveTime_Const
@@ -2211,7 +2211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5651082094762964863, guid: 5ebf2572fa3904012a778c4df001df64, type: 3}
       propertyPath: bulletSpeed
-      value: 0.6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5651082094762964863, guid: 5ebf2572fa3904012a778c4df001df64, type: 3}
       propertyPath: liveTime_Const
@@ -2803,7 +2803,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8432628311726438422, guid: 5b930881c3e5044b9962d3e255770b7f, type: 3}
       propertyPath: bulletSpeed
-      value: 0.6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8432628311726438422, guid: 5b930881c3e5044b9962d3e255770b7f, type: 3}
       propertyPath: liveTime_Const
