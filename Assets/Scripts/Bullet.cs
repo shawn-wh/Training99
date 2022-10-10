@@ -9,8 +9,6 @@ public class Bullet : MonoBehaviour
     public GameObject player = null;
     
     public float bulletSpeed = 0.7f;     // adjustable bullet speed default 0.7f
-    private bool _hitted = false;
-    private float _hittedTime;
     private Color _color;
     
     // [Endless] player change rate
@@ -42,22 +40,8 @@ public class Bullet : MonoBehaviour
             bulletSpeed = speed[Convert.ToInt32(Math.Floor(Time.timeSinceLevelLoad / 5.0))];
         }
         // [Endless] end
-
-        if (_hitted)
-        {
-            Color newColor = new Color(_color.r, _color.g, _color.b, 0.5f);
-            gameObject.transform.GetChild(0).GetComponent<Image>().color = newColor;
-            transform.Translate(Vector3.back * Time.deltaTime * bulletSpeed * 3);
-            // Destroy after 1 seconds of bullet gets hitted
-            if (Time.time - _hittedTime >= 1f) 
-            {
-                Destroy(gameObject);
-            }
-        }
-        else 
-        {
-            transform.Translate(Vector3.forward * Time.deltaTime * bulletSpeed);
-        }
+        
+        transform.Translate(Vector3.forward * Time.deltaTime * bulletSpeed);
     }
     
     public void SetColor(Color newColor)
@@ -68,15 +52,6 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Color playerColor = collision.GetComponent<Image>().color;
-        if (playerColor == _color)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            _hitted = true;
-            _hittedTime = Time.time;
-        }
+        Destroy(gameObject);
     }
 }
