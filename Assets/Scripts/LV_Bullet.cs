@@ -44,7 +44,8 @@ public class LV_Bullet : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    // FixedUpdate is called once every0.02 seconds
+    void FixedUpdate()    
     {
         transform.Translate(Vector3.up * Time.fixedDeltaTime * bulletSpeed * 0.3f);
 
