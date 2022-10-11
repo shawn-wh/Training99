@@ -8,6 +8,8 @@ using System;
 
 public class PlayerMovement : MonoBehaviour
 {
+    // [Endless] change Circle Collider 2D Is Trigger to empty
+    // Add walls
     public float speed = 5f;
 
     Player player = new Player(100, 0, "Player");
