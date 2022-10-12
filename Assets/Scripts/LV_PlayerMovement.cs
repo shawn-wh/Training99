@@ -75,11 +75,12 @@ public class LV_PlayerMovement : MonoBehaviour
         _endpoint.SetActive(false);
 
         //Generate next color
-        nextColor = colors[Random.Range(0, colors.Length)];
-        while (nextColor == gameObject.GetComponent<SpriteRenderer>().color)
-        {
-            nextColor = colors[Random.Range(0, colors.Length)];
-        }
+        // nextColor = colors[Random.Range(0, colors.Length)];
+        // while (nextColor == gameObject.GetComponent<SpriteRenderer>().color)
+        // {
+            // nextColor = colors[Random.Range(0, colors.Length)];
+        // }
+        nextColor = colors[0];
         nextColor.a = 1f;
 
         //initialize nextColorText
@@ -107,7 +108,7 @@ public class LV_PlayerMovement : MonoBehaviour
         m_TimeText.text = "Survived: " + Time.timeSinceLevelLoad.ToString("0.0");
 
         // Change player color every "timeToChange" sec
-        ChangeColor();
+        // ChangeColor(); // Player doesn't have to change color for current setting
         RefreshNextColorText();
     }
 
