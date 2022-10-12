@@ -144,7 +144,7 @@ public class LV_PlayerMovement : MonoBehaviour
     private void checkGameOver()
     {
         // Game over condition
-        if (m_Hp <= 0)
+        if (currentHealth <= 0)
         {
             DataManager dm = gameObject.GetComponent<DataManager>();
             // Debug.Log("player dead time: " + Time.timeSinceLevelLoad.ToString("0.0"));
@@ -186,9 +186,10 @@ public class LV_PlayerMovement : MonoBehaviour
         Debug.Log("Collision obj color: " + bulletColor); 
         Debug.Log("Collision player color: " + playerColor);
         
-        int damage = -1; 
+        int damage = -1;
+        int gain = 1;
         // Different color, player take damage
-        if ( playerColor != bulletColor)
+        if (bulletColor.Equals(Color.black))
         {
             m_Hp += damage;
             currentHealth = m_Hp;
@@ -202,6 +203,11 @@ public class LV_PlayerMovement : MonoBehaviour
         // Same color: player can collect the bullet as resources
         else
         {
+            m_Hp += gain;
+            m_Hp = m_Hp < maxHealth ? m_Hp : maxHealth;
+            currentHealth = m_Hp;
+            healthBar.SetHealth(currentHealth);
+            
             Sprite bulletType = other.GetComponent<SpriteRenderer>().sprite;
             if (bulletType.name == "Circle")
             {
