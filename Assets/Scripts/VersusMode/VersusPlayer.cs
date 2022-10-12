@@ -36,25 +36,29 @@ public class VersusPlayer : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        m_Hp -= 1;
-        healthBar.SetHealth(m_Hp);
-
-        // Show damage text
-        FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
-        printer.SetFloatingValue(-1);
-
-        // Game over condition
-        if (m_Hp <= 0)
+        if (!collision.gameObject.CompareTag("Walls"))
         {
-            string winner = "Player1";
-            if (name == "Player1")
+            m_Hp -= 1;
+            healthBar.SetHealth(m_Hp);
+
+            // Show damage text
+            FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
+            printer.SetFloatingValue(-1);
+
+            // Game over condition
+            if (m_Hp <= 0)
             {
-                winner = "Player2";
+                string winner = "Player1";
+                if (name == "Player1")
+                {
+                    winner = "Player2";
+                }
+                VersusGameManager.winner = winner;
+                SceneManager.LoadScene("VersusGameOver");
             }
-            VersusGameManager.winner = winner;
-            SceneManager.LoadScene("VersusGameOver");
         }
+
     }
 } // class
