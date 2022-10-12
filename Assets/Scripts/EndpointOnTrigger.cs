@@ -24,29 +24,12 @@ public class EndpointOnTrigger : MonoBehaviour
         if (collision.gameObject == _player)
         {
             Debug.Log("Player found the endpoint!");
-            
-            if (SceneManager.GetActiveScene().name == "Level2")
-            {
-                
-                // Debug.Log("level2 finished time: " + Time.timeSinceLevelLoad.ToString("0.0"));
-                // float levelTimeScore =  Time.timeSinceLevelLoad;
-                DataManager dm = gameObject.GetComponent<DataManager>();
-                dm.Send("Level2", Time.timeSinceLevelLoad.ToString("0.0"));
-                Destroy(dm);
-                //SceneManager.LoadScene("LV_GameOver");
-            }
-            else if (SceneManager.GetActiveScene().name == "Level1")
-            {
-                // Debug.Log("level1 finished time: " + Time.timeSinceLevelLoad.ToString("0.0"));
-                DataManager dm = gameObject.GetComponent<DataManager>();
-                dm.Send("Level1", Time.timeSinceLevelLoad.ToString("0.0"));
-                Destroy(dm);
-                //SceneManager.LoadScene("Level2");
-            }
-            else
-            {
-                // TODO
-            }
+            string current = SceneManager.GetActiveScene().name;
+
+            Debug.Log(current + " finished time: " + Time.timeSinceLevelLoad.ToString("0.0"));
+            DataManager dm = gameObject.GetComponent<DataManager>();
+            dm.Send(current, Time.timeSinceLevelLoad.ToString("0.0"));
+            Destroy(dm);
 
             SceneManager.LoadScene("LevelCleared");
         }

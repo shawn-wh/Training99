@@ -6,7 +6,9 @@ using UnityEngine.Networking;
 public class DataManager : MonoBehaviour
 {
     [SerializeField] private string URL;
-    // https://docs.google.com/forms/u/1/d/e/1FAIpQLSfKNrOTpYJb-gMMYHeqQQgS4JqxlZFVN-k1uwohcMCM21acLg/formResponse
+    // endless & level: https://docs.google.com/forms/u/1/d/e/1FAIpQLSdy6YYwcr26sC440S2r2_DmBnbaFcu_S3D5aq9VFtsM1g6a0w/formResponse
+
+    //versus: 
 
     public void Send(string mode, string time)
     {
@@ -16,26 +18,13 @@ public class DataManager : MonoBehaviour
     private IEnumerator Post(string mode, string time) 
     {
         WWWForm form = new WWWForm();
-        form.AddField("entry.596436681", mode); //gamemode
-        
-        if (string.Equals(mode, "Endless")) {
-            form.AddField("entry.465407387", time); //gametime
-        }
-
-        if (string.Equals(mode, "Level1")) {
-            form.AddField("entry.1255610277", time); //L1complete
-        }
-
-        if (string.Equals(mode, "Level2")) {
-            form.AddField("entry.839314249", time); //L2complete
-        }
-        
-        
-
+        form.AddField("entry.237423642", mode); //game mode
+        form.AddField("entry.1513281372", time); //game time
 
         UnityWebRequest www = UnityWebRequest.Post(URL, form);
         yield return www.SendWebRequest();
     }
+
 
 
 }
