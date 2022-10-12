@@ -72,7 +72,8 @@ public class PropSelectPanelController : MonoBehaviour
             else if (!isPlayer1Confirmed && Input.GetKeyDown(KeyCode.F))
             {
                 PropPrototype prop = Instantiate(card0.prop, manager.players[0].transform);
-                prop.AssignAndEnable(manager.players[0]);
+                manager.players[0].prop = prop;
+                // prop.AssignAndEnable(manager.players[0]);
                 isPlayer1Confirmed = true;
                 player1ConfirmedText.enabled = true;
                 if (isPlayer2Confirmed)
@@ -83,7 +84,8 @@ public class PropSelectPanelController : MonoBehaviour
             else if (!isPlayer1Confirmed && Input.GetKeyDown(KeyCode.G))
             {
                 PropPrototype prop = Instantiate(card1.prop, manager.players[0].transform);
-                prop.AssignAndEnable(manager.players[0]);
+                manager.players[0].prop = prop;
+                // prop.AssignAndEnable(manager.players[0]);
                 isPlayer1Confirmed = true;
                 player1ConfirmedText.enabled = true;
                 if (isPlayer2Confirmed)
@@ -94,7 +96,8 @@ public class PropSelectPanelController : MonoBehaviour
             else if (!isPlayer2Confirmed && Input.GetKeyDown(KeyCode.Comma))
             {
                 PropPrototype prop = Instantiate(card2.prop, manager.players[1].transform);
-                prop.AssignAndEnable(manager.players[1]);
+                manager.players[1].prop = prop;
+                // prop.AssignAndEnable(manager.players[1]);
                 isPlayer2Confirmed = true;
                 player2ConfirmedText.enabled = true;
                 if (isPlayer1Confirmed)
@@ -105,7 +108,8 @@ public class PropSelectPanelController : MonoBehaviour
             else if (!isPlayer2Confirmed && Input.GetKeyDown(KeyCode.Period))
             {
                 PropPrototype prop = Instantiate(card3.prop, manager.players[1].transform);
-                prop.AssignAndEnable(manager.players[1]);
+                manager.players[1].prop = prop;
+                // prop.AssignAndEnable(manager.players[1]);
                 isPlayer2Confirmed = true;
                 player2ConfirmedText.enabled = true;
                 if (isPlayer1Confirmed)

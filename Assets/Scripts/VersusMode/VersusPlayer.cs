@@ -7,12 +7,14 @@ using UnityEngine.SceneManagement;
 
 public class VersusPlayer : MonoBehaviour
 {
+
     public float speed = 5f;
     private int m_Hp = 3;
     public HealthBar healthBar;
     public string controlSet = null;  // Valid values: Player1, Player2
     public GameObject floatingTextPrefab; // Prefab to show damage/collectable text
     public CircleCollider2D m_collider;
+    public PropPrototype prop;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +36,17 @@ public class VersusPlayer : MonoBehaviour
 
         transform.position = pos;
 
+        if (controlSet == "Player1" && VersusGameManager.isPaused == false) {
+            if(Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.G)) {
+                // Debug.Log(controlSet + " fire");
+                prop.AssignAndEnable(this);
+            }
+        } else if (controlSet == "Player2" && VersusGameManager.isPaused == false) {
+            if(Input.GetKeyDown(KeyCode.Comma) || Input.GetKeyDown(KeyCode.Period)) {
+                // Debug.Log(controlSet + " fire");
+                prop.AssignAndEnable(this);
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
