@@ -18,10 +18,10 @@ public class VersusBullet : MonoBehaviour
     }
 
 
-    // Update is called once per frame
-    void Update()
+    // FixedUpdate is called once every 0.02 seconds
+    void FixedUpdate()   
     {
-        transform.Translate(Vector3.forward * Time.deltaTime * bulletSpeed);
+        transform.Translate(Vector3.forward * Time.fixedDeltaTime * bulletSpeed);
     }
 
     public void SetColor(Color newColor)
