@@ -8,7 +8,7 @@ public class LV_BulletPatrol : MonoBehaviour
     private GameObject player = null;
     private Transform target;
 
-    private Color[] colors = { new Color32(162,52,25,255), new Color32(244,187,15,255), new Color32(47,55,91,255)};
+    [SerializeField] private Color[] colors = {new Color32(0,0,0,255), new Color32(162,52,25,255), new Color32(244,187,15,255), new Color32(47,55,91,255)};
     private Color currentColor;
     private Color playerColor;
 
@@ -17,7 +17,8 @@ public class LV_BulletPatrol : MonoBehaviour
     public float detectRange = 4f;
 
     // Variables for patroling
-    public Transform[] waypoints;   // Given patroling waypoints
+    // public Transform[] waypoints;   // Given patroling waypoints
+    public List<Transform> waypoints = new List<Transform>();   // Given patroling waypoints
     private int pointIndex = 0;
     private float waitTime = 8f;   
     public float startWaitTime = 5f;    // Wait 8 sec to start moving
@@ -25,9 +26,27 @@ public class LV_BulletPatrol : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
-        // Initial setup
-        currentColor =  colors[Random.Range(0, colors.Length)];
+        // Initial color setup 
+        if (colors.Length < 1)
+        {
+            Debug.Log("Need to assign colors to BulletPatrol. (LV_BulletPatrol)");
+        }
+        else if (colors.Length == 1)
+        {
+            currentColor = colors[0];
+        }
+        else
+        {
+            currentColor =  colors[Random.Range(0, colors.Length)];
+        }
         gameObject.GetComponent<SpriteRenderer>().color = currentColor;
+
+        // Initial waypoints setup
+        if (waypoints.Count < 1) // waypoints list is empty
+        {
+            waypoints.Add(gameObject.transform);
+            // Debug.Log("Need to assign waypoints to BulletPatrol. (LV_BulletPatrol)");
+        }
 
         // Get player's transform and color
         if (player == null)
@@ -58,21 +77,24 @@ public class LV_BulletPatrol : MonoBehaviour
 
     private void patroling()
     {
-        transform.position = Vector2.MoveTowards(transform.position, waypoints[pointIndex].position, speed * Time.deltaTime);
-        if (waitTime <= 0)
+        // Enemy will patrol when waypoints[] is given
+        if (waypoints.Count >= 1)
         {
-            pointIndex++;
-            if (pointIndex == waypoints.Length)
+            transform.position = Vector2.MoveTowards(transform.position, waypoints[pointIndex].position, speed * Time.deltaTime);
+            if (waitTime <= 0)
             {
-                pointIndex = 0;
+                pointIndex++;
+                if (pointIndex == waypoints.Count)
+                {
+                    pointIndex = 0;
+                }
+                waitTime = startWaitTime;   // reset
             }
-            waitTime = startWaitTime;   // reset
+            else
+            {
+                waitTime -= Time.deltaTime;
+            }
         }
-        else
-        {
-            waitTime -= Time.deltaTime;
-        }
-
     }
 
     private void foundPlayer()
