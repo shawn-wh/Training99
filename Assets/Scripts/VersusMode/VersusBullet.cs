@@ -30,8 +30,11 @@ public class VersusBullet : MonoBehaviour
         gameObject.transform.GetChild(0).GetComponent<Image>().color = newColor;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        Destroy(gameObject);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

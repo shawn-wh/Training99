@@ -9,7 +9,7 @@ public class InvisiblePropController : PropPrototype
     {
         Color color = owner.GetComponent<SpriteRenderer>().color;
         owner.GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, 0.5f);
-        owner.m_collider.enabled = false;
+        // owner.m_collider.enabled = false;
         Destroy(gameObject, 3.0f);
     }
     
@@ -17,6 +17,6 @@ public class InvisiblePropController : PropPrototype
     {
         Color color = owner.GetComponent<SpriteRenderer>().color;
         owner.GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, 1.0f);
-        owner.m_collider.enabled = true;
+        // owner.m_collider.enabled = true;
     }
 }
