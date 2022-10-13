@@ -9,7 +9,7 @@ public class VersusPlayer : MonoBehaviour
 {
 
     public float speed = 5f;
-    private int m_Hp = 3;
+    private int m_Hp = 5;
     public HealthBar healthBar;
     public string controlSet = null;  // Valid values: Player1, Player2
     public GameObject floatingTextPrefab; // Prefab to show damage/collectable text
@@ -49,29 +49,39 @@ public class VersusPlayer : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (!collision.gameObject.CompareTag("Walls"))
+        Debug.Log("Collision obj: " + other.gameObject); 
+        bool test = other.gameObject.CompareTag("Walls");
+        Debug.Log("test : " + test); 
+
+        // Player collide with walls. No damages.
+        if (other.gameObject.CompareTag("Walls"))
         {
-            m_Hp -= 1;
-            healthBar.SetHealth(m_Hp);
-
-            // Show damage text
-            FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
-            printer.SetFloatingValue(-1);
-
-            // Game over condition
-            if (m_Hp <= 0)
-            {
-                string winner = "Player1";
-                if (name == "Player1")
-                {
-                    winner = "Player2";
-                }
-                VersusGameManager.winner = winner;
-                SceneManager.LoadScene("VersusGameOver");
-            }
+            return;
         }
+
+        // Take damage when players collide or collides with bullets
+        // For invincible, you could add a if to observer player state here.  
+        m_Hp -= 1;
+        healthBar.SetHealth(m_Hp);
+
+        // Show damage text
+        FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
+        printer.SetFloatingValue(-1);
+
+        // Game over condition
+        if (m_Hp <= 0)
+        {
+            string winner = "Player1";
+            if (name == "Player1")
+            {
+                winner = "Player2";
+            }
+            VersusGameManager.winner = winner;
+            SceneManager.LoadScene("VersusGameOver");
+        }
+
 
     }
 } // class

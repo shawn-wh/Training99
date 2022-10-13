@@ -307,7 +307,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -538,6 +538,7 @@ MonoBehaviour:
   controlSet: Player1
   floatingTextPrefab: {fileID: 3774115643177232834, guid: a555ffc023e5346c0805edf4da8038bf, type: 3}
   m_collider: {fileID: 0}
+  prop: {fileID: 0}
 --- !u!212 &515943673
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -902,6 +903,7 @@ MonoBehaviour:
   controlSet: Player2
   floatingTextPrefab: {fileID: 3774115643177232834, guid: a555ffc023e5346c0805edf4da8038bf, type: 3}
   m_collider: {fileID: 0}
+  prop: {fileID: 0}
 --- !u!212 &710505781
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1498,6 +1500,10 @@ PrefabInstance:
       propertyPath: m_MaxValue
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3436994906725598177, guid: 5dcfaa3d5a8a75b43b1d25540013ba29, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dcfaa3d5a8a75b43b1d25540013ba29, type: 3}
 --- !u!1001 &2074165837
@@ -1628,6 +1634,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 773855855}
     m_Modifications:
+    - target: {fileID: 620100311566346038, guid: 54cbdaa0128e74adda79556b09b738a0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.20654297
+      objectReference: {fileID: 0}
     - target: {fileID: 764771049070372159, guid: 54cbdaa0128e74adda79556b09b738a0, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1963,7 +1973,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3436994906725598177, guid: 5dcfaa3d5a8a75b43b1d25540013ba29, type: 3}
       propertyPath: m_text
-      value: 00
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dcfaa3d5a8a75b43b1d25540013ba29, type: 3}
