@@ -24,11 +24,7 @@ public class LV_PlayerMovement : MonoBehaviour
     public Color nextColor;
     public TextMeshProUGUI nextColorText;
     public string returnColor;
-    public float timeToChange = 5f;
-    private float timeSinceChange = 0f;
 
-    public float timeToWarn = 3f;
-    private float timeSinceWarn = 0f;
 
     // UI show collectables (Collect 3 types of bullets)
     public TextMeshProUGUI UI_Collectable1 = null;
@@ -56,6 +52,13 @@ public class LV_PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject _key;
     [SerializeField] private GameObject _endpoint;
 
+    //player changing color parameter
+    public int colorIdx;
+    public float cooldownTime = 3.0f;
+    private float nextChangeTime = 0;
+
+    //lock for minimizing
+    int yellowLock;
 
     // Start is called before the first frame update
     void Start()
@@ -75,12 +78,10 @@ public class LV_PlayerMovement : MonoBehaviour
         _endpoint.SetActive(false);
 
         //Generate next color
-        nextColor = colors[Random.Range(0, colors.Length)];
-        while (nextColor == gameObject.GetComponent<SpriteRenderer>().color)
-        {
-            nextColor = colors[Random.Range(0, colors.Length)];
-        }
+        colorIdx = 1;
+        nextColor = colors[colorIdx];
         nextColor.a = 1f;
+        yellowLock = 0;
 
         //initialize nextColorText
         RefreshNextColorText();
@@ -113,32 +114,17 @@ public class LV_PlayerMovement : MonoBehaviour
 
     private void ChangeColor()
     {
-        timeSinceChange += Time.deltaTime;
-        timeSinceWarn += Time.deltaTime;
-        Color newColor = colors[Random.Range(0, colors.Length)];
-        
-
-        if(timeSinceWarn >= timeToWarn)
+        if (Time.time > nextChangeTime)
         {
-            WarnText printer = Instantiate(warnTextPrefab, transform.position, Quaternion.identity).GetComponent<WarnText>();  
-            timeSinceWarn = 0f;       
-        }
-        
-        
-        if (timeSinceChange >= timeToChange)
-        {
-            gameObject.GetComponent<SpriteRenderer>().color = nextColor;
-            
-            while (nextColor == gameObject.GetComponent<SpriteRenderer>().color)
+            if (Input.GetKey("space"))
             {
-                nextColor = colors[Random.Range(0, colors.Length)];
+                colorIdx++;
+                gameObject.GetComponent<SpriteRenderer>().color = nextColor;
+                nextColor = colors[colorIdx % 3];
+                RefreshNextColorText();
+                nextChangeTime = Time.time + cooldownTime;
             }
-
-			nextColor.a = 1f;
-            timeSinceWarn = 0f;
-            timeSinceChange = 0f;
         }
-
     }
 
     private void checkGameOver()
@@ -183,12 +169,12 @@ public class LV_PlayerMovement : MonoBehaviour
     {
         Color bulletColor = other.GetComponent<SpriteRenderer>().color;
         Color playerColor = gameObject.GetComponent<SpriteRenderer>().color;
-        Debug.Log("Collision obj color: " + bulletColor); 
+        Debug.Log("Collision obj color: " + bulletColor);
         Debug.Log("Collision player color: " + playerColor);
-        
-        int damage = -1; 
+
+        int damage = -1;
         // Different color, player take damage
-        if ( playerColor != bulletColor)
+        if (playerColor != bulletColor || bulletColor.Equals(Color.black))
         {
             m_Hp += damage;
             currentHealth = m_Hp;
@@ -216,8 +202,43 @@ public class LV_PlayerMovement : MonoBehaviour
                 collectables[2] += 1;
             }
 
+
+            int gain = 1;
+            //each color has its own feature
+            //color blue can pass wall
+            if (bulletColor == colors[0])
+            {
+                gain = 1;
+            }
+
+            //color red can gain hp
+            else if (bulletColor == colors[1])
+            {
+                m_Hp += gain;
+                m_Hp = m_Hp < maxHealth ? m_Hp : maxHealth;
+                currentHealth = m_Hp;
+                healthBar.SetHealth(currentHealth);
+            }
+
+            //color yellow can shrink player
+            else if (bulletColor == colors[2] && yellowLock < 3)
+            {
+                yellowLock += 1;
+                transform.localScale -= new Vector3(0.15f, 0.15f, 0);
+            }
+
+
+
+
+
+
+
+
+
+
+
             // player collects required type and number of bullets, show the key
-            if (collectables[0] >= CIRCLE_GOAL && 
+            if (collectables[0] >= CIRCLE_GOAL &&
                 collectables[1] >= TRIANGLE_GOAL &&
                 collectables[2] >= SQUARE_GOAL)
             {
