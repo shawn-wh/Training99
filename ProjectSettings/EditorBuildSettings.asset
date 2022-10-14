@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Level0.unity
     guid: 4b6c4d21f07644298b2b4747d8dd6619
   - enabled: 0
-    path: Assets/Scenes/Level2_Backup.unity
+    path: 
     guid: ad50538b94af14c65bd03b29f08f407a
   - enabled: 1
     path: Assets/Scenes/VersusGameOver.unity
@@ -53,4 +53,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level3.unity
     guid: d698cb672094d4efeb13d916813242a7
+  - enabled: 1
+    path: Assets/Scenes/VersusHowToPlay.unity
+    guid: b26093c258faf4480b4a4392e9f409ed
   m_configObjects: {}

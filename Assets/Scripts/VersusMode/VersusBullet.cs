@@ -34,7 +34,15 @@ public class VersusBullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            VersusPlayer player = other.gameObject.GetComponent<VersusPlayer>();
+            if (player.isInvincible)
+            {
+                Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
