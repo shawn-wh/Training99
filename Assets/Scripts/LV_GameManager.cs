@@ -14,15 +14,29 @@ public class LV_GameManager : MonoBehaviour
 
     public Color[] colors = new Color[3];
     public Sprite[] sprites = new Sprite[3];
+    
+    // Load the dialogue box 
+    public GameObject dialogueBox;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        // Load dialogue box
+        dialogueBox.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
+    {
+        // When showing dialogueBox, game should not generate bullets.
+        if (!dialogueBox.activeSelf)
+        {
+            bulletGenerating();
+        }
+
+    }
+
+    void bulletGenerating() 
     {
         for (int i = 0; i < bulletGenerator.Length; i++)
         {
@@ -44,7 +58,5 @@ public class LV_GameManager : MonoBehaviour
                 bg.NextTime();
             }
         }
-
-
     }
 }
