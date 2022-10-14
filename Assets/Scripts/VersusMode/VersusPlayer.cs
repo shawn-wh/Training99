@@ -14,7 +14,8 @@ public class VersusPlayer : MonoBehaviour
     public string controlSet = null;  // Valid values: Player1, Player2
     public GameObject floatingTextPrefab; // Prefab to show damage/collectable text
     public CircleCollider2D m_collider;
-    public PropPrototype prop;
+    private PropPrototype prop;
+    public bool isInvincible { get; set; } = false;
 
     // Start is called before the first frame update
     void Start()
@@ -36,33 +37,39 @@ public class VersusPlayer : MonoBehaviour
 
         transform.position = pos;
 
-        if (controlSet == "Player1" && VersusGameManager.isPaused == false) {
-            if(Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.G)) {
-                // Debug.Log(controlSet + " fire");
-                prop.AssignAndEnable(this);
+        if (!VersusGameManager.isPaused && prop)
+        {
+            if (name == "Player1" && (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.G)))
+            {
+                prop.enabled = true;
             }
-        } else if (controlSet == "Player2" && VersusGameManager.isPaused == false) {
-            if(Input.GetKeyDown(KeyCode.Comma) || Input.GetKeyDown(KeyCode.Period)) {
-                // Debug.Log(controlSet + " fire");
-                prop.AssignAndEnable(this);
+            else if (name == "Player2" && (Input.GetKeyDown(KeyCode.Comma) || Input.GetKeyDown(KeyCode.Period)))
+            {
+                prop.enabled = true;
             }
         }
+    }
+    
+    public void ReceiveProp(PropPrototype prop)
+    {
+        this.prop = prop;
+        prop.owner = this;
+    }
+    
+    public void RemoveProp()
+    {
+        this.prop = null;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("Collision obj: " + other.gameObject); 
-        bool test = other.gameObject.CompareTag("Walls");
-        Debug.Log("test : " + test); 
-
-        // Player collide with walls. No damages.
-        if (other.gameObject.CompareTag("Walls"))
+        // No damage when colliding with walls.
+        if (other.gameObject.CompareTag("Walls") || isInvincible)
         {
             return;
         }
 
         // Take damage when players collide or collides with bullets
-        // For invincible, you could add a if to observer player state here.  
         m_Hp -= 1;
         healthBar.SetHealth(m_Hp);
 
