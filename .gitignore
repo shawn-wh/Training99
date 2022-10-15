@@ -64,6 +64,7 @@ connectwebgl.zip
 
 .DS_Store
 .vsconfig
+.idea
 
 WebGL Builds/
 webgl_sharing

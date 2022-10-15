@@ -18,8 +18,8 @@ public class LV_PlayerMovement : MonoBehaviour
     public int maxHealth = 5;
     public int currentHealth;
 
-    // Colors = red, yellow, blue ; // set aphla = 1
-    // private Color[] coloris = { new Color(162,52,25,255), new Color(244,187,15,255), new Color(47,55,91,255)};
+    // colors array: red, yellow, blue ; // set aphla = 1
+    // private Color[] colors = { new Color32(47,55,91,255), new Color32(162,52,25,255), new Color32(244,187,15,255)};
     public Color[] colors;
     public Color nextColor;
     public TextMeshProUGUI nextColorText;
@@ -84,7 +84,7 @@ public class LV_PlayerMovement : MonoBehaviour
         yellowLock = 0;
 
         //initialize nextColorText
-        RefreshNextColorText();
+        // RefreshNextColorText();
     }
     
     
@@ -109,7 +109,7 @@ public class LV_PlayerMovement : MonoBehaviour
 
         // Change player color every "timeToChange" sec
         ChangeColor();
-        RefreshNextColorText();
+        // RefreshNextColorText();
     }
 
     private void ChangeColor()
@@ -121,7 +121,7 @@ public class LV_PlayerMovement : MonoBehaviour
                 colorIdx++;
                 gameObject.GetComponent<SpriteRenderer>().color = nextColor;
                 nextColor = colors[colorIdx % 3];
-                RefreshNextColorText();
+                // RefreshNextColorText();
                 nextChangeTime = Time.time + cooldownTime;
             }
         }
