@@ -124,5 +124,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66de23dcc9d2547ffa5ddf88f955cbb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 5
-  liveTime_Const: 15
+  bulletSpeed: 1
+  liveTime_Const: 75
