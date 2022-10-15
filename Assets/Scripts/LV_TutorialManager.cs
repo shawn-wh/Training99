@@ -13,6 +13,7 @@ public class LV_TutorialManager : MonoBehaviour
     public GameObject circle;
     public GameObject key;
     public GameObject door;
+    public GameObject changeColor;
     public float waitTime = 2f;
     // Start is called before the first frame update
     void Start()
@@ -38,24 +39,28 @@ public class LV_TutorialManager : MonoBehaviour
                 textIndex++;
             }
         } else if (textIndex == 1) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                textIndex++;
+            }
+        } else if (textIndex == 2) {
             if (waitTime <= 0) {
                 circle.SetActive(true);
                 circle.transform.position = new Vector3((float)2.82, (float)-7.57, 0);
-                circle.GetComponent<SpriteRenderer>().color = new Color32(244, 187, 15, 255);
+                circle.GetComponent<SpriteRenderer>().color = new Color32(162, 52, 25, 255);
                 square.SetActive(true);
                 square.transform.position = new Vector3((float)0.52, (float)7.42, 0);
-                square.GetComponent<SpriteRenderer>().color = new Color32(244, 187, 15, 255);
+                square.GetComponent<SpriteRenderer>().color = new Color32(162, 52, 25, 255);
                 triangle.SetActive(true);
                 triangle.transform.position = new Vector3((float)-8.02, (float)-7.2, 0);
-                triangle.GetComponent<SpriteRenderer>().color = new Color32(244, 187, 15, 255);
-                waitTime = 10f;
+                triangle.GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 255);
+                waitTime = 75f;
             } else {
                 waitTime -= Time.deltaTime;
             }
             if (key.activeSelf) {
                 textIndex++;
             }
-        } else if (textIndex == 2) {
+        } else if (textIndex == 3) {
             if (door.activeSelf) {
                 textIndex++;
             }
