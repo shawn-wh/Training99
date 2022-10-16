@@ -76,7 +76,6 @@ public class LV_ActiveSkills : MonoBehaviour
 
             skill0_mask.fillAmount -= Time.deltaTime / s0CooldownTime;
             skill0_text.text = Mathf.RoundToInt(s0Timer).ToString();
-            Debug.Log("text = " + skill0_text.text);
 
             if ( skill0_mask.fillAmount <= 0)
             {
@@ -109,7 +108,6 @@ public class LV_ActiveSkills : MonoBehaviour
 
             skill1_mask.fillAmount -= Time.deltaTime / s1CooldownTime;
             skill1_text.text = Mathf.RoundToInt(s1Timer).ToString();
-            Debug.Log("text = " + skill1_text.text);
 
             if ( skill1_mask.fillAmount <= 0)
             {
@@ -131,8 +129,6 @@ public class LV_ActiveSkills : MonoBehaviour
         // Player color format: Red = RGBA(0.635, 0.204, 0.098, 1.000)
         // colors = {Red, Yellow, Blue}
         
-        Debug.Log("playerColor = " + playerColor );
-
         Color nextColor = playerColor; 
         if (playerColor.Equals(colors[0]))  // Red
         {
