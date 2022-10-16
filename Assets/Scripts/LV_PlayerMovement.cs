@@ -60,6 +60,10 @@ public class LV_PlayerMovement : MonoBehaviour
     //lock for minimizing
     int yellowLock;
 
+    // cross walls power
+    public CrossPowerBar crossPowerBar = null;
+    public int CROSS_WALL_GOAL = 5;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -206,9 +210,10 @@ public class LV_PlayerMovement : MonoBehaviour
             int gain = 1;
             //each color has its own feature
             //color blue can pass wall
-            if (bulletColor == colors[0])
+            if (bulletColor == colors[0] && crossPowerBar != null)
             {
                 gain = 1;
+                crossPowerBar.UpdateValue(gain);
             }
 
             //color red can gain hp
