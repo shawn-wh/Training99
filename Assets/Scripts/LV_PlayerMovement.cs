@@ -21,9 +21,10 @@ public class LV_PlayerMovement : MonoBehaviour
     // colors array: red, yellow, blue ; // set aphla = 1
     // private Color[] colors = { new Color32(47,55,91,255), new Color32(162,52,25,255), new Color32(244,187,15,255)};
     public Color[] colors;
-    public Color nextColor;
-    public TextMeshProUGUI nextColorText;
-    public string returnColor;
+    
+    private Color nextColor;
+    private TextMeshProUGUI nextColorText;
+    private string returnColor;
 
 
     // UI show collectables (Collect 3 types of bullets)
