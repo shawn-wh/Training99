@@ -35,7 +35,7 @@ public class LV_TutorialManager : MonoBehaviour
 
         // which tutorial steps are doing currently
         if (textIndex == 0) {
-            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.UpArrow)) {
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D)) {
                 textIndex++;
             }
         } else if (textIndex == 1) {
@@ -53,7 +53,7 @@ public class LV_TutorialManager : MonoBehaviour
                 triangle.SetActive(true);
                 triangle.transform.position = new Vector3((float)-8.02, (float)-7.2, 0);
                 triangle.GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 255);
-                waitTime = 75f;
+                waitTime = 76f;
             } else {
                 waitTime -= Time.deltaTime;
             }
