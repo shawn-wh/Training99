@@ -675,7 +675,7 @@ MonoBehaviour:
     diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Aliquam
     id diam maecenas ultricies mi eget mauris pharetra. Consectetur a erat nam at
     lectus urna duis. Sit amet est placerat in egestas erat imperdiet sed.
-  typingSpeed: 1
+  typingSpeed: 100
 --- !u!1 &4035667561209114167
 GameObject:
   m_ObjectHideFlags: 0
