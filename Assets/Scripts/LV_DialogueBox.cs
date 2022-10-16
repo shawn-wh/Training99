@@ -10,8 +10,8 @@ public class LV_DialogueBox : MonoBehaviour
 
     [TextArea(3,10)]
     public string[] speakingLines;
-    public float typingSpeed = 10f;
 
+    private float typingSpeed = 80f;
     private int index = 0;
     private bool isLineFinished;    // isLineFinished=true, after finishing Typing1Line()
     public static bool isGamePaused = false; 
@@ -19,14 +19,13 @@ public class LV_DialogueBox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dialogueText.text = string.Empty;
         StartDialogue();
     }
 
     // Update is called once per frame
     void Update()
     { 
-        if (Input.anyKey && isLineFinished)
+        if (Input.anyKeyDown)
         {
             if (dialogueText.text == speakingLines[index])
             {
@@ -35,26 +34,29 @@ public class LV_DialogueBox : MonoBehaviour
             else
             {
                 StopAllCoroutines();
-                dialogueText.text = speakingLines[index];
+                // Immediate show the whole line
+                dialogueText.text =  speakingLines[index];
             }
         }
-        
     }
 
     void StartDialogue()
     {
         index = 0; 
-        StartCoroutine(Typing1Line());
+        StartCoroutine(Typing1Line(speakingLines[index]));
     }
 
-    IEnumerator Typing1Line()
+    // Print each line
+    IEnumerator Typing1Line(string line)
     {
+        dialogueText.text = string.Empty; // Empty the text area.
         isLineFinished = false;
-        foreach (char letter in speakingLines[index].ToCharArray())
+        foreach (char letter in line.ToCharArray())
         {
+            // Typing effect
             dialogueText.text += letter;
+            yield return new WaitForSeconds(1f/typingSpeed);
         }
-        yield return new WaitForSeconds(1f/typingSpeed);
         isLineFinished = true;
     }
 
@@ -64,8 +66,7 @@ public class LV_DialogueBox : MonoBehaviour
         if (index < speakingLines.Length -1)
         {
             index++;
-            dialogueText.text = string.Empty;
-            StartCoroutine(Typing1Line());
+            StartCoroutine(Typing1Line(speakingLines[index]));
         }
         // When finish dialogue
         else
