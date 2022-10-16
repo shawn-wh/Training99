@@ -13,7 +13,6 @@ public class LV_DialogueBox : MonoBehaviour
 
     private float typingSpeed = 80f;
     private int index = 0;
-    private bool isLineFinished;    // isLineFinished=true, after finishing Typing1Line()
     public static bool isGamePaused = false; 
 
     // Start is called before the first frame update
@@ -50,14 +49,12 @@ public class LV_DialogueBox : MonoBehaviour
     IEnumerator Typing1Line(string line)
     {
         dialogueText.text = string.Empty; // Empty the text area.
-        isLineFinished = false;
         foreach (char letter in line.ToCharArray())
         {
             // Typing effect
             dialogueText.text += letter;
             yield return new WaitForSeconds(1f/typingSpeed);
         }
-        isLineFinished = true;
     }
 
     void NextLine()
