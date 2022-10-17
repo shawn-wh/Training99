@@ -110,7 +110,7 @@ public class LV_PlayerMovement : MonoBehaviour
         // transform.position = pos;
 
         // Time.timeSinceLevelLoad  will reset time when loading new scence.
-        m_TimeText.text = "Survived: " + Time.timeSinceLevelLoad.ToString("0.0");
+        // m_TimeText.text = "Survived: " + Time.timeSinceLevelLoad.ToString("0.0");
 
         // Change player color every "timeToChange" sec
         ChangeColor();
