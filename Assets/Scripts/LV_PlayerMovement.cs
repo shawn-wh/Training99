@@ -18,7 +18,7 @@ public class LV_PlayerMovement : MonoBehaviour
     public int maxHealth = 5;
     public int currentHealth;
 
-    // colors array: red, yellow, blue ; // set aphla = 1
+    // colors array: blue, red, yellow, ; // set aphla = 1
     // private Color[] colors = { new Color32(47,55,91,255), new Color32(162,52,25,255), new Color32(244,187,15,255)};
     public Color[] colors;
     
