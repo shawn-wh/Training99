@@ -42,7 +42,7 @@ public class VersusPlayer : MonoBehaviour
 
         transform.position = pos;
 
-        if (!VersusGameManager.isPaused && prop)
+        if (prop)
         {
             if (name == "Player1" && (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.G)))
             {

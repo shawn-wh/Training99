@@ -6,119 +6,51 @@ using TMPro;
 public class PropSelectPanelController : MonoBehaviour
 {
     [SerializeField] private VersusGameManager manager;
-    [SerializeField] private TextMeshProUGUI panelTimer;
-    [SerializeField] private TextMeshProUGUI player1ConfirmedText;
-    [SerializeField] private TextMeshProUGUI player2ConfirmedText;
-    [SerializeField] private CardController[] availableCards;
-    private float panelTimeLeft = 5.0f;
-    private bool isPlayer1Confirmed = false;
-    private bool isPlayer2Confirmed = false;
-    private bool isFirstFrame = true;
     
-    private CardController card0;
     private CardController card1;
     private CardController card2;
-    private CardController card3;
     
     // Start is called before the first frame update
     void Start()
     {
-        Transform cardsRoot = transform.Find("Cards");
-        card0 = Instantiate(availableCards[0], cardsRoot);
-        card1 = Instantiate(availableCards[0], cardsRoot);
-        card2 = Instantiate(availableCards[0], cardsRoot);
-        card3 = Instantiate(availableCards[0], cardsRoot);
-    }
-
-    public IEnumerator ShowPanelInterval()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(15);
-            Show();
-        }
-    }
-    
-    public void Show()
-    {
-        panelTimeLeft = 5.0f;
-        isPlayer1Confirmed = false;
-        isPlayer2Confirmed = false;
-        player1ConfirmedText.enabled = false;
-        player2ConfirmedText.enabled = false;
-        gameObject.SetActive(true);
-        Time.timeScale = 0;
-        VersusGameManager.isPaused = true;
-    }
-    
-    void Hide()
-    {
-        isFirstFrame = false;
-        gameObject.SetActive(false);
-        Time.timeScale = 1;
-        VersusGameManager.isPaused = false;
+        Transform card1Root = transform.Find("Card1");
+        Transform card2Root = transform.Find("Card2");
+        card1 = Instantiate(manager.availableCards[0], card1Root);
+        card2 = Instantiate(manager.availableCards[0], card2Root);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (VersusGameManager.isPaused)
+        if (name == "PropPanel1")
         {
-            if (!isFirstFrame && panelTimeLeft < 0)
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                Hide();
-                panelTimeLeft = 0;
+                PropPrototype prop = Instantiate(card1.prop, manager.player1.transform);
+                manager.player1.ReceiveProp(prop);
+                gameObject.SetActive(false);
             }
-            else if (!isPlayer1Confirmed && Input.GetKeyDown(KeyCode.F))
+            else if (Input.GetKeyDown(KeyCode.G))
             {
-                PropPrototype prop = Instantiate(card0.prop, manager.players[0].transform);
-                manager.players[0].ReceiveProp(prop);
-                isPlayer1Confirmed = true;
-                player1ConfirmedText.enabled = true;
-                if (isPlayer2Confirmed)
-                {
-                    Hide();
-                }
+                PropPrototype prop = Instantiate(card2.prop, manager.player1.transform);
+                manager.player1.ReceiveProp(prop);
+                gameObject.SetActive(false);
             }
-            else if (!isPlayer1Confirmed && Input.GetKeyDown(KeyCode.G))
+        }
+        else if (name == "PropPanel2")
+        {
+            if (Input.GetKeyDown(KeyCode.Comma))
             {
-                PropPrototype prop = Instantiate(card1.prop, manager.players[0].transform);
-                manager.players[0].ReceiveProp(prop);
-                isPlayer1Confirmed = true;
-                player1ConfirmedText.enabled = true;
-                if (isPlayer2Confirmed)
-                {
-                    Hide();
-                }
+                PropPrototype prop = Instantiate(card1.prop, manager.player2.transform);
+                manager.player2.ReceiveProp(prop);
+                gameObject.SetActive(false);
             }
-            else if (!isPlayer2Confirmed && Input.GetKeyDown(KeyCode.Comma))
+            else if (Input.GetKeyDown(KeyCode.Period))
             {
-                PropPrototype prop = Instantiate(card2.prop, manager.players[1].transform);
-                manager.players[1].ReceiveProp(prop);
-                isPlayer2Confirmed = true;
-                player2ConfirmedText.enabled = true;
-                if (isPlayer1Confirmed)
-                {
-                    Hide();
-                }
+                PropPrototype prop = Instantiate(card2.prop, manager.player2.transform);
+                manager.player2.ReceiveProp(prop);
+                gameObject.SetActive(false);
             }
-            else if (!isPlayer2Confirmed && Input.GetKeyDown(KeyCode.Period))
-            {
-                PropPrototype prop = Instantiate(card3.prop, manager.players[1].transform);
-                manager.players[1].ReceiveProp(prop);
-                isPlayer2Confirmed = true;
-                player2ConfirmedText.enabled = true;
-                if (isPlayer1Confirmed)
-                {
-                    Hide();
-                }
-            }
-            if (!isFirstFrame)
-            {
-                panelTimeLeft -= Time.unscaledDeltaTime;
-                panelTimer.text = "Time Left: " + panelTimeLeft.ToString("0.0") + " seconds";
-            }
-            
         }
     }
 }

@@ -13,7 +13,11 @@ public class VersusBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        VersusPlayer player = gameManager.players[Random.Range(0, gameManager.players.Length)];
+        VersusPlayer player = gameManager.player1;
+        if (Random.Range(0, 2) == 1)
+        {
+            player = gameManager.player2;
+        }
         transform.LookAt(player.transform);
     }
 
