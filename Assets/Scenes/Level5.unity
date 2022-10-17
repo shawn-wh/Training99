@@ -4236,6 +4236,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 773855855}
     m_Modifications:
+    - target: {fileID: 2078608763275672497, guid: f76d00445c4a54d7bb0675b41e8d6aee, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 773855856}
+    - target: {fileID: 2078608763275672497, guid: f76d00445c4a54d7bb0675b41e8d6aee, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseGame
+      objectReference: {fileID: 0}
     - target: {fileID: 3683260983266272900, guid: f76d00445c4a54d7bb0675b41e8d6aee, type: 3}
       propertyPath: m_Name
       value: UI_States

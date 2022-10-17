@@ -1378,6 +1378,7 @@ GameObject:
   - component: {fileID: 773855854}
   - component: {fileID: 773855853}
   - component: {fileID: 773855852}
+  - component: {fileID: 773855856}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1471,6 +1472,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &773855856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773855851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 583367a8738f34153912dcbf72c6dc2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PauseMenu: {fileID: 1331484513}
+  DialogueBox: {fileID: 635772772}
 --- !u!1001 &820176165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2871,11 +2886,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1290856242085299487, guid: ecc4cb910ae094926a5bb8638095626b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 773855856}
+    - target: {fileID: 1290856242085299487, guid: ecc4cb910ae094926a5bb8638095626b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResumeGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 1290856243007890792, guid: ecc4cb910ae094926a5bb8638095626b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 773855856}
+    - target: {fileID: 1290856243007890792, guid: ecc4cb910ae094926a5bb8638095626b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 1290856243008316252, guid: ecc4cb910ae094926a5bb8638095626b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 773855856}
+    - target: {fileID: 1290856243008316252, guid: ecc4cb910ae094926a5bb8638095626b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Restart
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecc4cb910ae094926a5bb8638095626b, type: 3}
 --- !u!224 &1331484512 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1290856241672787091, guid: ecc4cb910ae094926a5bb8638095626b, type: 3}
+  m_PrefabInstance: {fileID: 1331484511}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1331484513 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1290856241672787090, guid: ecc4cb910ae094926a5bb8638095626b, type: 3}
   m_PrefabInstance: {fileID: 1331484511}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1355702110
@@ -2993,6 +3037,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 773855855}
     m_Modifications:
+    - target: {fileID: 2078608763275672497, guid: f76d00445c4a54d7bb0675b41e8d6aee, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 773855856}
     - target: {fileID: 3683260983266272900, guid: f76d00445c4a54d7bb0675b41e8d6aee, type: 3}
       propertyPath: m_Name
       value: UI_States
