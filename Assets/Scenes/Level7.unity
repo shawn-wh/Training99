@@ -1351,7 +1351,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level ?
+  m_text: Level 7
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -2018,6 +2018,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 1995830932}
   _endpoint: {fileID: 1119466600}
+  progressBar: {fileID: 0}
 --- !u!50 &822102615
 Rigidbody2D:
   serializedVersion: 4
@@ -2757,6 +2758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1995830932}
+  progressBar: {fileID: 0}
 --- !u!60 &1119466604
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3619,6 +3621,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4114725681556103454, guid: f76d00445c4a54d7bb0675b41e8d6aee, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4378099318986704600, guid: f76d00445c4a54d7bb0675b41e8d6aee, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
