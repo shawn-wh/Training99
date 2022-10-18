@@ -10,7 +10,9 @@ public class VersusPlayer : MonoBehaviour
 
     public float speed = 5f;
     private int m_Hp = 5;
+    private int m_Energy = 5;
     public HealthBar healthBar;
+    public HealthBar energyBar;
     public string controlSet = null;  // Valid values: Player1, Player2
     public GameObject floatingTextPrefab; // Prefab to show damage/collectable text
     public CircleCollider2D m_collider;
@@ -21,6 +23,9 @@ public class VersusPlayer : MonoBehaviour
     void Start()
     {
         healthBar.SetMaxHealth(m_Hp);
+        energyBar.SetMaxHealth(m_Energy);
+        m_Energy = 0;
+        energyBar.SetHealth(m_Energy);
         m_collider = GetComponent<CircleCollider2D>();
     }
 
