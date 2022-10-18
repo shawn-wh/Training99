@@ -7,6 +7,16 @@ using UnityEngine.SceneManagement;
 
 public class LV_PlayerMovement : MonoBehaviour
 {
+
+    // colors array: blue, red, yellow, ; // set aphla = 1
+    // private Color[] colors = { new Color32(47,55,91,255), new Color32(162,52,25,255), new Color32(244,187,15,255)};
+    public Color[] colors;
+    
+    private Color nextColor;
+    private TextMeshProUGUI nextColorText;
+    private string returnColor;
+    
+    [Header("Connect to UI_States")]
     public float playerSpeed = 5f;
 
     public HealthBar healthBar;
@@ -18,14 +28,6 @@ public class LV_PlayerMovement : MonoBehaviour
     public int maxHealth = 5;
     public int currentHealth;
 
-    // colors array: red, yellow, blue ; // set aphla = 1
-    // private Color[] colors = { new Color32(47,55,91,255), new Color32(162,52,25,255), new Color32(244,187,15,255)};
-    public Color[] colors;
-    
-    private Color nextColor;
-    private TextMeshProUGUI nextColorText;
-    private string returnColor;
-
 
     // UI show collectables (Collect 3 types of bullets)
     public TextMeshProUGUI UI_Collectable1 = null;
@@ -34,11 +36,17 @@ public class LV_PlayerMovement : MonoBehaviour
     private int[] collectables = new int[3]; // Record values for collectables. 
 
     // Required type and number of bullets
+    [Header("Task goal setup")]
     public int CIRCLE_GOAL = 1;
     public int TRIANGLE_GOAL = 0;
     public int SQUARE_GOAL = 0;
 
+    [SerializeField] private GameObject _key;
+    [SerializeField] private GameObject _endpoint;
+
+
     // Prefab to show damage/collectable text
+    [Header("Damage or gain")]
     public GameObject floatingTextPrefab;
 
     //prefab to show warning text
@@ -50,10 +58,10 @@ public class LV_PlayerMovement : MonoBehaviour
     private GameObject movingCameraBound = null;
 
 
-    [SerializeField] private GameObject _key;
-    [SerializeField] private GameObject _endpoint;
+
 
     //player changing color parameter
+    [Header(" ")]
     public int colorIdx;
     public float cooldownTime = 3.0f;
     private float nextChangeTime = 0;
@@ -61,9 +69,11 @@ public class LV_PlayerMovement : MonoBehaviour
     //lock for minimizing
     int yellowLock;
 
-    // cross walls power
-    public CrossPowerBar crossPowerBar = null;
-    public int CROSS_WALL_GOAL = 5;
+    // Active Skill: 
+    [Header("To PassThroughWallButton")]
+    public LV_ActiveSkill1 skill1 = null;
+    // public CrossPowerBar crossPowerBar = null;  
+    // public int CROSS_WALL_GOAL = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -211,10 +221,11 @@ public class LV_PlayerMovement : MonoBehaviour
             int gain = 1;
             //each color has its own feature
             //color blue can pass wall
-            if (bulletColor == colors[0] && crossPowerBar != null)
+            if (bulletColor == colors[0] && skill1 != null)
             {
                 gain = 1;
-                crossPowerBar.UpdateValue(gain);
+                skill1.ResourcesCounter(gain);
+                // crossPowerBar.UpdateValue
             }
 
             //color red can gain hp
