@@ -10,6 +10,7 @@ public class VersusGameManager : MonoBehaviour
     public VersusBullet clone = null;
     public GameObject bulletNode = null;
     public Sprite sprite = null;
+    public Color[] colors = new Color[2];
 
     [SerializeField] private PropSelectPanelController panel;
 
@@ -19,6 +20,8 @@ public class VersusGameManager : MonoBehaviour
     
     void Start()
     {
+        colors[0] = new Color32(153, 0, 0, 255);
+        colors[1] = new Color32(39, 116, 174, 255);
         IEnumerator panelCoroutine = panel.ShowPanelInterval();
         StartCoroutine(panelCoroutine);
         panel.Show();
@@ -35,6 +38,7 @@ public class VersusGameManager : MonoBehaviour
                 Vector3 pos = ca.GetRandomPos();
                 // This function makes a copy of an object in a similar way to the Duplicate command in the editor.
                 VersusBullet bullet = Instantiate(clone, pos, Quaternion.identity, bulletNode.transform);
+                bullet.SetColor(colors[Random.Range(0, colors.Length)]);
                 bullet.transform.GetChild(0).GetComponent<Image>().sprite = sprite;
                 ca.NextTime();
             }
