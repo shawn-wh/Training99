@@ -20,7 +20,6 @@ public class LV_Bullet : MonoBehaviour
     {
         liveTime = liveTime_Const;
         spriteRenderer = GetComponent<SpriteRenderer>();
-        Debug.Log(spriteRenderer);
         
         // Find bullet target
         if (targetPlayer == null)
