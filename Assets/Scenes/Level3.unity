@@ -3017,9 +3017,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 773855855}
     m_Modifications:
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
+      propertyPath: speakingLines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[0]
-      value: 'Hi, this is Jarvis. Allow me to explain your task goal in this level.
-        Your collecting goal is showing on the top-left of the screen.  '
+      value: 'Hi, it seems like there is no way out. Maybe you should try to shrink
+        your size to get out. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
+      propertyPath: speakingLines.Array.data[1]
+      value: 'Remember you have to collect the required shapes as the left-top of
+        the screen. Then, find the key to get out this room. '
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436300, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: m_Pivot.x

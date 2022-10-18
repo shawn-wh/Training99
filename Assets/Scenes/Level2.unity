@@ -1059,13 +1059,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[0]
-      value: 'Hi, this is Jarvis. Allow me to explain your task goal in this level.
-        Your collecting goal is showing on the top-left of the screen.  '
+      value: 'Hi, this is Jarvis. To satisfied the task goal, you could use your
+        color-matching ability to collect different shapes. '
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[1]
-      value: 'The ferocious enemies could hurt you badly. Remember to collect red
-        color to recover your health. '
+      value: 'The ferocious enemies could hurt you badly. Maybe you need to collect
+        something that will help your health.  '
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[2]

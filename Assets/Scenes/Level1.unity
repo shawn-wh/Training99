@@ -2472,8 +2472,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[1]
-      value: "Triangle patrol will go after player when player color is different
-        from patrol\u2019s color and decrease player HP when collide! "
+      value: "Triangle patrol will go after you when your color is different from
+        the patrol\u2019s color. \n\nThe triangle enemy will decrease your HP when
+        you collide together! Approach with cauction!"
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436300, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: m_Pivot.x
