@@ -10,7 +10,9 @@ public class VersusPlayer : MonoBehaviour
 
     public float speed = 5f;
     private int m_Hp = 5;
+    private int m_Energy = 5;
     public HealthBar healthBar;
+    public HealthBar energyBar;
     public string controlSet = null;  // Valid values: Player1, Player2
     public GameObject floatingTextPrefab; // Prefab to show damage/collectable text
     public CircleCollider2D m_collider;
@@ -21,6 +23,9 @@ public class VersusPlayer : MonoBehaviour
     void Start()
     {
         healthBar.SetMaxHealth(m_Hp);
+        energyBar.SetMaxHealth(m_Energy);
+        m_Energy = 0;
+        energyBar.SetHealth(m_Energy);
         m_collider = GetComponent<CircleCollider2D>();
     }
 
@@ -61,21 +66,28 @@ public class VersusPlayer : MonoBehaviour
         this.prop = null;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         // No damage when colliding with walls.
-        if (other.gameObject.CompareTag("Walls") || isInvincible)
+        if (collision.gameObject.CompareTag("Walls") || isInvincible)
         {
             return;
         }
 
-        // Take damage when players collide or collides with bullets
-        m_Hp -= 1;
-        healthBar.SetHealth(m_Hp);
+        Color bulletColor = collision.transform.GetChild(0).GetComponent<Image>().color;
+        Color playerColor = gameObject.GetComponent<SpriteRenderer>().color;
+        // Debug.Log("Collision player " + controlSet +" color: " + playerColor + ", bullet color: " + bulletColor);
 
-        // Show damage text
         FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
-        printer.SetFloatingValue(-1);
+        if (bulletColor == playerColor) {
+            m_Energy += 1;
+            energyBar.SetHealth(m_Energy);
+            printer.SetFloatingValue(+1);   // gain = positive value
+        } else {
+            m_Hp -= 1;
+            healthBar.SetHealth(m_Hp);
+            printer.SetFloatingValue(-1);
+        }
 
         // Game over condition
         if (m_Hp <= 0)
