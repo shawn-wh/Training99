@@ -21,6 +21,9 @@ public class LV_PlayerMovement : MonoBehaviour
 
     public HealthBar healthBar;
 
+    // Progress Bar
+    public ProgressBar progressBar;
+
     public TextMeshProUGUI m_HpText = null;
     public TextMeshProUGUI m_TimeText = null;
     public int m_Hp = 5;
@@ -56,7 +59,6 @@ public class LV_PlayerMovement : MonoBehaviour
     // SpriteRenderer
     private SpriteRenderer sRenderer;
     private GameObject movingCameraBound = null;
-
 
 
 
@@ -260,6 +262,7 @@ public class LV_PlayerMovement : MonoBehaviour
                 collectables[2] >= SQUARE_GOAL)
             {
                 _key.SetActive(true);
+                progressBar.UpdateValue(1f);
             }
 
             // Show gain text
