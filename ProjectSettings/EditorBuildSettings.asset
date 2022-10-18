@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Level5_old.unity
     guid: ae7c51a6f78254407a5632928f0d95a5
   - enabled: 1
-    path: Assets/Scenes/Level6.unity
+    path: Assets/Scenes/Level6_old.unity
     guid: bf0ef715c29dd45bab075ade97c650ea
   - enabled: 1
     path: Assets/Scenes/LevelCleared.unity
@@ -56,4 +56,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VersusHowToPlay.unity
     guid: b26093c258faf4480b4a4392e9f409ed
+  - enabled: 1
+    path: Assets/Scenes/Level6.unity
+    guid: 897d55fcae3fc4035a741da2844219a9
   m_configObjects: {}
