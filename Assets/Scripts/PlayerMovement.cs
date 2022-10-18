@@ -24,6 +24,9 @@ public class PlayerMovement : MonoBehaviour
     public int currentHealth;
 
     public Color[] colors = new Color[3];
+    public Color nextColor;
+    public string returnColor;
+    public TextMeshProUGUI nextColorText;
     public float timeToChange = 3f; // default 5f
     private float timeSinceChange = 0f;
 
@@ -31,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     public TextMeshProUGUI UI_Collectable1 = null;
     public TextMeshProUGUI UI_Collectable2 = null;
     public TextMeshProUGUI UI_Collectable3 = null;
-    private int[] collectables = new int[3]; // Record values for collectables. 
+    private int[] collectables = new int[3]; // Record values for collectables.
 
     // Prefab to show damage/collectable text
     public GameObject floatingTextPrefab;
@@ -45,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
         RefreshHpText();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        nextColor = colors[UnityEngine.Random.Range(0, colors.Length)];
+        nextColor.a = 1f;
     }
 
     // Update is called once per frame
@@ -64,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
         m_TimeText.text = "Survived: " + Time.timeSinceLevelLoad.ToString("0.0"); 
 
         ChangeColor();
+        EndlessRefreshNextColorText();
     }
 
     private void ChangeColor()
@@ -83,13 +89,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (timeSinceChange >= timeToChange)
         {
-            Color newColor = colors[UnityEngine.Random.Range(0, colors.Length)];
 
-            while (newColor == gameObject.GetComponent<Image>().color)
+
+            gameObject.GetComponent<Image>().color = nextColor;
+            while (nextColor == gameObject.GetComponent<Image>().color)
             {
-                newColor = colors[UnityEngine.Random.Range(0, colors.Length)];
+                nextColor = colors[UnityEngine.Random.Range(0, colors.Length)];
             }
-            gameObject.GetComponent<Image>().color = newColor;
+            
             timeSinceChange = 0f;
         }
         
@@ -163,5 +170,28 @@ public class PlayerMovement : MonoBehaviour
         UI_Collectable1.text = collectables[0].ToString();  // Circle	
         UI_Collectable2.text = collectables[1].ToString();  // Triangle	
         UI_Collectable3.text = collectables[2].ToString();  // Square	
+    }
+
+    private string EndlessConvertColorToString()
+    {
+        if (nextColor == colors[0])
+        {
+            return "Blue";
+        }
+        else if (nextColor == colors[1])
+        {
+            return "Red";
+        }
+        else
+        {
+            return "Yellow";
+        }
+    }
+
+    private void EndlessRefreshNextColorText()
+    {
+        returnColor = EndlessConvertColorToString();
+        nextColorText.text = "Next Color: " + returnColor;
+
     }
 } // class
