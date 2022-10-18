@@ -305,6 +305,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
+      propertyPath: progressBar
+      value: 
+      objectReference: {fileID: 691200419}
+    - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
       propertyPath: nexColorText
       value: 
       objectReference: {fileID: 0}
@@ -955,6 +959,17 @@ Transform:
   m_Father: {fileID: 2144488378}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &691200419 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2152407696277393515, guid: f76d00445c4a54d7bb0675b41e8d6aee, type: 3}
+  m_PrefabInstance: {fileID: 1465368958}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7952b8b18ce04c77b7dbf4501134a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &773855851
 GameObject:
   m_ObjectHideFlags: 0
@@ -1212,6 +1227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 1782830594}
   _endpoint: {fileID: 1119466600}
+  progressBar: {fileID: 691200419}
 --- !u!50 &822102615
 Rigidbody2D:
   serializedVersion: 4
@@ -1782,6 +1798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1782830594}
+  progressBar: {fileID: 691200419}
 --- !u!60 &1119466604
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2286,6 +2303,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4378099318986704600, guid: f76d00445c4a54d7bb0675b41e8d6aee, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6393246013682281653, guid: f76d00445c4a54d7bb0675b41e8d6aee, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2739,7 +2760,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -850, y: 489.99997}
+  m_AnchoredPosition: {x: -850, y: 516}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1784759434

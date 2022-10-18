@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 public class EndpointOnTrigger : MonoBehaviour
 {
     [SerializeField] private GameObject _player;
-    
+
+    public ProgressBar progressBar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,8 @@ public class EndpointOnTrigger : MonoBehaviour
         {
             Debug.Log("Player found the endpoint!");
             string current = SceneManager.GetActiveScene().name;
+
+            progressBar.UpdateValue(progressBar.slider.maxValue);
 
             Debug.Log(current + " finished time: " + Time.timeSinceLevelLoad.ToString("0.0"));
             DataManager dm = gameObject.GetComponent<DataManager>();

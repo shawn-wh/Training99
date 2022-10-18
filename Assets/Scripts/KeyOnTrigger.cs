@@ -6,6 +6,8 @@ public class KeyOnTrigger : MonoBehaviour
 {
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _endpoint;
+
+    public ProgressBar progressBar;
     
     // Start is called before the first frame update
     void Start()
@@ -25,6 +27,7 @@ public class KeyOnTrigger : MonoBehaviour
         {
             Debug.Log("Player found the key!");
             _endpoint.SetActive(true);
+            progressBar.UpdateValue(2f);
             Destroy(gameObject);
         }
     }
