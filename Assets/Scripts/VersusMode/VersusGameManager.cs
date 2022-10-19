@@ -12,9 +12,13 @@ public class VersusGameManager : MonoBehaviour
     public Sprite sprite = null;
     public Color[] colors = new Color[2];
 
-    [SerializeField] private PropSelectPanelController panel;
+    public CardController[] availableCards;
 
-    public VersusPlayer[] players;
+    public VersusPlayer player1;
+    public VersusPlayer player2;
+    public PropSelectPanelController propPanel1;
+    public PropSelectPanelController propPanel2;
+    
     public static string winner = null;
     public static bool isPaused = true;
     
@@ -22,14 +26,20 @@ public class VersusGameManager : MonoBehaviour
     {
         colors[0] = new Color32(153, 0, 0, 255);
         colors[1] = new Color32(39, 116, 174, 255);
-        IEnumerator panelCoroutine = panel.ShowPanelInterval();
-        StartCoroutine(panelCoroutine);
-        panel.Show();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            propPanel1.gameObject.SetActive(true);
+        }
+        else if (Input.GetKeyDown(KeyCode.U))
+        {
+            propPanel2.gameObject.SetActive(true);
+        }
+        
         for (int i = 0; i < createAreas.Length; i++)
         {
             CreateArea ca = createAreas[i];
