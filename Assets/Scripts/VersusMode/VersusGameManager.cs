@@ -16,8 +16,8 @@ public class VersusGameManager : MonoBehaviour
 
     public VersusPlayer player1;
     public VersusPlayer player2;
-    [SerializeField] private PropSelectPanelController propPanel1;
-    [SerializeField] private PropSelectPanelController propPanel2;
+    public PropSelectPanelController propPanel1;
+    public PropSelectPanelController propPanel2;
     
     public static string winner = null;
     public static bool isPaused = true;

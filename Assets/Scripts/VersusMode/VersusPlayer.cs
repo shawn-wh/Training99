@@ -18,6 +18,7 @@ public class VersusPlayer : MonoBehaviour
     public CircleCollider2D m_collider;
     private PropPrototype prop;
     public bool isInvincible { get; set; } = false;
+    [SerializeField] private VersusGameManager manager;
 
     // Start is called before the first frame update
     void Start()
@@ -76,7 +77,6 @@ public class VersusPlayer : MonoBehaviour
 
         Color bulletColor = collision.transform.GetChild(0).GetComponent<Image>().color;
         Color playerColor = gameObject.GetComponent<SpriteRenderer>().color;
-        // Debug.Log("Collision player " + controlSet +" color: " + playerColor + ", bullet color: " + bulletColor);
 
         FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
         if (bulletColor == playerColor) {
@@ -100,7 +100,18 @@ public class VersusPlayer : MonoBehaviour
             VersusGameManager.winner = winner;
             SceneManager.LoadScene("VersusGameOver");
         }
-
+        
+        if (m_Energy >= 5)
+        {
+            if (name == "Player1")
+            {
+                manager.propPanel1.gameObject.SetActive(true);
+            }
+            else
+            {
+                manager.propPanel2.gameObject.SetActive(true);
+            }
+        }
 
     }
 } // class
