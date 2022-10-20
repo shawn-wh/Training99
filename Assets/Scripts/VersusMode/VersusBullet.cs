@@ -9,23 +9,25 @@ public class VersusBullet : MonoBehaviour
 
     public float bulletSpeed;
     private Color color;
-    private VersusPlayer target;
+    private VersusPlayer targetPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
-        target = gameManager.player1;
+        targetPlayer = gameManager.player1;
         if (Random.Range(0, 2) == 1)
         {
-            target = gameManager.player2;
+            targetPlayer = gameManager.player2;
         }
+        transform.rotation = Quaternion.FromToRotation(Vector3.up, targetPlayer.transform.position - transform.position);
     }
 
 
     // FixedUpdate is called once every 0.02 seconds
     void FixedUpdate()   
     {
-        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, Time.fixedDeltaTime * bulletSpeed);
+        transform.Translate(Vector3.up * Time.fixedDeltaTime * bulletSpeed);
+
     }
 
     public void SetColor(Color newColor)
