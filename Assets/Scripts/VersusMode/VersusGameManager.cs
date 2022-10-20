@@ -6,9 +6,9 @@ using TMPro;
 
 public class VersusGameManager : MonoBehaviour
 {
-    public CreateArea[] createAreas = null;
-    [SerializeField] private VersusBullet clone = null;
-    [SerializeField] private GameObject bulletNode = null;
+    public CreateArea[] createAreas;
+    [SerializeField] private VersusBullet clone;
+    public GameObject bulletNode;
     public Color[] colors = new Color[2];
 
     public CardController[] availableCards;
@@ -19,7 +19,6 @@ public class VersusGameManager : MonoBehaviour
     public PropSelectPanelController propPanel2;
     
     public static string winner = null;
-    public static bool isPaused = true;
 
     // Update is called once per frame
     void Update()

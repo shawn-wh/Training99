@@ -588,11 +588,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  Hp_max: 5
+  Energy_max: 10
   healthBar: {fileID: 1526053942}
   energyBar: {fileID: 843674476}
   controlSet: Player1
   floatingTextPrefab: {fileID: 3774115643177232834, guid: a555ffc023e5346c0805edf4da8038bf, type: 3}
-  m_collider: {fileID: 0}
   manager: {fileID: 2086573529}
 --- !u!212 &515943673
 SpriteRenderer:
@@ -957,7 +958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 2086573529}
-  bulletSpeed: 3
+  bulletSpeed: 2
 --- !u!212 &585783283
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1273,11 +1274,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  Hp_max: 5
+  Energy_max: 10
   healthBar: {fileID: 241102640}
   energyBar: {fileID: 1139712072}
   controlSet: Player2
   floatingTextPrefab: {fileID: 3774115643177232834, guid: a555ffc023e5346c0805edf4da8038bf, type: 3}
-  m_collider: {fileID: 0}
   manager: {fileID: 2086573529}
 --- !u!212 &710505781
 SpriteRenderer:
@@ -2229,6 +2231,7 @@ MonoBehaviour:
   availableCards:
   - {fileID: 8514460551834366501, guid: 62e7496c9455444cf8c810e470cc3da5, type: 3}
   - {fileID: 8514460551834366501, guid: 72f8a55c35dfb42a885730ff687643e9, type: 3}
+  - {fileID: 8514460551834366501, guid: b3c7b0f5981644101b349e9973d82f5d, type: 3}
   player1: {fileID: 515943672}
   player2: {fileID: 710505780}
   propPanel1: {fileID: 1794242942}

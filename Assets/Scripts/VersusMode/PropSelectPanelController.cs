@@ -10,11 +10,19 @@ public class PropSelectPanelController : MonoBehaviour
     private CardController card1;
     private CardController card2;
     
-    // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         Transform card1Root = transform.Find("Card1");
         Transform card2Root = transform.Find("Card2");
+        
+        foreach (Transform cardTransfrom in card1Root)
+        {
+            GameObject.Destroy(cardTransfrom.gameObject);
+        }
+        foreach (Transform cardTransfrom in card2Root)
+        {
+            GameObject.Destroy(cardTransfrom.gameObject);
+        }
         
         // Randomly select 2 props
         int take1 = Random.Range(0, manager.availableCards.Length);
