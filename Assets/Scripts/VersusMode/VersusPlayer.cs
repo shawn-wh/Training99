@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,15 +8,16 @@ using UnityEngine.SceneManagement;
 
 public class VersusPlayer : MonoBehaviour
 {
-
-    public float speed = 5f;
-    private int m_Hp = 5;
-    private int m_Energy = 5;
+    public float speed;
+    public int Hp_max;
+    public int Energy_max;
+    
+    private int m_Hp;
+    private int m_Energy;
     public HealthBar healthBar;
     public HealthBar energyBar;
     public string controlSet = null;  // Valid values: Player1, Player2
     public GameObject floatingTextPrefab; // Prefab to show damage/collectable text
-    public CircleCollider2D m_collider;
     private PropPrototype prop;
     public bool isInvincible { get; set; } = false;
     [SerializeField] private VersusGameManager manager;
@@ -23,11 +25,12 @@ public class VersusPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_Hp = Hp_max;
         healthBar.SetMaxHealth(m_Hp);
-        energyBar.SetMaxHealth(m_Energy);
+        healthBar.SetHealth(m_Hp);
         m_Energy = 0;
+        energyBar.SetMaxHealth(Energy_max);
         energyBar.SetHealth(m_Energy);
-        m_collider = GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame
@@ -56,10 +59,17 @@ public class VersusPlayer : MonoBehaviour
         }
     }
     
+    public void Heal(int amount)
+    {
+        m_Hp = Math.Min(m_Hp + amount, Hp_max);
+        healthBar.SetHealth(m_Hp);
+    }
+    
     public void ReceiveProp(PropPrototype prop)
     {
         this.prop = prop;
         prop.owner = this;
+        prop.manager = manager;
     }
     
     public void RemoveProp()
@@ -75,7 +85,7 @@ public class VersusPlayer : MonoBehaviour
             return;
         }
 
-        Color bulletColor = collision.transform.GetChild(0).GetComponent<Image>().color;
+        Color bulletColor = collision.gameObject.GetComponent<SpriteRenderer>().color;
         Color playerColor = gameObject.GetComponent<SpriteRenderer>().color;
 
         FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
@@ -98,10 +108,11 @@ public class VersusPlayer : MonoBehaviour
                 winner = "Player2";
             }
             VersusGameManager.winner = winner;
+            manager.SendForm();
             SceneManager.LoadScene("VersusGameOver");
         }
         
-        if (m_Energy >= 5)
+        if (m_Energy >= Energy_max)
         {
             if (name == "Player1")
             {
@@ -111,6 +122,8 @@ public class VersusPlayer : MonoBehaviour
             {
                 manager.propPanel2.gameObject.SetActive(true);
             }
+            m_Energy = 0;
+            energyBar.SetHealth(m_Energy);
         }
 
     }

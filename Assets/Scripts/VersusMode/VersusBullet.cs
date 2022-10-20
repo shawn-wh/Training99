@@ -6,32 +6,39 @@ using UnityEngine.UI;
 public class VersusBullet : MonoBehaviour
 {
     public VersusGameManager gameManager;
-
-    public float bulletSpeed;
-    public Color color;
+    [SerializeField] private float bulletSpeed;
+    private Color color;
+    private VersusPlayer targetPlayer;
+    private float liveTime = 15f;    
 
     // Start is called before the first frame update
     void Start()
     {
-        VersusPlayer player = gameManager.player1;
+        targetPlayer = gameManager.player1;
         if (Random.Range(0, 2) == 1)
         {
-            player = gameManager.player2;
+            targetPlayer = gameManager.player2;
         }
-        transform.LookAt(player.transform);
+        transform.rotation = Quaternion.FromToRotation(Vector3.up, targetPlayer.transform.position - transform.position);
     }
 
 
     // FixedUpdate is called once every 0.02 seconds
     void FixedUpdate()   
     {
-        transform.Translate(Vector3.forward * Time.fixedDeltaTime * bulletSpeed);
+        transform.Translate(Vector3.up * Time.fixedDeltaTime * bulletSpeed);
+        
+        liveTime -= Time.fixedDeltaTime;
+        if (liveTime <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void SetColor(Color newColor)
     {
         color = newColor;
-        gameObject.transform.GetChild(0).GetComponent<Image>().color = newColor;
+        gameObject.GetComponent<SpriteRenderer>().color = newColor;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
