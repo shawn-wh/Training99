@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class VersusBullet : MonoBehaviour
 {
     public VersusGameManager gameManager;
-
-    public float bulletSpeed;
+    [SerializeField] private float bulletSpeed;
     private Color color;
     private VersusPlayer targetPlayer;
+    private float liveTime = 15f;    
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,12 @@ public class VersusBullet : MonoBehaviour
     void FixedUpdate()   
     {
         transform.Translate(Vector3.up * Time.fixedDeltaTime * bulletSpeed);
-
+        
+        liveTime -= Time.fixedDeltaTime;
+        if (liveTime <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void SetColor(Color newColor)
