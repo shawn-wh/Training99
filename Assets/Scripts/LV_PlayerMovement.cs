@@ -46,7 +46,7 @@ public class LV_PlayerMovement : MonoBehaviour
 
     [SerializeField] private GameObject _key;
     [SerializeField] private GameObject _endpoint;
-
+    private bool isKeyShowedUp = false;
 
     // Prefab to show damage/collectable text
     [Header("Damage or gain")]
@@ -248,21 +248,19 @@ public class LV_PlayerMovement : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
-
             // player collects required type and number of bullets, show the key
-            if (collectables[0] >= CIRCLE_GOAL &&
-                collectables[1] >= TRIANGLE_GOAL &&
-                collectables[2] >= SQUARE_GOAL)
+            // Key is never acquired by player before
+            if (!isKeyShowedUp) 
             {
-                _key.SetActive(true);
-                progressBar.UpdateValue(1f);
+                if (collectables[0] >= CIRCLE_GOAL &&
+                    collectables[1] >= TRIANGLE_GOAL &&
+                    collectables[2] >= SQUARE_GOAL)
+                {
+                    _key.SetActive(true);
+                    isKeyShowedUp = true;
+                    progressBar.UpdateValue(1f);
+                }
+
             }
 
             // Show gain text
