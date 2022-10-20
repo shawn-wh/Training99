@@ -15,8 +15,17 @@ public class PropSelectPanelController : MonoBehaviour
     {
         Transform card1Root = transform.Find("Card1");
         Transform card2Root = transform.Find("Card2");
-        card1 = Instantiate(manager.availableCards[0], card1Root);
-        card2 = Instantiate(manager.availableCards[0], card2Root);
+        
+        // Randomly select 2 props
+        int take1 = Random.Range(0, manager.availableCards.Length);
+        card1 = Instantiate(manager.availableCards[take1], card1Root);
+
+        int take2 = Random.Range(0, manager.availableCards.Length);
+        while (take1 == take2)
+        {
+            take2 = Random.Range(0, manager.availableCards.Length);
+        }
+        card2 = Instantiate(manager.availableCards[take2], card2Root);
     }
 
     // Update is called once per frame

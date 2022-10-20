@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -54,6 +55,12 @@ public class VersusPlayer : MonoBehaviour
                 prop.enabled = true;
             }
         }
+    }
+    
+    public void Heal(int amount)
+    {
+        m_Hp = Math.Min(m_Hp + amount, 5);
+        healthBar.SetHealth(m_Hp);
     }
     
     public void ReceiveProp(PropPrototype prop)
