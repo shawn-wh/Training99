@@ -912,6 +912,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4509931961528699103, guid: 1109bcf4425c444d6adc96c06d5e93fe, type: 3}
   m_PrefabInstance: {fileID: 300024416}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &300024418 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2422043590956448399, guid: 1109bcf4425c444d6adc96c06d5e93fe, type: 3}
+  m_PrefabInstance: {fileID: 300024416}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08be58b74fab543ae91fa175c1782664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &363162366 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4033374494261511527, guid: f76d00445c4a54d7bb0675b41e8d6aee, type: 3}
@@ -4705,6 +4716,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
+      propertyPath: skill1
+      value: 
+      objectReference: {fileID: 300024418}
+    - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
       propertyPath: m_HpText
       value: 
       objectReference: {fileID: 486388163}
@@ -4732,6 +4747,10 @@ PrefabInstance:
       propertyPath: SQUARE_GOAL
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
+      propertyPath: progressBar
+      value: 
+      objectReference: {fileID: 592919282}
     - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
       propertyPath: timeToChange
       value: 5
