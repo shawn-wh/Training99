@@ -589,7 +589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   Hp_max: 5
-  Energy_max: 10
+  Energy_max: 5
   healthBar: {fileID: 1526053942}
   energyBar: {fileID: 843674476}
   controlSet: Player1
@@ -1275,7 +1275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   Hp_max: 5
-  Energy_max: 10
+  Energy_max: 5
   healthBar: {fileID: 241102640}
   energyBar: {fileID: 1139712072}
   controlSet: Player2
