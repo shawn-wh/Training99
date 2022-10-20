@@ -108,6 +108,7 @@ public class VersusPlayer : MonoBehaviour
                 winner = "Player2";
             }
             VersusGameManager.winner = winner;
+            manager.SendForm();
             SceneManager.LoadScene("VersusGameOver");
         }
         

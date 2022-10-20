@@ -27,6 +27,7 @@ public class PropSelectPanelController : MonoBehaviour
         // Randomly select 2 props
         int take1 = Random.Range(0, manager.availableCards.Length);
         card1 = Instantiate(manager.availableCards[take1], card1Root);
+        card1.name = manager.availableCards[take1].name; // to remove the `(Clone)` suffix for the anylytics purpose
 
         int take2 = Random.Range(0, manager.availableCards.Length);
         while (take1 == take2)
@@ -34,6 +35,7 @@ public class PropSelectPanelController : MonoBehaviour
             take2 = Random.Range(0, manager.availableCards.Length);
         }
         card2 = Instantiate(manager.availableCards[take2], card2Root);
+        card2.name = manager.availableCards[take2].name; // to remove the `(Clone)` suffix for the anylytics purpose
     }
 
     // Update is called once per frame
@@ -46,12 +48,14 @@ public class PropSelectPanelController : MonoBehaviour
                 PropPrototype prop = Instantiate(card1.prop, manager.player1.transform);
                 manager.player1.ReceiveProp(prop);
                 gameObject.SetActive(false);
+                manager.PropUsage[card1.name] += 1;
             }
             else if (Input.GetKeyDown(KeyCode.G))
             {
                 PropPrototype prop = Instantiate(card2.prop, manager.player1.transform);
                 manager.player1.ReceiveProp(prop);
                 gameObject.SetActive(false);
+                manager.PropUsage[card2.name] += 1;
             }
         }
         else if (name == "PropPanel2")
@@ -61,12 +65,14 @@ public class PropSelectPanelController : MonoBehaviour
                 PropPrototype prop = Instantiate(card1.prop, manager.player2.transform);
                 manager.player2.ReceiveProp(prop);
                 gameObject.SetActive(false);
+                manager.PropUsage[card1.name] += 1;
             }
             else if (Input.GetKeyDown(KeyCode.Period))
             {
                 PropPrototype prop = Instantiate(card2.prop, manager.player2.transform);
                 manager.player2.ReceiveProp(prop);
                 gameObject.SetActive(false);
+                manager.PropUsage[card2.name] += 1;
             }
         }
     }

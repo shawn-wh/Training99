@@ -19,6 +19,25 @@ public class VersusGameManager : MonoBehaviour
     public PropSelectPanelController propPanel2;
     
     public static string winner = null;
+    
+    [SerializeField] private DataManager dataManager;
+    public Dictionary<string, int> PropUsage = new Dictionary<string, int>();
+    
+    void Start()
+    {
+        foreach (CardController card in availableCards)
+        {
+            PropUsage.Add(card.name, 0);
+        }
+    }
+    
+    public void SendForm()
+    {
+        string prop1 = PropUsage["InvincibleCard"].ToString();
+        string prop2 = PropUsage["HealCard"].ToString();
+        string prop3 = PropUsage["BulletChangeColorCard"].ToString();
+        dataManager.SendVersus(Time.timeSinceLevelLoad.ToString("0.0"), winner, prop1, prop2, prop3);
+    }
 
     // Update is called once per frame
     void Update()
