@@ -8,30 +8,30 @@ public class VersusBullet : MonoBehaviour
     public VersusGameManager gameManager;
 
     public float bulletSpeed;
-    public Color color;
+    private Color color;
+    private VersusPlayer target;
 
     // Start is called before the first frame update
     void Start()
     {
-        VersusPlayer player = gameManager.player1;
+        target = gameManager.player1;
         if (Random.Range(0, 2) == 1)
         {
-            player = gameManager.player2;
+            target = gameManager.player2;
         }
-        transform.LookAt(player.transform);
     }
 
 
     // FixedUpdate is called once every 0.02 seconds
     void FixedUpdate()   
     {
-        transform.Translate(Vector3.forward * Time.fixedDeltaTime * bulletSpeed);
+        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, Time.fixedDeltaTime * bulletSpeed);
     }
 
     public void SetColor(Color newColor)
     {
         color = newColor;
-        gameObject.transform.GetChild(0).GetComponent<Image>().color = newColor;
+        gameObject.GetComponent<SpriteRenderer>().color = newColor;
     }
 
     private void OnCollisionEnter2D(Collision2D other)

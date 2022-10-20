@@ -82,7 +82,7 @@ public class VersusPlayer : MonoBehaviour
             return;
         }
 
-        Color bulletColor = collision.transform.GetChild(0).GetComponent<Image>().color;
+        Color bulletColor = collision.gameObject.GetComponent<SpriteRenderer>().color;
         Color playerColor = gameObject.GetComponent<SpriteRenderer>().color;
 
         FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
