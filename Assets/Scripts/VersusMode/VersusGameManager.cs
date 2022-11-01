@@ -6,25 +6,31 @@ using TMPro;
 
 public class VersusGameManager : MonoBehaviour
 {
-    public CreateArea[] createAreas;
+    [Header("Prefabs")]
+    [SerializeField] private CreateArea[] createAreas;
     [SerializeField] private VersusBullet clone;
     public GameObject bulletNode;
-    public Color[] colors = new Color[2];
-
-    public CardController[] availableCards;
-
     public VersusPlayer player1;
     public VersusPlayer player2;
     public PropSelectPanelController propPanel1;
     public PropSelectPanelController propPanel2;
     
-    public static string winner = null;
+    [Header("Game Config")]
+    public Color[] colors = new Color[2];
+    public CardController[] availableCards;
+    public int Hp_max;
+    public int Energy_max;
+    public float PlayerSpeed;
     
+    public static string winner = null;
+
+    [Header("Data Management")]
     [SerializeField] private DataManager dataManager;
     public Dictionary<string, int> PropUsage = new Dictionary<string, int>();
     
     void Start()
     {
+        // Init PropUsage dictionary
         foreach (CardController card in availableCards)
         {
             PropUsage.Add(card.name, 0);

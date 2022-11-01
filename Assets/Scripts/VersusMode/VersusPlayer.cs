@@ -8,36 +8,44 @@ using UnityEngine.SceneManagement;
 
 public class VersusPlayer : MonoBehaviour
 {
-    public float speed;
-    public int Hp_max;
-    public int Energy_max;
-    
+    public bool isInvincible { get; set; } = false;
+
+    private float speed;
     private int m_Hp;
     private int m_Energy;
-    public HealthBar healthBar;
-    public HealthBar energyBar;
-    public string controlSet = null;  // Valid values: Player1, Player2
-    public GameObject floatingTextPrefab; // Prefab to show damage/collectable text
     private PropPrototype prop;
-    public bool isInvincible { get; set; } = false;
+    
+    [SerializeField] private HealthBar healthBar;
+    [SerializeField] private HealthBar energyBar;
     [SerializeField] private VersusGameManager manager;
+    [SerializeField] private GameObject floatingTextPrefab; // Prefab to show damage/collectable text
 
     // Start is called before the first frame update
     void Start()
     {
-        m_Hp = Hp_max;
+        m_Hp = manager.Hp_max;
         healthBar.SetMaxHealth(m_Hp);
         healthBar.SetHealth(m_Hp);
         m_Energy = 0;
-        energyBar.SetMaxHealth(Energy_max);
+        energyBar.SetMaxHealth(manager.Energy_max);
         energyBar.SetHealth(m_Energy);
+        speed = manager.PlayerSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float h = Input.GetAxis(controlSet + " Horizontal"); // player1: A, D; player2: left, right
-        float v = Input.GetAxis(controlSet + " Vertical");   // player1: W, S; player2: up, down
+        float h, v;
+        if (name == "Player1")
+        {
+            h = Input.GetAxis("Player1 Horizontal"); // player1: A, D
+            v = Input.GetAxis("Player1 Vertical");   // player1: W, S
+        }
+        else // Player2
+        {
+            h = Input.GetAxis("Player2 Horizontal"); // player2: left, right
+            v = Input.GetAxis("Player2 Vertical");   // player2: up, down
+        }
 
         Vector2 pos = transform.position;
         pos.x += h * speed * Time.deltaTime;
@@ -47,7 +55,7 @@ public class VersusPlayer : MonoBehaviour
     
     public void Heal(int amount)
     {
-        m_Hp = Math.Min(m_Hp + amount, Hp_max);
+        m_Hp = Math.Min(m_Hp + amount, manager.Hp_max);
         healthBar.SetHealth(m_Hp);
     }
     
@@ -98,7 +106,7 @@ public class VersusPlayer : MonoBehaviour
             SceneManager.LoadScene("VersusGameOver");
         }
         
-        if (m_Energy >= Energy_max)
+        if (m_Energy >= manager.Energy_max)
         {
             if (name == "Player1")
             {
