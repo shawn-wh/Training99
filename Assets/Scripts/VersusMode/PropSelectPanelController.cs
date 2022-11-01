@@ -46,14 +46,14 @@ public class PropSelectPanelController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
                 PropPrototype prop = Instantiate(card1.prop, manager.player1.transform);
-                manager.player1.ReceiveProp(prop);
+                manager.player1.UseProp(prop);
                 gameObject.SetActive(false);
                 manager.PropUsage[card1.name] += 1;
             }
             else if (Input.GetKeyDown(KeyCode.G))
             {
                 PropPrototype prop = Instantiate(card2.prop, manager.player1.transform);
-                manager.player1.ReceiveProp(prop);
+                manager.player1.UseProp(prop);
                 gameObject.SetActive(false);
                 manager.PropUsage[card2.name] += 1;
             }
@@ -63,14 +63,14 @@ public class PropSelectPanelController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Comma))
             {
                 PropPrototype prop = Instantiate(card1.prop, manager.player2.transform);
-                manager.player2.ReceiveProp(prop);
+                manager.player2.UseProp(prop);
                 gameObject.SetActive(false);
                 manager.PropUsage[card1.name] += 1;
             }
             else if (Input.GetKeyDown(KeyCode.Period))
             {
                 PropPrototype prop = Instantiate(card2.prop, manager.player2.transform);
-                manager.player2.ReceiveProp(prop);
+                manager.player2.UseProp(prop);
                 gameObject.SetActive(false);
                 manager.PropUsage[card2.name] += 1;
             }

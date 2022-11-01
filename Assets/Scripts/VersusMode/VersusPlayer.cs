@@ -40,23 +40,9 @@ public class VersusPlayer : MonoBehaviour
         float v = Input.GetAxis(controlSet + " Vertical");   // player1: W, S; player2: up, down
 
         Vector2 pos = transform.position;
-
         pos.x += h * speed * Time.deltaTime;
         pos.y += v * speed * Time.deltaTime;
-
         transform.position = pos;
-
-        if (prop)
-        {
-            if (name == "Player1" && (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.G)))
-            {
-                prop.enabled = true;
-            }
-            else if (name == "Player2" && (Input.GetKeyDown(KeyCode.Comma) || Input.GetKeyDown(KeyCode.Period)))
-            {
-                prop.enabled = true;
-            }
-        }
     }
     
     public void Heal(int amount)
@@ -65,7 +51,7 @@ public class VersusPlayer : MonoBehaviour
         healthBar.SetHealth(m_Hp);
     }
     
-    public void ReceiveProp(PropPrototype prop)
+    public void UseProp(PropPrototype prop)
     {
         this.prop = prop;
         prop.owner = this;
