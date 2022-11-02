@@ -1064,8 +1064,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[1]
-      value: 'The ferocious enemies could hurt you badly. Maybe you need to collect
-        something that will help your health.  '
+      value: The ferocious enemies could hurt you badly. You could recover your health
+        by collecting red color bullets.
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[2]
@@ -1158,6 +1158,10 @@ PrefabInstance:
     - target: {fileID: 4035667561152436303, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: m_Name
       value: DialogueBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 4035667561152436303, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
