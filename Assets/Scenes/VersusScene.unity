@@ -587,12 +587,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9577be5a09a4755b53c26eec7d407d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
   healthBar: {fileID: 1526053942}
   energyBar: {fileID: 843674476}
-  controlSet: Player1
-  floatingTextPrefab: {fileID: 3774115643177232834, guid: a555ffc023e5346c0805edf4da8038bf, type: 3}
   manager: {fileID: 2086573529}
+  floatingTextPrefab: {fileID: 3774115643177232834, guid: a555ffc023e5346c0805edf4da8038bf, type: 3}
 --- !u!212 &515943673
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1271,12 +1269,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9577be5a09a4755b53c26eec7d407d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
   healthBar: {fileID: 241102640}
   energyBar: {fileID: 1139712072}
-  controlSet: Player2
-  floatingTextPrefab: {fileID: 3774115643177232834, guid: a555ffc023e5346c0805edf4da8038bf, type: 3}
   manager: {fileID: 2086573529}
+  floatingTextPrefab: {fileID: 3774115643177232834, guid: a555ffc023e5346c0805edf4da8038bf, type: 3}
 --- !u!212 &710505781
 SpriteRenderer:
   m_ObjectHideFlags: 0
