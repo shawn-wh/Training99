@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
     
     // [Endless] player change rate
     private float[] speed = {1, 1.5f, 2, 2.5f, 3, 3.5f, 4, 4.5f, 5, 5.5f, 6, 6.5f, 7, 7.5f, 8};
-
+    // private float[] speed = {1, 1.5f, 2, 2.5f, 3, 3.5f, 4, 4.5f, 5, 5.5f, 6, 6.5f, 7, 7.5f, 8};
     // Start is called before the first frame update
     void Start()
     {
@@ -34,10 +34,10 @@ public class Bullet : MonoBehaviour
         // Debug.Log("Now Time: " + Time.timeSinceLevelLoad);
         // Debug.Log("Floor Time: " + Math.Floor(Time.timeSinceLevelLoad / 10.0));
         // Debug.Log("Speed Rate: " + speed[Convert.ToInt32(Math.Floor(Time.timeSinceLevelLoad / 10.0))]);
-        if (Time.timeSinceLevelLoad >= 60.0) {
+        if (Time.timeSinceLevelLoad >= 300.0) {
             bulletSpeed = 8;
         }else {
-            bulletSpeed = speed[Convert.ToInt32(Math.Floor(Time.timeSinceLevelLoad / 5.0))];
+            bulletSpeed = speed[Convert.ToInt32(Math.Floor(Time.timeSinceLevelLoad / 20.0))];
         }
         // [Endless] end
         
