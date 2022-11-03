@@ -9,27 +9,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2618573934135704135, guid: afe88f8af525c4965ae1f62f7ff7bd06, type: 3}
       propertyPath: m_Color.b
-      value: 0.35686275
+      value: 0.68235296
       objectReference: {fileID: 0}
     - target: {fileID: 2618573934135704135, guid: afe88f8af525c4965ae1f62f7ff7bd06, type: 3}
       propertyPath: m_Color.g
-      value: 0.21568628
+      value: 0.45490196
       objectReference: {fileID: 0}
     - target: {fileID: 2618573934135704135, guid: afe88f8af525c4965ae1f62f7ff7bd06, type: 3}
       propertyPath: m_Color.r
-      value: 0.18431373
+      value: 0.15294118
       objectReference: {fileID: 0}
     - target: {fileID: 4104513790200680467, guid: afe88f8af525c4965ae1f62f7ff7bd06, type: 3}
       propertyPath: m_Color.b
-      value: 0.35686275
+      value: 0.68235296
       objectReference: {fileID: 0}
     - target: {fileID: 4104513790200680467, guid: afe88f8af525c4965ae1f62f7ff7bd06, type: 3}
       propertyPath: m_Color.g
-      value: 0.21568628
+      value: 0.45490196
       objectReference: {fileID: 0}
     - target: {fileID: 4104513790200680467, guid: afe88f8af525c4965ae1f62f7ff7bd06, type: 3}
       propertyPath: m_Color.r
-      value: 0.18431373
+      value: 0.15294118
       objectReference: {fileID: 0}
     - target: {fileID: 4741426295354703134, guid: afe88f8af525c4965ae1f62f7ff7bd06, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -133,15 +133,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6996787181113684393, guid: afe88f8af525c4965ae1f62f7ff7bd06, type: 3}
       propertyPath: m_Color.b
-      value: 0.35686275
+      value: 0.68235296
       objectReference: {fileID: 0}
     - target: {fileID: 6996787181113684393, guid: afe88f8af525c4965ae1f62f7ff7bd06, type: 3}
       propertyPath: m_Color.g
-      value: 0.21568628
+      value: 0.45490196
       objectReference: {fileID: 0}
     - target: {fileID: 6996787181113684393, guid: afe88f8af525c4965ae1f62f7ff7bd06, type: 3}
       propertyPath: m_Color.r
-      value: 0.18431373
+      value: 0.15294118
       objectReference: {fileID: 0}
     - target: {fileID: 7890396865012327108, guid: afe88f8af525c4965ae1f62f7ff7bd06, type: 3}
       propertyPath: m_AnchoredPosition.x

@@ -8,8 +8,7 @@ using UnityEngine.SceneManagement;
 public class LV_PlayerMovement : MonoBehaviour
 {
 
-    // colors array: blue, red, yellow, ; // set aphla = 1
-    // private Color[] colors = { new Color32(47,55,91,255), new Color32(162,52,25,255), new Color32(244,187,15,255)};
+    // colors array: red, yellow, blue ; // set aphla = 1
     public Color[] colors;
     
     private Color nextColor;
@@ -222,31 +221,27 @@ public class LV_PlayerMovement : MonoBehaviour
 
             int gain = 1;
             //each color has its own feature
-            //color blue can pass wall
-            if (bulletColor == colors[0] && skill1 != null)
-            {
-                gain = 1;
-                skill1.ResourcesCounter(gain);
-                // crossPowerBar.UpdateValue
-            }
 
             //color red can gain hp
-            else if (bulletColor == colors[1])
+            if (bulletColor == colors[0])
             {
                 m_Hp += gain;
                 m_Hp = m_Hp < maxHealth ? m_Hp : maxHealth;
                 currentHealth = m_Hp;
                 healthBar.SetHealth(currentHealth);
             }
-
             //color yellow can shrink player
-            else if (bulletColor == colors[2] && yellowLock < 3)
+            else if (bulletColor == colors[1] && yellowLock < 3)
             {
                 yellowLock += 1;
                 transform.localScale -= new Vector3(0.15f, 0.15f, 0);
             }
-
-
+            //color blue can pass wall
+            else if (bulletColor == colors[2] && skill1 != null)
+            {
+                gain = 1;
+                skill1.ResourcesCounter(gain);
+            }
 
             // player collects required type and number of bullets, show the key
             // Key is never acquired by player before
@@ -284,11 +279,11 @@ public class LV_PlayerMovement : MonoBehaviour
 
     private string ConvertColorToString()
     {
-        if (nextColor == colors[0])
+        if (nextColor == colors[2])
         {
             return "Blue";
         }
-        else if (nextColor == colors[1])
+        else if (nextColor == colors[0])
         {
             return "Red";
         }
@@ -304,4 +299,9 @@ public class LV_PlayerMovement : MonoBehaviour
         nextColorText.text = "Next Color: " + returnColor;
         
     }
+
+    public Color[] GetColorArray()
+    {
+        return colors;
+    } 
 } // class
