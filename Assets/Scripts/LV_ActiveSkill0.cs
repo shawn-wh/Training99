@@ -21,24 +21,15 @@ public class LV_ActiveSkill0 : MonoBehaviour
     // Get next color
     private GameObject player = null;
     private Color playerColor;
-    private Color[] colors = { new Color32(162,52,25,255), new Color32(244,187,15,255), new Color32(47,55,91,255)};
+    private Color[] colors = { new Color32(153,0,0,255), new Color32(244,187,15,255), new Color32(39,116,174,255)};   // Red, Yellow, Blue
 
-    // -----------------------------------------------------------------------------
-    // Skill1
-    // [Header("Skill1 Pass wall")]
-    // [SerializeField] private Image skill1_mask;
-    // [SerializeField] private TextMeshProUGUI skill1_text;
-
-
-    // private bool isS1Cooldown = false;
-    // public float s1CooldownTime = 3.0f;
-    // private float s1Timer = 0f;
 
     void GetNextColor()
     {
         // detecting playerColor
         playerColor = player.GetComponent<SpriteRenderer>().color;
-        
+
+        Debug.Log("colors = " + colors);
         // Player color format: Red = RGBA(0.635, 0.204, 0.098, 1.000)
         // colors = {Red, Yellow, Blue}
         
@@ -58,7 +49,7 @@ public class LV_ActiveSkill0 : MonoBehaviour
         }
         else
         {
-            nextColor = Color.black;
+            nextColor = Color.white;
         } 
         button.GetComponent<Image>().color = nextColor;
     }
@@ -120,36 +111,4 @@ public class LV_ActiveSkill0 : MonoBehaviour
 
     }
 
-    // Skill1: pass wall
-    // void Skill1()
-    // {
-    //     if (!isS1Cooldown && (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)))
-    //     {
-    //         // Skill0 used, need a cooldown 
-    //         isS1Cooldown = true;
-    //         skill1_mask.fillAmount = 1;
-    //         skill1_text.text = s1CooldownTime.ToString();
-    //         s1Timer = s1CooldownTime;   // Reset Timer 
-    //     }
-
-    //     if (isS1Cooldown)
-    //     {
-    //         // start to count down
-    //         s1Timer -= Time.deltaTime;
-
-    //         skill1_mask.fillAmount -= Time.deltaTime / s1CooldownTime;
-    //         skill1_text.text = Mathf.RoundToInt(s1Timer).ToString();
-
-    //         if ( skill1_mask.fillAmount <= 0)
-    //         {
-    //             // Can use skill 1 again
-    //             skill1_mask.fillAmount = 0;
-    //             skill1_text.text = " ";
-    //             isS1Cooldown = false; 
-    //             s1Timer = s1CooldownTime;   // Reset Timer 
-    //         } 
-    //     }
-    // }
-
-    
 }
