@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.18431373, g: 0.21568628, b: 0.35686275, a: 1}
+  m_Color: {r: 0.15294118, g: 0.45490196, b: 0.68235296, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -137,23 +137,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0129979d241a64781ba7975808afa4a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colors: []
   playerSpeed: 5
   healthBar: {fileID: 0}
+  progressBar: {fileID: 0}
   m_HpText: {fileID: 0}
   m_TimeText: {fileID: 0}
   m_Hp: 10
   maxHealth: 10
   currentHealth: 0
-  colors: []
-  timeToChange: 5
-  timeToWarn: 3
   UI_Collectable1: {fileID: 0}
   UI_Collectable2: {fileID: 0}
   UI_Collectable3: {fileID: 0}
-  floatingTextPrefab: {fileID: 3774115643177232834, guid: a555ffc023e5346c0805edf4da8038bf, type: 3}
-  warnTextPrefab: {fileID: 0}
+  CIRCLE_GOAL: 1
+  TRIANGLE_GOAL: 0
+  SQUARE_GOAL: 0
   _key: {fileID: 0}
   _endpoint: {fileID: 0}
+  floatingTextPrefab: {fileID: 3774115643177232834, guid: a555ffc023e5346c0805edf4da8038bf, type: 3}
+  warnTextPrefab: {fileID: 0}
+  colorIdx: 0
+  cooldownTime: 3
+  skill1: {fileID: 0}
 --- !u!114 &7160798802907528549
 MonoBehaviour:
   m_ObjectHideFlags: 0

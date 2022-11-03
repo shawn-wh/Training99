@@ -8,7 +8,7 @@ public class LV_BulletPatrol : MonoBehaviour
     private GameObject player = null;
     private Transform target;
 
-    [SerializeField] private Color[] colors = {new Color32(0,0,0,255), new Color32(162,52,25,255), new Color32(244,187,15,255), new Color32(47,55,91,255)};
+    [SerializeField] private Color[] colors = {new Color32(0,0,0,255), new Color32(153,0,0,255), new Color32(244,187,15,255), new Color32(39,116,174,255)};
     private Color currentColor;
     private Color playerColor;
 
