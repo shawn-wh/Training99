@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LV_BulletPatrol : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class LV_BulletPatrol : MonoBehaviour
     private GameObject player = null;
     private Transform target;
 
-    [SerializeField] private Color[] colors = {new Color32(0,0,0,255), new Color32(153,0,0,255), new Color32(244,187,15,255), new Color32(39,116,174,255)};
+    [SerializeField] private Color[] colors = {new Color32(0,0,0,255), new Color32(153,0,0,255), new Color32(244,187,15,255), new Color32(39,116,174,255)};// Black, Red, Yellow, Blue
     private Color currentColor;
     private Color playerColor;
 
@@ -22,6 +23,15 @@ public class LV_BulletPatrol : MonoBehaviour
     private int pointIndex = 0;
     private float waitTime = 8f;   
     public float startWaitTime = 5f;    // Wait 8 sec to start moving
+
+    // BulletPatrol can talk
+    [Header("Speech Bubble")]
+    public GameObject speechBubblePrefab;
+    // private TextMeshProUGUI speechText = null;
+    // private SpeechBubble bubble;
+    private GameObject bubbleObj;
+    
+    // private SpeechBubble speech;
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +65,11 @@ public class LV_BulletPatrol : MonoBehaviour
             target = player.transform;
             Debug.Log("playerColor = " + playerColor);
         }
+        
+        // Read SpeechBubble prefab
+        GameObject obj = Instantiate(speechBubblePrefab);
+        bubbleObj = obj;
+        bubbleObj.SetActive(false);
     }
 
     // Update is called once per frame
@@ -66,11 +81,17 @@ public class LV_BulletPatrol : MonoBehaviour
         if (distance <= detectRange)
         {
             foundPlayer();
+
+            // SpeechBubble appear.
+            bubbleObj.SetActive(true); 
         }
         // Continue patrol
         else 
         {
             patroling();
+            
+            // SpeechBubble disappear.
+            bubbleObj.SetActive(false); 
         }
       
     }
@@ -101,6 +122,7 @@ public class LV_BulletPatrol : MonoBehaviour
     {
         // detecting playerColor
         playerColor = player.GetComponent<SpriteRenderer>().color;
+        
 
         // When playerColor is not the same as currentColor
         if (currentColor != playerColor)
@@ -113,6 +135,10 @@ public class LV_BulletPatrol : MonoBehaviour
             // Move toward to player
             float towardStep = speed * Time.deltaTime;
             transform.position = Vector2.MoveTowards(transform.position, target.position, towardStep);
+
+            // Show speech bubble
+            bubbleObj.GetComponent<SpeechBubble>().SetSpeechText("Freeze!\n Don't move!");
+            bubbleObj.transform.position = Vector2.MoveTowards(transform.position, target.position, towardStep); 
         }
         // When playerColor is the same as currentColor
         else 
@@ -125,6 +151,10 @@ public class LV_BulletPatrol : MonoBehaviour
             // Run away from player
             float towardStep = speed * Time.deltaTime;
             transform.position = Vector2.MoveTowards(transform.position, -target.position, towardStep);
+
+            // Show speech bubble
+            bubbleObj.GetComponent<SpeechBubble>().SetSpeechText("Don't eat me!");
+            bubbleObj.transform.position = Vector2.MoveTowards(transform.position, target.position, towardStep); 
         }
 
     }
@@ -136,7 +166,9 @@ public class LV_BulletPatrol : MonoBehaviour
         // Only destroy when being hitted by the same playerColor
         if (other.gameObject == player && currentColor == playerColor)
         {
-            Destroy(gameObject);
+            Destroy(gameObject);    // Delete BulletPatrol itself
+            Destroy(bubbleObj);     // Delete speech bubble
         }
     }
+
 }

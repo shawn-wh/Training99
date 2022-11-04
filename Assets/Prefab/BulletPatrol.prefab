@@ -160,3 +160,4 @@ MonoBehaviour:
   detectRange: 4
   waypoints: []
   startWaitTime: 3
+  speechBubblePrefab: {fileID: 3774115643177232834, guid: 0bdda14f230dc4064ad0d43f335ec85a, type: 3}
