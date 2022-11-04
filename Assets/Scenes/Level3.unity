@@ -1829,6 +1829,70 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 577722440}
     m_Modifications:
+    - target: {fileID: 1772035377869780216, guid: b9989c5f564f245e0bebc5e7601ddc14, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772035377869780216, guid: b9989c5f564f245e0bebc5e7601ddc14, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772035377869780216, guid: b9989c5f564f245e0bebc5e7601ddc14, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1920.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772035377869780216, guid: b9989c5f564f245e0bebc5e7601ddc14, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772035377869780216, guid: b9989c5f564f245e0bebc5e7601ddc14, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.009259259
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772035377869780216, guid: b9989c5f564f245e0bebc5e7601ddc14, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.009259259
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772035377869780216, guid: b9989c5f564f245e0bebc5e7601ddc14, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.009259259
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772035377869780216, guid: b9989c5f564f245e0bebc5e7601ddc14, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 36.056927
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772035377869780216, guid: b9989c5f564f245e0bebc5e7601ddc14, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772035377869780216, guid: b9989c5f564f245e0bebc5e7601ddc14, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772035377869780216, guid: b9989c5f564f245e0bebc5e7601ddc14, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772035377869780216, guid: b9989c5f564f245e0bebc5e7601ddc14, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 2.983737
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772035377869780216, guid: b9989c5f564f245e0bebc5e7601ddc14, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -5.533333
+      objectReference: {fileID: 0}
+    - target: {fileID: 2028139614355602675, guid: b9989c5f564f245e0bebc5e7601ddc14, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3085461460089856040, guid: b9989c5f564f245e0bebc5e7601ddc14, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 3085461460089856040, guid: b9989c5f564f245e0bebc5e7601ddc14, type: 3}
+      propertyPath: m_RenderMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3586445745640139224, guid: b9989c5f564f245e0bebc5e7601ddc14, type: 3}
       propertyPath: m_Name
       value: BulletPatrol
@@ -4552,6 +4616,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 491103305}
     m_Modifications:
+    - target: {fileID: 3085461460089856040, guid: b9989c5f564f245e0bebc5e7601ddc14, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
     - target: {fileID: 3586445745640139224, guid: b9989c5f564f245e0bebc5e7601ddc14, type: 3}
       propertyPath: m_Name
       value: BulletPatrol
