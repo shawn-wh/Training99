@@ -9,6 +9,7 @@ TagManager:
   - Walls
   - Walls
   - Reminder
+  - BulletRecycler
   layers:
   - Default
   - TransparentFX

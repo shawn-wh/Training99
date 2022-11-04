@@ -63,6 +63,21 @@ public class LV_Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        gameObject.SetActive(false);
+        // gameObject.SetActive(false);
+        ProcessCollision(collision.gameObject);
+    }
+
+    private void onCollisionEnter2D(Collision2D collision)
+    {
+        ProcessCollision(collision.gameObject);
+    }
+
+    private void ProcessCollision(GameObject collider)
+    {
+        if (collider.CompareTag("Player") || 
+            collider.CompareTag("BulletRecycler"))
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
