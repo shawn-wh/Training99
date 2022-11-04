@@ -900,7 +900,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 6.5978954e-16, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -987,11 +987,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1737422996272542697, guid: 56d8e9bacf3f648f89f5d54a2b6ac39b, type: 3}
       propertyPath: bulletSpeed
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1737422996272542697, guid: 56d8e9bacf3f648f89f5d54a2b6ac39b, type: 3}
       propertyPath: liveTime_Const
-      value: 75
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5199064337975940067, guid: 56d8e9bacf3f648f89f5d54a2b6ac39b, type: 3}
       propertyPath: m_Color.b
@@ -2398,6 +2398,11 @@ MonoBehaviour:
   door: {fileID: 1119466600}
   changeColor: {fileID: 177226735}
   waitTime: 10
+  bulletGenerator:
+  - {fileID: 1760662113}
+  - {fileID: 1982989934}
+  - {fileID: 1592225570}
+  - {fileID: 1351173300}
 --- !u!1001 &1195557326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2562,6 +2567,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1351173297 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 298789968423576397, guid: fa96993a5993746ea8da3d4c25b55d0f, type: 3}
+  m_PrefabInstance: {fileID: 943481930}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1351173300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351173297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 384ba418053b84a028806bf4a126b021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_X: 1
+  m_Y: 15
+  bulletObj: {fileID: 881508190}
+  pooledAmount: 3
 --- !u!1 &1369646003
 GameObject:
   m_ObjectHideFlags: 0
@@ -3028,11 +3054,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5651082094762964863, guid: 5ebf2572fa3904012a778c4df001df64, type: 3}
       propertyPath: bulletSpeed
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5651082094762964863, guid: 5ebf2572fa3904012a778c4df001df64, type: 3}
       propertyPath: liveTime_Const
-      value: 75
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ebf2572fa3904012a778c4df001df64, type: 3}
@@ -3124,6 +3150,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1592225567 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 298789968423576397, guid: fa96993a5993746ea8da3d4c25b55d0f, type: 3}
+  m_PrefabInstance: {fileID: 1195557326}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1592225570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592225567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 384ba418053b84a028806bf4a126b021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_X: 1
+  m_Y: 15
+  bulletObj: {fileID: 417793194}
+  pooledAmount: 2
 --- !u!1 &1717709913
 GameObject:
   m_ObjectHideFlags: 0
@@ -3159,6 +3206,27 @@ Transform:
   m_Father: {fileID: 2144488378}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1760662110 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 298789968423576397, guid: fa96993a5993746ea8da3d4c25b55d0f, type: 3}
+  m_PrefabInstance: {fileID: 605513029}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1760662113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760662110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 384ba418053b84a028806bf4a126b021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_X: 15
+  m_Y: 1
+  bulletObj: {fileID: 881508190}
+  pooledAmount: 2
 --- !u!1001 &1939730913
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3385,6 +3453,27 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4509931961528699103, guid: 1109bcf4425c444d6adc96c06d5e93fe, type: 3}
   m_PrefabInstance: {fileID: 1017088978}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1982989931 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 298789968423576397, guid: fa96993a5993746ea8da3d4c25b55d0f, type: 3}
+  m_PrefabInstance: {fileID: 242222241}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1982989934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982989931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 384ba418053b84a028806bf4a126b021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_X: 15
+  m_Y: 1
+  bulletObj: {fileID: 472115733}
+  pooledAmount: 2
 --- !u!1 &1995830932 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3318553283824375938, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
@@ -3472,11 +3561,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8432628311726438422, guid: 5b930881c3e5044b9962d3e255770b7f, type: 3}
       propertyPath: bulletSpeed
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8432628311726438422, guid: 5b930881c3e5044b9962d3e255770b7f, type: 3}
       propertyPath: liveTime_Const
-      value: 75
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b930881c3e5044b9962d3e255770b7f, type: 3}
