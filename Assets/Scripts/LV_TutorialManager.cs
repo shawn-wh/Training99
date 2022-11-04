@@ -15,6 +15,9 @@ public class LV_TutorialManager : MonoBehaviour
     public GameObject door;
     public GameObject changeColor;
     public float waitTime = 2f;
+
+    public LV_BulletGenerator[] bulletGenerator = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,19 +46,39 @@ public class LV_TutorialManager : MonoBehaviour
                 textIndex++;
             }
         } else if (textIndex == 2) {
-            if (waitTime <= 0) {
-                circle.SetActive(true);
-                circle.transform.position = new Vector3((float)2.82, (float)-7.57, 0);
-                circle.GetComponent<SpriteRenderer>().color = new Color32(153, 0, 0, 255);
-                square.SetActive(true);
-                square.transform.position = new Vector3((float)0.52, (float)7.42, 0);
-                square.GetComponent<SpriteRenderer>().color = new Color32(153, 0, 0, 255);
-                triangle.SetActive(true);
-                triangle.transform.position = new Vector3((float)-8.02, (float)-7.2, 0);
-                triangle.GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 255);
-                waitTime = 76f;
-            } else {
-                waitTime -= Time.deltaTime;
+            //if (waitTime <= 0) {
+            //    circle.SetActive(true);
+            //    circle.transform.position = new Vector3((float)2.82, (float)-7.57, 0);
+            //    circle.GetComponent<SpriteRenderer>().color = new Color32(153, 0, 0, 255);
+            //    square.SetActive(true);
+            //    square.transform.position = new Vector3((float)0.52, (float)7.42, 0);
+            //    square.GetComponent<SpriteRenderer>().color = new Color32(153, 0, 0, 255);
+            //    triangle.SetActive(true);
+            //    triangle.transform.position = new Vector3((float)-8.02, (float)-7.2, 0);
+            //    triangle.GetComponent<SpriteRenderer>().color = new Color32(0, 0, 0, 255);
+            //    waitTime = 76f;
+            //} else {
+            //    waitTime -= Time.deltaTime;
+            //}
+            for (int i = 0; i < bulletGenerator.Length; i++)
+            {
+                LV_BulletGenerator bg = bulletGenerator[i];
+                if (bg.CheckTime())
+                {
+                    Vector3 pos = bg.GetRandomPos();
+
+                    //GameObject bullet = LV_BulletGenerator.bulletsPoolInstance.GetPoolObj();
+                    GameObject bullet = bg.GetPoolObj();
+                    if (bullet != null)
+                    {
+                        bullet.SetActive(true);
+                        bullet.transform.position = pos;
+                        //bullet.GetComponent<SpriteRenderer>().color = colors[Random.Range(0, colors.Length)];
+                        //bullet.GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0, sprites.Length)];
+                    }
+
+                    bg.NextTime();
+                }
             }
             if (key.activeSelf) {
                 textIndex++;
