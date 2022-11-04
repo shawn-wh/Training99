@@ -955,7 +955,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 2086573529}
-  bulletSpeed: 2
 --- !u!212 &585783283
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2278,6 +2277,7 @@ MonoBehaviour:
   Hp_max: 5
   Energy_max: 5
   PlayerSpeed: 5
+  BulletSpeed: 2
   dataManager: {fileID: 806176155}
 --- !u!1001 &249239761182992857
 PrefabInstance:

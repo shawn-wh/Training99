@@ -21,6 +21,7 @@ public class VersusGameManager : MonoBehaviour
     public int Hp_max;
     public int Energy_max;
     public float PlayerSpeed;
+    public float BulletSpeed;
     
     public static string winner = null;
 

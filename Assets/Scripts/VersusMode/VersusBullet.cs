@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class VersusBullet : MonoBehaviour, IColor
 {
     public VersusGameManager gameManager;
-    [SerializeField] private float bulletSpeed;
     // Adding @ prefix to avoid reserved keyword
     public Color @Color
     {
@@ -39,7 +38,7 @@ public class VersusBullet : MonoBehaviour, IColor
     // FixedUpdate is called once every 0.02 seconds
     void FixedUpdate()   
     {
-        transform.Translate(Vector3.up * Time.fixedDeltaTime * bulletSpeed);
+        transform.Translate(Vector3.up * Time.fixedDeltaTime * gameManager.BulletSpeed);
         
         liveTime -= Time.fixedDeltaTime;
         if (liveTime <= 0)
