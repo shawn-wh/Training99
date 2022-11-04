@@ -6,26 +6,33 @@ using TMPro;
 
 public class VersusGameManager : MonoBehaviour
 {
-    public CreateArea[] createAreas;
+    [Header("Prefabs")]
+    [SerializeField] private CreateArea[] createAreas;
     [SerializeField] private VersusBullet clone;
     public GameObject bulletNode;
-    public Color[] colors = new Color[2];
-
-    public CardController[] availableCards;
-
     public VersusPlayer player1;
     public VersusPlayer player2;
     public PropSelectPanelController propPanel1;
     public PropSelectPanelController propPanel2;
     
-    public static string winner = null;
+    [Header("Game Config")]
+    [SerializeField] private Color[] colors = new Color[2];
+    public CardController[] AvailableCards;
+    public int Hp_max;
+    public int Energy_max;
+    public float PlayerSpeed;
+    public float BulletSpeed;
     
+    public static string winner = null;
+
+    [Header("Data Management")]
     [SerializeField] private DataManager dataManager;
     public Dictionary<string, int> PropUsage = new Dictionary<string, int>();
     
     void Start()
     {
-        foreach (CardController card in availableCards)
+        // Init PropUsage dictionary
+        foreach (CardController card in AvailableCards)
         {
             PropUsage.Add(card.name, 0);
         }
@@ -59,7 +66,7 @@ public class VersusGameManager : MonoBehaviour
                 Vector3 pos = ca.GetRandomPos();
                 // This function makes a copy of an object in a similar way to the Duplicate command in the editor.
                 VersusBullet bullet = Instantiate(clone, pos, Quaternion.identity, bulletNode.transform);
-                bullet.SetColor(colors[Random.Range(0, colors.Length)]);
+                bullet.Color = colors[Random.Range(0, colors.Length)];
                 ca.NextTime();
             }
         }

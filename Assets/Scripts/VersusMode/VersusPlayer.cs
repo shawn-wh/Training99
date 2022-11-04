@@ -6,66 +6,76 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class VersusPlayer : MonoBehaviour
+public class VersusPlayer : MonoBehaviour, IColor
 {
-    public float speed;
-    public int Hp_max;
-    public int Energy_max;
-    
+    public Color OrignalColor;
+    public bool isInvincible { get; set; } = false;
+    // Adding @ prefix to avoid reserved keyword
+    public Color @Color
+    {
+        get
+        {
+            return color;
+        }
+        set
+        {
+            color = value;
+            gameObject.GetComponent<SpriteRenderer>().color = color;
+        }
+    }
+
+    private Color color;
+    private float speed;
     private int m_Hp;
     private int m_Energy;
-    public HealthBar healthBar;
-    public HealthBar energyBar;
-    public string controlSet = null;  // Valid values: Player1, Player2
-    public GameObject floatingTextPrefab; // Prefab to show damage/collectable text
     private PropPrototype prop;
-    public bool isInvincible { get; set; } = false;
+    
+    [SerializeField] private HealthBar healthBar;
+    [SerializeField] private HealthBar energyBar;
     [SerializeField] private VersusGameManager manager;
+    [SerializeField] private GameObject floatingTextPrefab; // Prefab to show damage/collectable text
 
     // Start is called before the first frame update
     void Start()
     {
-        m_Hp = Hp_max;
+        m_Hp = manager.Hp_max;
         healthBar.SetMaxHealth(m_Hp);
         healthBar.SetHealth(m_Hp);
         m_Energy = 0;
-        energyBar.SetMaxHealth(Energy_max);
+        energyBar.SetMaxHealth(manager.Energy_max);
         energyBar.SetHealth(m_Energy);
+        speed = manager.PlayerSpeed;
+        color = OrignalColor;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float h = Input.GetAxis(controlSet + " Horizontal"); // player1: A, D; player2: left, right
-        float v = Input.GetAxis(controlSet + " Vertical");   // player1: W, S; player2: up, down
+        float h, v;
+        if (name == "Player1")
+        {
+            h = Input.GetAxis("Player1 Horizontal"); // player1: A, D
+            v = Input.GetAxis("Player1 Vertical");   // player1: W, S
+        }
+        else // Player2
+        {
+            h = Input.GetAxis("Player2 Horizontal"); // player2: left, right
+            v = Input.GetAxis("Player2 Vertical");   // player2: up, down
+        }
 
         Vector2 pos = transform.position;
-
         pos.x += h * speed * Time.deltaTime;
         pos.y += v * speed * Time.deltaTime;
-
         transform.position = pos;
-
-        if (prop)
-        {
-            if (name == "Player1" && (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.G)))
-            {
-                prop.enabled = true;
-            }
-            else if (name == "Player2" && (Input.GetKeyDown(KeyCode.Comma) || Input.GetKeyDown(KeyCode.Period)))
-            {
-                prop.enabled = true;
-            }
-        }
     }
     
     public void Heal(int amount)
     {
-        m_Hp = Math.Min(m_Hp + amount, Hp_max);
+        m_Hp = Math.Min(m_Hp + amount, manager.Hp_max);
         healthBar.SetHealth(m_Hp);
     }
     
-    public void ReceiveProp(PropPrototype prop)
+    public void UseProp(PropPrototype prop)
     {
         this.prop = prop;
         prop.owner = this;
@@ -85,15 +95,16 @@ public class VersusPlayer : MonoBehaviour
             return;
         }
 
-        Color bulletColor = collision.gameObject.GetComponent<SpriteRenderer>().color;
-        Color playerColor = gameObject.GetComponent<SpriteRenderer>().color;
+        Color colllisionColor = collision.gameObject.GetComponent<IColor>().Color;
 
         FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
-        if (bulletColor == playerColor) {
+        if (colllisionColor == OrignalColor) 
+        {
             m_Energy += 1;
             energyBar.SetHealth(m_Energy);
             printer.SetFloatingValue(+1);   // gain = positive value
-        } else {
+        } else 
+        {
             m_Hp -= 1;
             healthBar.SetHealth(m_Hp);
             printer.SetFloatingValue(-1);
@@ -112,7 +123,7 @@ public class VersusPlayer : MonoBehaviour
             SceneManager.LoadScene("VersusGameOver");
         }
         
-        if (m_Energy >= Energy_max)
+        if (m_Energy >= manager.Energy_max)
         {
             if (name == "Player1")
             {
@@ -127,4 +138,4 @@ public class VersusPlayer : MonoBehaviour
         }
 
     }
-} // class
+}

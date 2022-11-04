@@ -9,10 +9,8 @@ public class InvinciblePropController : PropPrototype
     {
         owner.isInvincible = true;
         
-        // change owner's color to transparent
-        Color color = owner.GetComponent<SpriteRenderer>().color;
-        owner.GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, 0.5f);
-        
+        // change owner's color to half-transparent
+        owner.Color = new Color(owner.OrignalColor.r, owner.OrignalColor.g, owner.OrignalColor.b, 0.5f);
         Destroy(gameObject, 3.0f);
     }
     
@@ -20,7 +18,6 @@ public class InvinciblePropController : PropPrototype
     {
         owner.RemoveProp();
         owner.isInvincible = false;
-        Color color = owner.GetComponent<SpriteRenderer>().color;
-        owner.GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, 1.0f);
+        owner.Color = new Color(owner.OrignalColor.r, owner.OrignalColor.g, owner.OrignalColor.b, 1.0f);
     }
 }
