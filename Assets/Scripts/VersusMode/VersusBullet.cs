@@ -3,10 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VersusBullet : MonoBehaviour
+public class VersusBullet : MonoBehaviour, IColor
 {
     public VersusGameManager gameManager;
     [SerializeField] private float bulletSpeed;
+    // Adding @ prefix to avoid reserved keyword
+    public Color @Color
+    {
+        get
+        {
+            return color;
+        }
+        set {
+            color = value;
+            gameObject.GetComponent<SpriteRenderer>().color = color;
+        }
+    }
+    
     private Color color;
     private VersusPlayer targetPlayer;
     private float liveTime = 15f;    
@@ -33,12 +46,6 @@ public class VersusBullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    public void SetColor(Color newColor)
-    {
-        color = newColor;
-        gameObject.GetComponent<SpriteRenderer>().color = newColor;
     }
 
     private void OnCollisionEnter2D(Collision2D other)

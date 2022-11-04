@@ -25,17 +25,17 @@ public class PropSelectPanelController : MonoBehaviour
         }
         
         // Randomly select 2 props
-        int take1 = Random.Range(0, manager.availableCards.Length);
-        card1 = Instantiate(manager.availableCards[take1], card1Root);
-        card1.name = manager.availableCards[take1].name; // to remove the `(Clone)` suffix for the anylytics purpose
+        int take1 = Random.Range(0, manager.AvailableCards.Length);
+        card1 = Instantiate(manager.AvailableCards[take1], card1Root);
+        card1.name = manager.AvailableCards[take1].name; // to remove the `(Clone)` suffix for the anylytics purpose
 
-        int take2 = Random.Range(0, manager.availableCards.Length);
+        int take2 = Random.Range(0, manager.AvailableCards.Length);
         while (take1 == take2)
         {
-            take2 = Random.Range(0, manager.availableCards.Length);
+            take2 = Random.Range(0, manager.AvailableCards.Length);
         }
-        card2 = Instantiate(manager.availableCards[take2], card2Root);
-        card2.name = manager.availableCards[take2].name; // to remove the `(Clone)` suffix for the anylytics purpose
+        card2 = Instantiate(manager.AvailableCards[take2], card2Root);
+        card2.name = manager.AvailableCards[take2].name; // to remove the `(Clone)` suffix for the anylytics purpose
     }
 
     // Update is called once per frame

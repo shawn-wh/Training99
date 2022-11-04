@@ -7,9 +7,4 @@ public class PropPrototype : MonoBehaviour
 {
     public VersusPlayer owner { get; set; }
     public VersusGameManager manager { get; set; }
-
-    // public void Awake()
-    // {
-    //     enabled = false;
-    // }
 }

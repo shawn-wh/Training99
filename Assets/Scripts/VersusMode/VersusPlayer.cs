@@ -6,10 +6,25 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class VersusPlayer : MonoBehaviour
+public class VersusPlayer : MonoBehaviour, IColor
 {
+    public Color OrignalColor;
     public bool isInvincible { get; set; } = false;
+    // Adding @ prefix to avoid reserved keyword
+    public Color @Color
+    {
+        get
+        {
+            return color;
+        }
+        set
+        {
+            color = value;
+            gameObject.GetComponent<SpriteRenderer>().color = color;
+        }
+    }
 
+    private Color color;
     private float speed;
     private int m_Hp;
     private int m_Energy;
@@ -30,6 +45,7 @@ public class VersusPlayer : MonoBehaviour
         energyBar.SetMaxHealth(manager.Energy_max);
         energyBar.SetHealth(m_Energy);
         speed = manager.PlayerSpeed;
+        color = OrignalColor;
     }
 
     // Update is called once per frame
@@ -79,15 +95,16 @@ public class VersusPlayer : MonoBehaviour
             return;
         }
 
-        Color bulletColor = collision.gameObject.GetComponent<SpriteRenderer>().color;
-        Color playerColor = gameObject.GetComponent<SpriteRenderer>().color;
+        Color colllisionColor = collision.gameObject.GetComponent<IColor>().Color;
 
         FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
-        if (bulletColor == playerColor) {
+        if (colllisionColor == OrignalColor) 
+        {
             m_Energy += 1;
             energyBar.SetHealth(m_Energy);
             printer.SetFloatingValue(+1);   // gain = positive value
-        } else {
+        } else 
+        {
             m_Hp -= 1;
             healthBar.SetHealth(m_Hp);
             printer.SetFloatingValue(-1);
@@ -121,4 +138,4 @@ public class VersusPlayer : MonoBehaviour
         }
 
     }
-} // class
+}

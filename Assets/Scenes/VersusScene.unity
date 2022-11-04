@@ -587,6 +587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9577be5a09a4755b53c26eec7d407d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OrignalColor: {r: 0.6, g: 0, b: 0, a: 1}
   healthBar: {fileID: 1526053942}
   energyBar: {fileID: 843674476}
   manager: {fileID: 2086573529}
@@ -1269,6 +1270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9577be5a09a4755b53c26eec7d407d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OrignalColor: {r: 0.15294118, g: 0.45490196, b: 0.68235296, a: 1}
   healthBar: {fileID: 241102640}
   energyBar: {fileID: 1139712072}
   manager: {fileID: 2086573529}
@@ -2269,7 +2271,7 @@ MonoBehaviour:
   colors:
   - {r: 0.6, g: 0, b: 0, a: 1}
   - {r: 0.15294118, g: 0.45490196, b: 0.68235296, a: 1}
-  availableCards:
+  AvailableCards:
   - {fileID: 8514460551834366501, guid: 62e7496c9455444cf8c810e470cc3da5, type: 3}
   - {fileID: 8514460551834366501, guid: 72f8a55c35dfb42a885730ff687643e9, type: 3}
   - {fileID: 8514460551834366501, guid: b3c7b0f5981644101b349e9973d82f5d, type: 3}
