@@ -6338,20 +6338,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[0]
-      value: 'Hey, some of the walls looks different. Maybe your should utilize this
-        trait. '
+      value: Hey, some of the walls looks different. Here's a tip for you.
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[1]
-      value: 'You could collect blue shapes to gain a power-up to pass through walls
+      value: 'Collect blue bullets to gain the ability to pass through the walls
 
         (Only
-        "dark blue" walls can be pass through!)'
+        "dark blue" walls can be passed through!)'
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[2]
-      value: "Press \u201C1\u201D   -->  Active the ability to pass throught walls
-        for 5 seconds\n(Only \"dark blue\" walls can be pass through!)"
+      value: "Collect 4 blue bullets to gain 1 passing ability\nPress \u201C1\u201D  
+        -->  Active passing ability for 5 seconds\n"
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436300, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: m_Pivot.x
