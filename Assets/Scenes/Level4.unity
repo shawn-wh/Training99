@@ -3694,12 +3694,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[0]
-      value: 'Hi, it seems like there is no way out. Maybe you should try to shrink
-        your size by collecting yellow-color shapes. '
+      value: 'Hi, it seems like there is no way out!
+
+        Try to shrink your
+        size by collecting yellow-color bullets, then pass through the small gap. '
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[1]

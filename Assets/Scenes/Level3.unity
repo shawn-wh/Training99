@@ -1668,12 +1668,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[0]
-      value: 'Now, it''s your time to hunt the patroling enemies. Use your color
-        change ability to defeat enemies. '
+      value: 'Now, it''s time for you to hunt down the patrols. Use your color changing
+        ability to defeat patrols having the same color with you. '
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[1]
-      value: 'Your task goal is to defeat 4 triangle enemies. '
+      value: 'Your task goal is to defeat 4 triangle patrols. '
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[2]

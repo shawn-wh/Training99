@@ -1445,17 +1445,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[0]
-      value: 'Hi, this is Jarvis. To satisfied the task goal, you could use your
-        color-matching ability to collect different shapes. '
+      value: 'The ferocious enemies could hurt you badly.
+
+        Stay alive and
+        increase your HP by 1 by collecting red color bullets!'
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[1]
-      value: The ferocious enemies could hurt you badly. You could recover your health
-        by collecting red color bullets.
+      value: 'The ferocious enemies could hurt you badly.
+
+        Stay alive by
+        collecting red color bullets!'
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[2]
