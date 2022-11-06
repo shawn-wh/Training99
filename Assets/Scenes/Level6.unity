@@ -7083,14 +7083,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[0]
-      value: "Hi, this level will be challenging. You have to apply all your power-ups
+      value: "Hi, this level will be challenging. You have to use all your power-ups
         to win.  \n"
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[1]
-      value: "Remember to use your active power-ups.\n\nPress 'Space' to change your
-        color to collect color-matching items.\n\nPress '1' to use your ability to
-        pass through walls when you collect enough blue shapes.  \nGood luck!"
+      value: "Remember to use your active power-ups.\n\nPress 'Space' --> change
+        your color to collect same color bullets.\n\nPress '1' --> activate the passing
+        ability. \n\nGood luck!"
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436300, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: m_Pivot.x
