@@ -27,12 +27,8 @@ public class LV_BulletPatrol : MonoBehaviour
     // BulletPatrol can talk
     [Header("Speech Bubble")]
     public GameObject speechBubblePrefab;
-    // private TextMeshProUGUI speechText = null;
-    // private SpeechBubble bubble;
     private GameObject bubbleObj;
     
-    // private SpeechBubble speech;
-
     // Start is called before the first frame update
     void Start()
     {   

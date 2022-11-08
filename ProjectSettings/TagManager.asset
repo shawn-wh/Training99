@@ -7,9 +7,10 @@ TagManager:
   - Camera
   - Bullets
   - Walls
-  - Walls
   - Reminder
   - BulletRecycler
+  - CrossWalls
+  - CrossWall
   layers:
   - Default
   - TransparentFX

@@ -29,7 +29,7 @@ public class LV_Reminder : MonoBehaviour
 
     IEnumerator TimeDelay()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         reminderPrefab.SetActive(false);
     }
 }
