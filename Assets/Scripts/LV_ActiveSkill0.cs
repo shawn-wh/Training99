@@ -13,10 +13,13 @@ public class LV_ActiveSkill0 : MonoBehaviour
     [SerializeField] private Image skill0_mask;
     [SerializeField] private TextMeshProUGUI skill0_text;
 
+    private bool enableColorChange = true;
+
     // Count the cooldown time
     private bool isS0Cooldown = false;
     public float s0CooldownTime = 3.0f;
     private float s0Timer = 0f;
+
 
     // Get next color
     private GameObject player = null;
@@ -29,7 +32,8 @@ public class LV_ActiveSkill0 : MonoBehaviour
         // detecting playerColor
         playerColor = player.GetComponent<SpriteRenderer>().color;
 
-        Debug.Log("colors = " + colors);
+        // Debug.Log("colors = " + colors);
+        
         // Player color format: Red = RGBA(0.635, 0.204, 0.098, 1.000)
         // colors = {Red, Yellow, Blue}
         
@@ -66,19 +70,30 @@ public class LV_ActiveSkill0 : MonoBehaviour
         GetNextColor();
         
         // Player can use skill, mask = 0
-        skill0_mask.fillAmount = 0;        
+        skill0_mask.fillAmount = 0; 
+
+        // Get cooldown time
+        // s0CooldownTiime = player.GetComponent<LV_PlayerMovement>().Get();
+
     }
 
     // Update is called once per frame
     void Update()
     {
         Skill0();
-        // Skill1();
     }
 
     // Skill0: color changing
     void Skill0()
     {
+        // Chech whether color-changing ability is enable/disable
+        enableColorChange = player.GetComponent<LV_PlayerMovement>().GetColorChanging();
+        Debug.Log("enableColorChange =" + enableColorChange);
+        if (enableColorChange == false)
+        {
+            return;
+        }
+        
         GetNextColor();
         if (Input.GetKey(KeyCode.Space) && isS0Cooldown == false)
         {

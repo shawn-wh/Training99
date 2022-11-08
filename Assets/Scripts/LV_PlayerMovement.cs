@@ -66,6 +66,7 @@ public class LV_PlayerMovement : MonoBehaviour
     public int colorIdx;
     public float cooldownTime = 3.0f;
     private float nextChangeTime = 0;
+    private bool enableColorChange = true;
 
     //lock for minimizing
     int yellowLock;
@@ -73,8 +74,6 @@ public class LV_PlayerMovement : MonoBehaviour
     // Active Skill: 
     [Header("To PassThroughWallButton")]
     public LV_ActiveSkill1 skill1 = null;
-    // public CrossPowerBar crossPowerBar = null;  
-    // public int CROSS_WALL_GOAL = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -106,7 +105,9 @@ public class LV_PlayerMovement : MonoBehaviour
 
         //initialize nextColorText
         // RefreshNextColorText();
+
     }
+
     
     
     // Update is called once per frame
@@ -128,24 +129,28 @@ public class LV_PlayerMovement : MonoBehaviour
         // Time.timeSinceLevelLoad  will reset time when loading new scence.
         // m_TimeText.text = "Survived: " + Time.timeSinceLevelLoad.ToString("0.0");
 
-        // Change player color every "timeToChange" sec
         ChangeColor();
         // RefreshNextColorText();
+
     }
 
     private void ChangeColor()
     {
-        if (Time.time > nextChangeTime)
+        if (enableColorChange) 
         {
-            if (Input.GetKey("space"))
+            if (Time.time > nextChangeTime)
             {
-                colorIdx++;
-                gameObject.GetComponent<SpriteRenderer>().color = nextColor;
-                nextColor = colors[colorIdx % 3];
-                // RefreshNextColorText();
-                nextChangeTime = Time.time + cooldownTime;
+                if (Input.GetKey("space"))
+                {
+                    colorIdx++;
+                    gameObject.GetComponent<SpriteRenderer>().color = nextColor;
+                    nextColor = colors[colorIdx % 3];
+                    // RefreshNextColorText();
+                    nextChangeTime = Time.time + cooldownTime;
+                }
             }
         }
+
     }
 
     private void checkGameOver()
@@ -190,8 +195,8 @@ public class LV_PlayerMovement : MonoBehaviour
     {
         Color bulletColor = other.GetComponent<SpriteRenderer>().color;
         Color playerColor = gameObject.GetComponent<SpriteRenderer>().color;
-        Debug.Log("Collision obj color: " + bulletColor);
-        Debug.Log("Collision player color: " + playerColor);
+        // Debug.Log("Collision obj color: " + bulletColor);
+        // Debug.Log("Collision player color: " + playerColor);
 
         int damage = -1;
         // Different color, player take damage
@@ -310,5 +315,37 @@ public class LV_PlayerMovement : MonoBehaviour
     public Color[] GetColorArray()
     {
         return colors;
-    } 
+    }
+
+    public float GetPlayerSpeed()
+    {
+        return playerSpeed;
+    }
+
+    public void SetPlayerSpeed(float value)
+    {
+        playerSpeed = value;
+    }
+
+
+    // Check color-changing ability
+    public bool GetColorChanging()
+    {
+       return enableColorChange; 
+    }
+
+    // Enable/disable color-changing ability
+    public void SetColorChanging(bool value)
+    {
+       enableColorChange = value; 
+    }
+
+    // Show Warning Text
+    public void SetWarning(string warning)
+    {
+        WarnText printer = Instantiate(warnTextPrefab, transform.position, Quaternion.identity).GetComponent<WarnText>();
+        printer.setContent(warning);
+    }
+
+
 } // class
