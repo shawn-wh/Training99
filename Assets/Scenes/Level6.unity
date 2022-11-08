@@ -3282,6 +3282,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 773855855}
     m_Modifications:
+    - target: {fileID: 4681554721620696464, guid: 253d25149dc8341e7bd0d49196b1d31b, type: 3}
+      propertyPath: m_text
+      value: 'Collect 2 x
+
+
+        to pass through same color walls.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4681554721620696464, guid: 253d25149dc8341e7bd0d49196b1d31b, type: 3}
+      propertyPath: m_fontSize
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4681554721620696464, guid: 253d25149dc8341e7bd0d49196b1d31b, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 4681554721663916673, guid: 253d25149dc8341e7bd0d49196b1d31b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -6961,8 +6976,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f09238856b1054e9980273d8b2cb1a06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalColor: {r: 0, g: 0.094473526, b: 0.39215687, a: 255}
-  newColor: {r: 0, g: 0.09803922, b: 0.39215687, a: 0.39215687}
+  wallColors:
+  - {r: 0.15294118, g: 0.45490196, b: 0.68235296, a: 1}
+  - {r: 0.95686275, g: 0.73333335, b: 0.05882353, a: 1}
+  - {r: 0.6, g: 0, b: 0, a: 1}
   timer: 5
   skill1: {fileID: 14254187}
 --- !u!1001 &1983109355

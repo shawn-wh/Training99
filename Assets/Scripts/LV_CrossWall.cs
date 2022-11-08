@@ -7,8 +7,9 @@ using TMPro;
 public class LV_CrossWall : MonoBehaviour
 {
     // Wall color before & after
-    public Color originalColor = new Color32(0,24,100,255);
-    public Color newColor = new Color32(0, 24, 100, 100);
+    //public Color originalColor = new Color32(0,24,100,255);
+    //public Color newColor = new Color32(0, 24, 100, 100);
+    public Color[] wallColors;
 
     
     [Header("To PassThroughWallButton")]
@@ -22,11 +23,17 @@ public class LV_CrossWall : MonoBehaviour
     // public TextMeshProUGUI timerText = null;
 
     private GameObject[] crossWalls;
+    private GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         crossWalls = GameObject.FindGameObjectsWithTag("CrossWall");
+        foreach (GameObject crossWall in crossWalls)
+        {
+            crossWall.GetComponent<SpriteRenderer>().color = wallColors[Random.Range(0, wallColors.Length)];
+        }
         Debug.Log("walls: " + crossWalls.Length);
 
     }
@@ -77,8 +84,25 @@ public class LV_CrossWall : MonoBehaviour
     {
         foreach(GameObject crossWall in crossWalls)
         {
-            crossWall.GetComponent<Collider2D>().enabled = false;
-            crossWall.GetComponent<SpriteRenderer>().color = newColor;
+            Debug.Log("Player: " + player.GetComponent<SpriteRenderer>().color);
+            
+
+            if (isSameColor(player, crossWall))
+            {
+                //Debug.Log("can wall: " + crossWall.GetComponent<SpriteRenderer>().color);
+                crossWall.GetComponent<Collider2D>().enabled = false;
+                Color tmp = crossWall.GetComponent<SpriteRenderer>().color;
+                tmp.a = 0.42f;
+                crossWall.GetComponent<SpriteRenderer>().color = tmp;
+            }
+            else
+            {
+                //Debug.Log("cannot wall: " + crossWall.GetComponent<SpriteRenderer>().color);
+                crossWall.GetComponent<Collider2D>().enabled = true;
+                Color tmp = crossWall.GetComponent<SpriteRenderer>().color;
+                tmp.a = 1f;
+                crossWall.GetComponent<SpriteRenderer>().color = tmp;
+            }
         }
     }
 
@@ -87,8 +111,18 @@ public class LV_CrossWall : MonoBehaviour
         foreach (GameObject crossWall in crossWalls)
         {
             crossWall.GetComponent<Collider2D>().enabled = true;
-            crossWall.GetComponent<SpriteRenderer>().color = originalColor;
+            //crossWall.GetComponent<SpriteRenderer>().color = originalColor;
+            Color tmp = crossWall.GetComponent<SpriteRenderer>().color;
+            tmp.a = 1f;
+            crossWall.GetComponent<SpriteRenderer>().color = tmp;
         }
+    }
+
+    bool isSameColor(GameObject a, GameObject b)
+    {
+        return (a.GetComponent<SpriteRenderer>().color.r == b.GetComponent<SpriteRenderer>().color.r)
+            && (a.GetComponent<SpriteRenderer>().color.g == b.GetComponent<SpriteRenderer>().color.g)
+            && (a.GetComponent<SpriteRenderer>().color.b == b.GetComponent<SpriteRenderer>().color.b);
     }
 
 }
