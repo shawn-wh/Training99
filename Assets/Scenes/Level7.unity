@@ -6843,7 +6843,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2422043590956448399, guid: 1109bcf4425c444d6adc96c06d5e93fe, type: 3}
       propertyPath: collectedTarget
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4509931960093061764, guid: 1109bcf4425c444d6adc96c06d5e93fe, type: 3}
       propertyPath: m_SizeDelta.x

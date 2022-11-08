@@ -629,7 +629,7 @@ MonoBehaviour:
   remainingTimeText: {fileID: 4509931960915287804}
   powerAmountText: {fileID: 3934363347394357364}
   remainingTimeSetup: 5
-  collectedTarget: 4
+  collectedTarget: 2
 --- !u!1 &4509931961509139119
 GameObject:
   m_ObjectHideFlags: 0
