@@ -26,7 +26,11 @@ public class KeyOnTrigger : MonoBehaviour
         if (collision.gameObject == _player)
         {
             Debug.Log("Player found the key!");
-            _endpoint.SetActive(true);
+            _endpoint.GetComponent<Renderer> ().material.color = new Color(0, 0, 0, 255);
+            _endpoint.GetComponent<Collider2D>().enabled = true;
+            // _endpoint.SetActive(true);
+            
+            
             progressBar.UpdateValue(2f);
             Destroy(gameObject);
         }
