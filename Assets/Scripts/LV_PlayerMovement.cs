@@ -89,9 +89,14 @@ public class LV_PlayerMovement : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
 
-        // _key & _endpoint invisible
-        _key.SetActive(false);
-        _endpoint.SetActive(false);
+        
+        // _key.SetActive(true); 
+        // _key.GetComponent<Renderer> ().material.color = new Color(249, 253, 157, 80);
+        // _endpoint.SetActive(true);
+        // _endpoint.GetComponent<Renderer> ().material.color = new Color(113, 227, 229, 80);
+        _key.GetComponent<Collider2D>().enabled = false;
+        _endpoint.GetComponent<Collider2D>().enabled = false;
+        
 
         //Generate next color
         colorIdx = 1;
@@ -251,7 +256,9 @@ public class LV_PlayerMovement : MonoBehaviour
                     collectables[1] >= TRIANGLE_GOAL &&
                     collectables[2] >= SQUARE_GOAL)
                 {
-                    _key.SetActive(true);
+                    // _key.SetActive(true);
+                    _key.GetComponent<Renderer> ().material.color = new Color(0, 0, 0, 255);
+                    _key.GetComponent<Collider2D>().enabled = true;
                     isKeyShowedUp = true;
                     progressBar.UpdateValue(1f);
                 }
