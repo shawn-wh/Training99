@@ -4606,6 +4606,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 773855855}
     m_Modifications:
+    - target: {fileID: 2422043590956448399, guid: 1109bcf4425c444d6adc96c06d5e93fe, type: 3}
+      propertyPath: collectedTarget
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4509931961528699102, guid: 1109bcf4425c444d6adc96c06d5e93fe, type: 3}
       propertyPath: m_Name
       value: UI_ActiveSkills
@@ -6704,7 +6708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[2]
-      value: "Collect 4 blue bullets to gain 1 passing ability\nPress \u201C1\u201D  
+      value: "Collect 2 blue bullets to gain 1 passing ability\nPress \u201C1\u201D  
         -->  Active passing ability for 5 seconds\n"
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436300, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
