@@ -66,11 +66,11 @@ public class LV_TutorialManager : MonoBehaviour
                     bg.NextTime();
                 }
             }
-            if (key.activeSelf) {
+            if (key.GetComponent<Renderer> ().material.color == new Color(0, 0, 0, 255)) {
                 textIndex++;
             }
         } else if (textIndex == 3) {
-            if (door.activeSelf) {
+            if (door.GetComponent<Renderer> ().material.color == new Color(0, 0, 0, 255)) {
                 textIndex++;
             }
         }
