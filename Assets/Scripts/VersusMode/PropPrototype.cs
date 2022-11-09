@@ -6,5 +6,6 @@ using UnityEngine.UI;
 public class PropPrototype : MonoBehaviour
 {
     public VersusPlayer owner { get; set; }
+    public VersusPlayer target { get; set; }
     public VersusGameManager manager { get; set; }
 }

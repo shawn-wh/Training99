@@ -58,15 +58,26 @@ public class VersusGameManager : MonoBehaviour
             propPanel2.gameObject.SetActive(true);
         }
         
-        for (int i = 0; i < createAreas.Length; i++)
+        
+        foreach (CreateArea ca in createAreas)
         {
-            CreateArea ca = createAreas[i];
             if (ca.CheckTime())
             {
                 Vector3 pos = ca.GetRandomPos();
                 // This function makes a copy of an object in a similar way to the Duplicate command in the editor.
                 VersusBullet bullet = Instantiate(clone, pos, Quaternion.identity, bulletNode.transform);
                 bullet.Color = colors[Random.Range(0, colors.Length)];
+
+                if (player1.Prop && player1.Prop.name == "RandomBulletProp" && bullet.Color == player1.Color)
+                {
+                    bullet.IsRandomMoving = true;
+                }
+
+                if (player2.Prop && player2.Prop.name == "RandomBulletProp" && bullet.Color == player2.Color)
+                {
+                    bullet.IsRandomMoving = true;
+                }      
+                
                 ca.NextTime();
             }
         }

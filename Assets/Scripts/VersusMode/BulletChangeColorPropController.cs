@@ -12,5 +12,6 @@ public class BulletChangeColorPropController : PropPrototype
         {
             bulletTransform.GetComponent<VersusBullet>().Color = owner.OrignalColor;
         }
+        Destroy(gameObject);
     }
 }

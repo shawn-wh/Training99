@@ -8,5 +8,6 @@ public class HealPropController : PropPrototype
     void Start()
     {
         owner.Heal(3);
+        Destroy(gameObject);
     }
 }
