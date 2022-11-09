@@ -330,7 +330,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press "Space" to change the player's color (0.5 secs CD)
+  m_text: Press "Space" to change the player's color
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2082,7 +2082,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2896944334753305070, guid: 1109bcf4425c444d6adc96c06d5e93fe, type: 3}
       propertyPath: s0CooldownTime
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4509931960093061766, guid: 1109bcf4425c444d6adc96c06d5e93fe, type: 3}
       propertyPath: m_FillAmount
@@ -3292,7 +3292,7 @@ PrefabInstance:
       objectReference: {fileID: 336191194}
     - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
       propertyPath: cooldownTime
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
       propertyPath: nexColorText

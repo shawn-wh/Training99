@@ -392,7 +392,7 @@ PrefabInstance:
       objectReference: {fileID: 691200419}
     - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
       propertyPath: cooldownTime
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
       propertyPath: nexColorText
@@ -4215,7 +4215,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2896944334753305070, guid: 1109bcf4425c444d6adc96c06d5e93fe, type: 3}
       propertyPath: s0CooldownTime
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4509931961528699102, guid: 1109bcf4425c444d6adc96c06d5e93fe, type: 3}
       propertyPath: m_Name
