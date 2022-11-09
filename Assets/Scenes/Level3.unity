@@ -817,6 +817,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 773855855}
     m_Modifications:
+    - target: {fileID: 2896944334753305070, guid: 1109bcf4425c444d6adc96c06d5e93fe, type: 3}
+      propertyPath: s0CooldownTime
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4509931961276687808, guid: 1109bcf4425c444d6adc96c06d5e93fe, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -5307,6 +5311,10 @@ PrefabInstance:
       propertyPath: progressBar
       value: 
       objectReference: {fileID: 592919282}
+    - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
+      propertyPath: cooldownTime
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
       propertyPath: timeToChange
       value: 5

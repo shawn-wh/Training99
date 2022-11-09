@@ -6186,6 +6186,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7576004602755145273}
     - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
+      propertyPath: cooldownTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3318553283824375939, guid: 0cd1ae9d78963460ea2a928dd6081f1b, type: 3}
       propertyPath: timeToChange
       value: 5
       objectReference: {fileID: 0}
@@ -6861,6 +6865,10 @@ PrefabInstance:
     - target: {fileID: 2422043590956448399, guid: 1109bcf4425c444d6adc96c06d5e93fe, type: 3}
       propertyPath: collectedTarget
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2896944334753305070, guid: 1109bcf4425c444d6adc96c06d5e93fe, type: 3}
+      propertyPath: s0CooldownTime
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4509931960093061764, guid: 1109bcf4425c444d6adc96c06d5e93fe, type: 3}
       propertyPath: m_SizeDelta.x
