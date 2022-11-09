@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class VersusPlayer : MonoBehaviour, IColor
 {
+    public PropPrototype Prop { get; set; }
     public Color OrignalColor;
     public bool isInvincible { get; set; } = false;
     // Adding @ prefix to avoid reserved keyword
@@ -28,7 +29,6 @@ public class VersusPlayer : MonoBehaviour, IColor
     private float speed;
     private int m_Hp;
     private int m_Energy;
-    private PropPrototype prop;
     
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private HealthBar energyBar;
@@ -77,14 +77,15 @@ public class VersusPlayer : MonoBehaviour, IColor
     
     public void UseProp(PropPrototype prop)
     {
-        this.prop = prop;
+        this.Prop = prop;
         prop.owner = this;
+        prop.target = (name == "Player1") ? manager.player2 : manager.player1;
         prop.manager = manager;
     }
     
     public void RemoveProp()
     {
-        this.prop = null;
+        this.Prop = null;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

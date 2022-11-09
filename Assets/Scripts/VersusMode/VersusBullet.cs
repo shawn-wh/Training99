@@ -18,10 +18,11 @@ public class VersusBullet : MonoBehaviour, IColor
             gameObject.GetComponent<SpriteRenderer>().color = color;
         }
     }
+    public bool IsRandomMoving = false;
     
     private Color color;
     private VersusPlayer targetPlayer;
-    private float liveTime = 15f;    
+    private float liveTime = 15f;
 
     // Start is called before the first frame update
     void Start()
@@ -32,19 +33,19 @@ public class VersusBullet : MonoBehaviour, IColor
             targetPlayer = gameManager.player2;
         }
         transform.rotation = Quaternion.FromToRotation(Vector3.up, targetPlayer.transform.position - transform.position);
+        
+        Destroy(gameObject, liveTime);
     }
 
 
     // FixedUpdate is called once every 0.02 seconds
     void FixedUpdate()   
     {
-        transform.Translate(Vector3.up * Time.fixedDeltaTime * gameManager.BulletSpeed);
-        
-        liveTime -= Time.fixedDeltaTime;
-        if (liveTime <= 0)
+        if (IsRandomMoving)
         {
-            Destroy(gameObject);
+            transform.Rotate(0, 0, Random.Range(-45f, 45f));
         }
+        transform.Translate(Vector3.up * Time.fixedDeltaTime * gameManager.BulletSpeed);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
