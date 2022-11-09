@@ -88,9 +88,10 @@ public class LV_ActiveSkill0 : MonoBehaviour
     {
         // Chech whether color-changing ability is enable/disable
         enableColorChange = player.GetComponent<LV_PlayerMovement>().GetColorChanging();
-        Debug.Log("enableColorChange =" + enableColorChange);
+        // Debug.Log("enableColorChange =" + enableColorChange);
         if (enableColorChange == false)
         {
+            // when disable, no need to change UI button
             return;
         }
         

@@ -75,6 +75,11 @@ public class LV_PlayerMovement : MonoBehaviour
     [Header("To PassThroughWallButton")]
     public LV_ActiveSkill1 skill1 = null;
 
+
+    // For Warped Trap
+    private Vector3 loadingRotation = new Vector3(0, 0, 30);
+    private bool isInTrap = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -132,6 +137,16 @@ public class LV_PlayerMovement : MonoBehaviour
         ChangeColor();
         // RefreshNextColorText();
 
+        // Rotate transform when in WarpedTrap
+        if (isInTrap)
+        {
+            transform.Rotate(loadingRotation * playerSpeed * Time.deltaTime);
+        }
+        else
+        {
+            // Rotate back to default:(0,0,0)
+            transform.localRotation = Quaternion.identity;
+        }
     }
 
     private void ChangeColor()
@@ -347,5 +362,19 @@ public class LV_PlayerMovement : MonoBehaviour
         printer.setContent(warning);
     }
 
+    // When player enter WarpedTrap
+    public void ReactionInWarpedTrap()
+    {
+        isInTrap = true;
+        Sprite busySprite = Resources.Load<Sprite>("Sprites/loading-100-1");  // Must exist in "Resources" folder
+        gameObject.GetComponent<SpriteRenderer>().sprite = busySprite;
+    }
 
+    // When player get out of WarpedTrap
+    public void OutOfWarpedTrap()
+    {
+        isInTrap = false;
+        Sprite circleSprite = Resources.Load<Sprite>("Sprites/Circle");  // Must exist in "Resources" folder
+        gameObject.GetComponent<SpriteRenderer>().sprite = circleSprite; 
+    }
 } // class

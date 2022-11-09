@@ -6,7 +6,7 @@ public class LV_WarpedTrap : MonoBehaviour
 {
     private GameObject player = null;
     private float originalSpeed = 0f;
-    [SerializeField] float speedLimit = 2f;
+    [SerializeField] float speedLimit = 3f;
     private bool canShow = true;
 
     // Start is called before the first frame update
@@ -32,7 +32,7 @@ public class LV_WarpedTrap : MonoBehaviour
         {
             player.GetComponent<LV_PlayerMovement>().SetPlayerSpeed(speedLimit);
             player.GetComponent<LV_PlayerMovement>().SetColorChanging(false);
-            
+            player.GetComponent<LV_PlayerMovement>().ReactionInWarpedTrap();
             // Show warning message
             if (canShow == true)
             {
@@ -56,6 +56,8 @@ public class LV_WarpedTrap : MonoBehaviour
             // Debug.Log("Player got out of the trap.");
             player.GetComponent<LV_PlayerMovement>().SetPlayerSpeed(originalSpeed);
             player.GetComponent<LV_PlayerMovement>().SetColorChanging(true); 
+            player.GetComponent<LV_PlayerMovement>().OutOfWarpedTrap(); 
+
         }    
     }
 
