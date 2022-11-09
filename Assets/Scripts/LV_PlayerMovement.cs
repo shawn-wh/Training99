@@ -64,7 +64,7 @@ public class LV_PlayerMovement : MonoBehaviour
     //player changing color parameter
     [Header(" ")]
     public int colorIdx;
-    public float cooldownTime = 3.0f;
+    public float cooldownTime = 0.0f;
     private float nextChangeTime = 0;
     private bool enableColorChange = true;
 
@@ -155,7 +155,7 @@ public class LV_PlayerMovement : MonoBehaviour
         {
             if (Time.time > nextChangeTime)
             {
-                if (Input.GetKey("space"))
+                if (Input.GetKeyDown("space"))
                 {
                     colorIdx++;
                     gameObject.GetComponent<SpriteRenderer>().color = nextColor;
