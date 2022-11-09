@@ -38,7 +38,8 @@ public class PlayerMovement : MonoBehaviour
 
     // Prefab to show damage/collectable text
     public GameObject floatingTextPrefab;
-    
+    public float score;
+
     // [Endless] player change rate
     // public int[] changeRate = {5, 5, 5, 3, 3, 3, 1};
 
@@ -50,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
         nextColor = colors[UnityEngine.Random.Range(0, colors.Length)];
         nextColor.a = 1f;
+        score = 0;
     }
 
     // Update is called once per frame
@@ -66,8 +68,8 @@ public class PlayerMovement : MonoBehaviour
         transform.position = pos;
 
         // Time.timeSinceLevelLoad  will reset time when loading new scence.
-        m_TimeText.text = "Survived: " + Time.timeSinceLevelLoad.ToString("0.0"); 
-
+        m_TimeText.text = "Survived: " + Time.timeSinceLevelLoad.ToString("0.0");
+        
         ChangeColor();
         EndlessRefreshNextColorText();
     }
@@ -134,14 +136,17 @@ public class PlayerMovement : MonoBehaviour
             if (bulletType.name == "Knob") 
             {
                 collectables[0] += 1;
+                score += 3;
             }
             else if (bulletType.name == "Triangle")  
             {
                 collectables[1] += 1;
+                score += 3;
             }
             else if (bulletType.name == "UISprite") 
             {
                 collectables[2] += 1;
+                score += 3;
             }
 
             // Show gain text
@@ -155,6 +160,7 @@ public class PlayerMovement : MonoBehaviour
             DataManager dm = gameObject.GetComponent<DataManager>();
             // Debug.Log(Time.timeSinceLevelLoad.ToString("0.0"));
             float endlessTimeScore =  Time.timeSinceLevelLoad;
+            endlessTimeScore += score;
             GameManager.endlessTimeScore = endlessTimeScore;
             dm.Send("Endless", endlessTimeScore.ToString("0.0"));
             Destroy(dm);
