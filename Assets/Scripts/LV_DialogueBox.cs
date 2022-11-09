@@ -20,7 +20,10 @@ public class LV_DialogueBox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        tutorialDiagram.enabled = false;
+        if (tutorialDiagram != null)
+        {
+            tutorialDiagram.enabled = false;
+        }
         StartDialogue();
     }
 
@@ -31,7 +34,10 @@ public class LV_DialogueBox : MonoBehaviour
         {
             if (index == speakingLines.Length)
             {
-                tutorialDiagram.enabled = false;
+                if (tutorialDiagram != null)
+                {
+                    tutorialDiagram.enabled = false;
+                }
                 gameObject.SetActive(false);
             }
             else
@@ -77,7 +83,7 @@ public class LV_DialogueBox : MonoBehaviour
             index++;
             StartCoroutine(Typing1Line(speakingLines[index]));
         }
-        else if (index == speakingLines.Length - 1)
+        else if (index == speakingLines.Length - 1 && tutorialDiagram != null)
         {
             index++;
             dialogueText.text = string.Empty; // Empty the text area.
