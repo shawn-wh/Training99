@@ -13,17 +13,11 @@ public class LV_DialogueBox : MonoBehaviour
 
     private float typingSpeed = 80f;
     private int index = 0;
-    public static bool isGamePaused = false;
-
-    [SerializeField] public Image tutorialDiagram;
+    public static bool isGamePaused = false; 
 
     // Start is called before the first frame update
     void Start()
     {
-        if (tutorialDiagram != null)
-        {
-            tutorialDiagram.enabled = false;
-        }
         StartDialogue();
     }
 
@@ -32,28 +26,16 @@ public class LV_DialogueBox : MonoBehaviour
     { 
         if (Input.anyKeyDown)
         {
-            if (index == speakingLines.Length)
+            if (dialogueText.text == speakingLines[index])
             {
-                if (tutorialDiagram != null)
-                {
-                    tutorialDiagram.enabled = false;
-                }
-                gameObject.SetActive(false);
+                NextLine();
             }
             else
             {
-                if (dialogueText.text == speakingLines[index])
-                {
-                    NextLine();
-                }
-                else
-                {
-                    StopAllCoroutines();
-                    // Immediate show the whole line
-                    dialogueText.text =  speakingLines[index];
-                }
+                StopAllCoroutines();
+                // Immediate show the whole line
+                dialogueText.text =  speakingLines[index];
             }
-            
         }
     }
 
@@ -82,12 +64,6 @@ public class LV_DialogueBox : MonoBehaviour
         {
             index++;
             StartCoroutine(Typing1Line(speakingLines[index]));
-        }
-        else if (index == speakingLines.Length - 1 && tutorialDiagram != null)
-        {
-            index++;
-            dialogueText.text = string.Empty; // Empty the text area.
-            tutorialDiagram.enabled = true;
         }
         // When finish dialogue
         else
