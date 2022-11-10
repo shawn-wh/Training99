@@ -22,6 +22,10 @@ public class CannonPropController : PropPrototype
         
         if (nextShotTime < Time.time)
         {
+            VersusBullet bullet = manager.CreateBullet(transform.position);
+            bullet.Color = owner.Color;
+            bullet.TargetPlayer = target;
+            bullet.Speed = 4f;
             nextShotTime = Time.time + ShootInterval;
         }
         

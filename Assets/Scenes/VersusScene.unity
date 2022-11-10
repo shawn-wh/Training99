@@ -957,6 +957,7 @@ MonoBehaviour:
   gameManager: {fileID: 2086573529}
   IsRandomMoving: 0
   TargetPlayer: {fileID: 0}
+  Speed: 0
 --- !u!212 &585783283
 SpriteRenderer:
   m_ObjectHideFlags: 0

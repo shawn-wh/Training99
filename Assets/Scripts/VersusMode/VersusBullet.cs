@@ -20,6 +20,7 @@ public class VersusBullet : MonoBehaviour, IColor
     }
     public bool IsRandomMoving = false;
     public VersusPlayer TargetPlayer;
+    public float Speed = 0f;
     
     private Color color;
     private float liveTime = 15f;
@@ -44,7 +45,8 @@ public class VersusBullet : MonoBehaviour, IColor
         {
             transform.Rotate(0, 0, Random.Range(-45f, 45f));
         }
-        transform.Translate(Vector3.up * Time.fixedDeltaTime * gameManager.BulletSpeed);
+        float speed = (Speed == 0f)? gameManager.BulletSpeed : Speed;
+        transform.Translate(Vector3.up * Time.fixedDeltaTime * speed);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
