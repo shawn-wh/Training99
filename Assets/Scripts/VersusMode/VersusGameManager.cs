@@ -45,6 +45,12 @@ public class VersusGameManager : MonoBehaviour
         string prop3 = PropUsage["BulletChangeColorCard"].ToString();
         dataManager.SendVersus(Time.timeSinceLevelLoad.ToString("0.0"), winner, prop1, prop2, prop3);
     }
+    
+    public VersusBullet CreateBullet(Vector3 position)
+    {
+        VersusBullet bullet = Instantiate(clone, position, Quaternion.identity, bulletNode.transform);
+        return bullet;
+    }
 
     // Update is called once per frame
     void Update()
@@ -64,20 +70,9 @@ public class VersusGameManager : MonoBehaviour
             if (ca.CheckTime())
             {
                 Vector3 pos = ca.GetRandomPos();
-                // This function makes a copy of an object in a similar way to the Duplicate command in the editor.
-                VersusBullet bullet = Instantiate(clone, pos, Quaternion.identity, bulletNode.transform);
+                VersusBullet bullet = CreateBullet(pos);
                 bullet.Color = colors[Random.Range(0, colors.Length)];
-
-                if (player1.Prop && player1.Prop.name == "RandomBulletProp" && bullet.Color == player1.Color)
-                {
-                    bullet.IsRandomMoving = true;
-                }
-
-                if (player2.Prop && player2.Prop.name == "RandomBulletProp" && bullet.Color == player2.Color)
-                {
-                    bullet.IsRandomMoving = true;
-                }      
-                
+                bullet.TargetPlayer = (Random.Range(0, 2) == 1) ? player1 : player2;
                 ca.NextTime();
             }
         }

@@ -45,7 +45,7 @@ public class PropSelectPanelController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                PropPrototype prop = Instantiate(card1.prop, manager.player1.transform);
+                PropPrototype prop = Instantiate(card1.prop);
                 prop.name = card1.prop.name;
                 manager.player1.UseProp(prop);
                 gameObject.SetActive(false);
@@ -53,7 +53,7 @@ public class PropSelectPanelController : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.G))
             {
-                PropPrototype prop = Instantiate(card2.prop, manager.player1.transform);
+                PropPrototype prop = Instantiate(card2.prop);
                 prop.name = card2.prop.name;
                 manager.player1.UseProp(prop);
                 gameObject.SetActive(false);
@@ -64,7 +64,7 @@ public class PropSelectPanelController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Comma))
             {
-                PropPrototype prop = Instantiate(card1.prop, manager.player2.transform);
+                PropPrototype prop = Instantiate(card1.prop);
                 prop.name = card1.prop.name;
                 manager.player2.UseProp(prop);
                 gameObject.SetActive(false);
@@ -72,7 +72,7 @@ public class PropSelectPanelController : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.Period))
             {
-                PropPrototype prop = Instantiate(card2.prop, manager.player2.transform);
+                PropPrototype prop = Instantiate(card2.prop);
                 prop.name = card2.prop.name;
                 manager.player2.UseProp(prop);
                 gameObject.SetActive(false);

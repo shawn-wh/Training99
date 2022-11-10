@@ -19,21 +19,20 @@ public class VersusBullet : MonoBehaviour, IColor
         }
     }
     public bool IsRandomMoving = false;
+    public VersusPlayer TargetPlayer;
     
     private Color color;
-    private VersusPlayer targetPlayer;
     private float liveTime = 15f;
 
     // Start is called before the first frame update
     void Start()
     {
-        targetPlayer = gameManager.player1;
-        if (Random.Range(0, 2) == 1)
+        if (TargetPlayer.Opponent.Prop && TargetPlayer.Opponent.Prop.name == "RandomBulletProp")
         {
-            targetPlayer = gameManager.player2;
+            IsRandomMoving = true;
         }
-        transform.rotation = Quaternion.FromToRotation(Vector3.up, targetPlayer.transform.position - transform.position);
         
+        transform.rotation = Quaternion.FromToRotation(Vector3.up, TargetPlayer.transform.position - transform.position);
         Destroy(gameObject, liveTime);
     }
 
