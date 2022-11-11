@@ -2092,6 +2092,10 @@ PrefabInstance:
       propertyPath: manager
       value: 
       objectReference: {fileID: 2086573529}
+    - target: {fileID: 8165883877342305361, guid: 54cbdaa0128e74adda79556b09b738a0, type: 3}
+      propertyPath: m_text
+      value: Select a prop by pressing F or G
+      objectReference: {fileID: 0}
     - target: {fileID: 8903756745458001549, guid: 54cbdaa0128e74adda79556b09b738a0, type: 3}
       propertyPath: m_Name
       value: PropPanel1

@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class CannonPropController : PropPrototype
 {
-    public float ShootInterval;
+    [SerializeField] private float shootInterval;
+    [SerializeField] private float bulletSpeed;
     
     private float nextShotTime = 0;
     
     // Start is called before the first frame update
     void Start()
     {
-        nextShotTime = Time.time + ShootInterval;
+        nextShotTime = Time.time + shootInterval;
         transform.position = owner.transform.position;
+        transform.rotation = Quaternion.FromToRotation(Vector3.up, target.transform.position - transform.position);
     }
 
     // Update is called once per frame
@@ -25,8 +27,8 @@ public class CannonPropController : PropPrototype
             VersusBullet bullet = manager.CreateBullet(transform.position);
             bullet.Color = owner.Color;
             bullet.TargetPlayer = target;
-            bullet.Speed = 4f;
-            nextShotTime = Time.time + ShootInterval;
+            bullet.Speed = bulletSpeed;
+            nextShotTime = Time.time + shootInterval;
         }
         
     }
