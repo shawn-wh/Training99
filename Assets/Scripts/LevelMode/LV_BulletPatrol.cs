@@ -59,7 +59,7 @@ public class LV_BulletPatrol : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("Player");
             target = player.transform;
-            Debug.Log("playerColor = " + playerColor);
+            // Debug.Log("playerColor = " + playerColor);
         }
         
         // Read SpeechBubble prefab

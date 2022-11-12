@@ -75,6 +75,13 @@ public class LV_PlayerMovement : MonoBehaviour
     [Header("To PassThroughWallButton")]
     public LV_ActiveSkill1 skill1 = null;
 
+    // Shape skills:
+    [Header("Shape Related")]
+    [SerializeField] private Sprite[] playerShapes = new Sprite[3];
+    [SerializeField] bool enableShapeChanging = false;  // Default is disable.
+    // [SerializeField] private bool[] isShapeSkillEnabled = new bool[3];  // Default is false 
+    private int shapeIdx = 0;
+
 
     // For Warped Trap
     private Vector3 loadingRotation = new Vector3(0, 0, 30);
@@ -110,7 +117,7 @@ public class LV_PlayerMovement : MonoBehaviour
 
         //initialize nextColorText
         // RefreshNextColorText();
-
+        SetPlayerShapes();
     }
 
     
@@ -135,8 +142,14 @@ public class LV_PlayerMovement : MonoBehaviour
         // m_TimeText.text = "Survived: " + Time.timeSinceLevelLoad.ToString("0.0");
 
         ChangeColor();
+        ChangeShape();
         // RefreshNextColorText();
 
+        TrappedEffect();
+    }
+
+    private void TrappedEffect()
+    {
         // Rotate transform when in WarpedTrap
         if (isInTrap)
         {
@@ -165,7 +178,31 @@ public class LV_PlayerMovement : MonoBehaviour
                 }
             }
         }
+    }
 
+    private void ChangeShape()
+    {
+        if (enableShapeChanging && Input.GetKeyDown("1"))
+        {
+            shapeIdx++;
+            shapeIdx = shapeIdx % playerShapes.Length;
+            if (shapeIdx == 0)
+            {
+                gameObject.GetComponent<SpriteRenderer>().sprite = playerShapes[0];
+            }
+            else if (shapeIdx == 1)
+            {
+                gameObject.GetComponent<SpriteRenderer>().sprite = playerShapes[1];
+            }
+            else if (shapeIdx == 2)
+            {
+                gameObject.GetComponent<SpriteRenderer>().sprite = playerShapes[2];
+            }
+            else
+            {
+                Debug.Log("Error! The number of shapes for player is greater than 3.");
+            }
+        } 
     }
 
     private void checkGameOver()
@@ -377,4 +414,13 @@ public class LV_PlayerMovement : MonoBehaviour
         Sprite circleSprite = Resources.Load<Sprite>("Sprites/Circle");  // Must exist in "Resources" folder
         gameObject.GetComponent<SpriteRenderer>().sprite = circleSprite; 
     }
+
+    private void SetPlayerShapes()
+    {
+        playerShapes[0] = Resources.Load<Sprite>("Sprites/Circle");         // Must exist in "Resources" folder
+        playerShapes[1] = Resources.Load<Sprite>("Sprites/Triangle");     // Must exist in "Resources" folder
+        playerShapes[2] = Resources.Load<Sprite>("Sprites/Square");         // Must exist in "Resources" folder
+        Debug.Log("Length of playerShapes = " + playerShapes.Length);
+    }
+
 } // class
