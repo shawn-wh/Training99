@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2218030282846088042, guid: afe88f8af525c4965ae1f62f7ff7bd06, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2618573934135704135, guid: afe88f8af525c4965ae1f62f7ff7bd06, type: 3}
       propertyPath: m_Color.b
       value: 0.68235296
@@ -125,7 +129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5973871513209494749, guid: afe88f8af525c4965ae1f62f7ff7bd06, type: 3}
       propertyPath: m_text
-      value: "Collect 4 x\n\n to pass through walls."
+      value: "Change to the same shape\n to pass through walls."
       objectReference: {fileID: 0}
     - target: {fileID: 6906650190603326271, guid: afe88f8af525c4965ae1f62f7ff7bd06, type: 3}
       propertyPath: m_AnchoredPosition.x
