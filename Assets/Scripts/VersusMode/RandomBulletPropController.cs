@@ -4,16 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class RandomBulletPropController : PropPrototype
-{
-    // [SerializeField] private RandomBullet bulletTemplate;
-    
+{   
     void Start()
     {
         Transform root = manager.bulletNode.gameObject.transform;
         foreach (Transform bulletTransform in root)
         {
             VersusBullet bullet = bulletTransform.GetComponent<VersusBullet>();
-            if (bullet.Color == owner.OrignalColor)
+            if (bullet.TargetPlayer == target)
             {
                 bullet.IsRandomMoving = true;
             }
@@ -27,7 +25,7 @@ public class RandomBulletPropController : PropPrototype
         foreach (Transform bulletTransform in root)
         {
             VersusBullet bullet = bulletTransform.GetComponent<VersusBullet>();
-            if (bullet.Color == owner.OrignalColor)
+            if (bullet.TargetPlayer == target)
             {
                 bullet.IsRandomMoving = false;
             }

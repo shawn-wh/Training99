@@ -87,6 +87,13 @@ public class VersusPlayer : MonoBehaviour, IColor
     {
         this.Prop = null;
     }
+    
+    public VersusPlayer Opponent
+    {
+        get {
+            return (name == "Player1") ? manager.player2 : manager.player1;
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

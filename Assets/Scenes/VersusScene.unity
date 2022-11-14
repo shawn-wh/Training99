@@ -956,6 +956,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 2086573529}
   IsRandomMoving: 0
+  TargetPlayer: {fileID: 0}
+  Speed: 0
 --- !u!212 &585783283
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2407,6 +2409,10 @@ PrefabInstance:
       propertyPath: manager
       value: 
       objectReference: {fileID: 2086573529}
+    - target: {fileID: 8165883877342305361, guid: 54cbdaa0128e74adda79556b09b738a0, type: 3}
+      propertyPath: m_text
+      value: Select a prop by pressing F or G
+      objectReference: {fileID: 0}
     - target: {fileID: 8903756745458001549, guid: 54cbdaa0128e74adda79556b09b738a0, type: 3}
       propertyPath: m_Name
       value: PropPanel1
@@ -2882,6 +2888,7 @@ MonoBehaviour:
   - {fileID: 8514460551834366501, guid: 72f8a55c35dfb42a885730ff687643e9, type: 3}
   - {fileID: 8514460551834366501, guid: b3c7b0f5981644101b349e9973d82f5d, type: 3}
   - {fileID: 8514460551834366501, guid: 79cedb1a77b914d328a0f1aabf22a941, type: 3}
+  - {fileID: 8514460551834366501, guid: b477a4875fa804e0cbca5316580dd1c3, type: 3}
   Hp_max: 5
   Energy_max: 5
   PlayerSpeed: 5
