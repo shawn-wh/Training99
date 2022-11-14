@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: 59c76940b91cf4393a335fc0c77ef604, type: 3}
   m_Color: {r: 0.15294118, g: 0.45490196, b: 0.68235296, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -159,6 +159,11 @@ MonoBehaviour:
   colorIdx: 0
   cooldownTime: 3
   skill1: {fileID: 0}
+  playerShapes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  enableShapeChanging: 0
 --- !u!114 &7160798802907528549
 MonoBehaviour:
   m_ObjectHideFlags: 0

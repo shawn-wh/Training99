@@ -55,7 +55,7 @@ public class LV_ActiveSkill1 : MonoBehaviour
         // Valid when powerAmount >= 1 && skill is not using now
         if (!isUsingSkill 
             && (powerAmount > 0)
-            && (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)))
+            && (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3)))
         {
             // Skill1 is used, 
             isUsingSkill = true;
