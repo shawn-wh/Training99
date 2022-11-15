@@ -70,6 +70,9 @@ public class LV_PlayerMovement : MonoBehaviour
 
     //lock for minimizing
     int yellowLock;
+    
+    //lock for speeding up
+    int blueLock;
 
     // Active Skill: 
     [Header("To PassThroughWallButton")]
@@ -114,6 +117,7 @@ public class LV_PlayerMovement : MonoBehaviour
         nextColor = colors[colorIdx];
         nextColor.a = 1f;
         yellowLock = 0;
+        blueLock = 0;
 
         //initialize nextColorText
         // RefreshNextColorText();
@@ -301,10 +305,10 @@ public class LV_PlayerMovement : MonoBehaviour
                 transform.localScale -= new Vector3(0.15f, 0.15f, 0);
             }
             //color blue can pass wall
-            else if (bulletColor == colors[2] && skill1 != null)
+            else if (bulletColor == colors[2] && blueLock < 3)
             {
-                gain = 1;
-                skill1.ResourcesCounter(gain);
+                blueLock += 1;
+                playerSpeed += 1.0f;
             }
 
             // player collects required type and number of bullets, show the key
