@@ -144,7 +144,8 @@ public class LV_PlayerMovement : MonoBehaviour
         ChangeColor();
         ChangeShape();
         // RefreshNextColorText();
-
+        
+        FindShapeSkill();
         TrappedEffect();
     }
 
@@ -182,7 +183,8 @@ public class LV_PlayerMovement : MonoBehaviour
 
     private void ChangeShape()
     {
-        if (enableShapeChanging && Input.GetKeyDown("1"))
+        if (enableShapeChanging 
+            && (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))) 
         {
             shapeIdx++;
             shapeIdx = shapeIdx % playerShapes.Length;
@@ -420,7 +422,49 @@ public class LV_PlayerMovement : MonoBehaviour
         playerShapes[0] = Resources.Load<Sprite>("Sprites/Circle");         // Must exist in "Resources" folder
         playerShapes[1] = Resources.Load<Sprite>("Sprites/Triangle");     // Must exist in "Resources" folder
         playerShapes[2] = Resources.Load<Sprite>("Sprites/Square");         // Must exist in "Resources" folder
-        Debug.Log("Length of playerShapes = " + playerShapes.Length);
+        // Debug.Log("Length of playerShapes = " + playerShapes.Length);
     }
 
+    // Find the corresponding skill for each shape
+    private void FindShapeSkill()
+    {
+        if (enableShapeChanging 
+            && (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)))         
+        {
+            // Check current player's shape
+            Sprite currentShape = gameObject.GetComponent<SpriteRenderer>().sprite;
+            if (currentShape.name == "Circle")
+            {
+                LoadSkill1(); 
+            }
+            else if (currentShape.name == "Triangle")
+            {
+                LoadSkill2(); 
+            }
+            else if (currentShape.name == "Square")
+            {
+                LoadSkill3();
+            }
+            else
+            {
+                Debug.Log("Error! Cannot find the corresponding skill for the current shape.");
+            }
+        }
+    }
+
+    // Load the corresponding skill for each shape
+    private void LoadSkill1()
+    {
+        Debug.Log("Using Skill1");
+    }
+
+    private void LoadSkill2()
+    {
+        Debug.Log("Using Skill2");
+    }
+
+    private void LoadSkill3()
+    {
+        Debug.Log("Using Skill3");
+    }
 } // class
