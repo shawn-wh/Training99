@@ -11,6 +11,7 @@ TagManager:
   - BulletRecycler
   - CrossWalls
   - CrossWall
+  - CircleArea
   layers:
   - Default
   - TransparentFX
