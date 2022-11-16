@@ -459,16 +459,28 @@ public class LV_PlayerMovement : MonoBehaviour
     // Load the corresponding skill for each shape
     private void LoadSkill1()
     {
-        Debug.Log("Using Skill1");
+        Debug.Log("Using Skill1 circle");
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Bullets");
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        foreach (GameObject obj in objs)
+        {
+            float distance = Vector3.Distance(player.transform.position, obj.transform.position);
+            // Debug.Log("distance is: " + distance);
+            if (distance <= 2)
+            {
+                Destroy(obj);
+            }
+        }
     }
 
     private void LoadSkill2()
     {
-        Debug.Log("Using Skill2");
+        Debug.Log("Using Skill2 triangle");
     }
 
     private void LoadSkill3()
     {
-        Debug.Log("Using Skill3");
+        Debug.Log("Using Skill3 square");
     }
 } // class
