@@ -14,6 +14,9 @@ public class LV_PlayerMovement : MonoBehaviour
     private Color nextColor;
     private TextMeshProUGUI nextColorText;
     private string returnColor;
+
+    // private Color circleAreaColor_0;
+    // private Color circleAreaColor_1;
     
     [Header("Connect to UI_States")]
     public float playerSpeed = 5f;
@@ -192,17 +195,25 @@ public class LV_PlayerMovement : MonoBehaviour
         {
             shapeIdx++;
             shapeIdx = shapeIdx % playerShapes.Length;
+            
+            // GameObject area = GameObject.FindGameObjectWithTag("CircleArea");
+            // circleAreaColor_0 = area.GetComponent<SpriteRenderer>().color;
+            // circleAreaColor_0.a = 0;
+            // circleAreaColor_1 = area.GetComponent<SpriteRenderer>().color;
             if (shapeIdx == 0)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = playerShapes[0];
+                // area.GetComponent<SpriteRenderer>().color = circleAreaColor_1;
             }
             else if (shapeIdx == 1)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = playerShapes[1];
+                // area.GetComponent<SpriteRenderer>().color = circleAreaColor_0;
             }
             else if (shapeIdx == 2)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = playerShapes[2];
+                // area.GetComponent<SpriteRenderer>().color = circleAreaColor_0;
             }
             else
             {
@@ -469,7 +480,7 @@ public class LV_PlayerMovement : MonoBehaviour
             // Debug.Log("distance is: " + distance);
             if (distance <= 2)
             {
-                Destroy(obj);
+                obj.SetActive(false);
             }
         }
     }
