@@ -19,7 +19,13 @@ public class LV_PlayerMovement : MonoBehaviour
     public Color circleAreaColor_1;
     
     [Header("Connect to UI_States")]
-    public float playerSpeed = 5f;
+    private float playerSpeed;
+
+    public float activeSpeed = 5f;
+    public float dashSpeed;
+    public float dashLength = .5f, dashCoolDown = 1f;
+    private float dashCounter;
+    private float dashCoolCounter;
 
     public HealthBar healthBar;
 
@@ -105,8 +111,12 @@ public class LV_PlayerMovement : MonoBehaviour
         RefreshHpText();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+
+        playerSpeed = activeSpeed;
+        
         circleAreaColor_0 = new Color();
         circleAreaColor_1 = new Color(0f, 0f, 0f, 0.8f);
+
         // _key.SetActive(true); 
         // _key.GetComponent<Renderer> ().material.color = new Color(249, 253, 157, 80);
         // _endpoint.SetActive(true);
@@ -193,6 +203,7 @@ public class LV_PlayerMovement : MonoBehaviour
         if (enableShapeChanging 
             && (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))) 
         {
+            Debug.Log("Change Shape!");
             shapeIdx++;
             shapeIdx = shapeIdx % playerShapes.Length;
             
@@ -467,6 +478,26 @@ public class LV_PlayerMovement : MonoBehaviour
                 Debug.Log("Error! Cannot find the corresponding skill for the current shape.");
             }
         }
+
+        // Part of Dashing
+        if (gameObject.GetComponent<SpriteRenderer>().sprite.name == "Triangle")
+        {
+            if (dashCounter > 0)
+            {
+                dashCounter -= Time.deltaTime;
+                if (dashCounter <= 0)
+                {
+                    playerSpeed = activeSpeed;
+                    dashCoolCounter = dashCoolDown;
+                }
+            }
+
+            if (dashCoolCounter > 0)
+            {
+                dashCoolCounter -= Time.deltaTime;
+            }
+        }
+        
     }
 
     // Load the corresponding skill for each shape
@@ -490,6 +521,12 @@ public class LV_PlayerMovement : MonoBehaviour
     private void LoadSkill2()
     {
         Debug.Log("Using Skill2 triangle");
+        
+        if (dashCoolCounter <= 0 && dashCounter <= 0)
+        {
+            playerSpeed = dashSpeed;
+            dashCounter = dashLength;
+        }
     }
 
     private void LoadSkill3()

@@ -138,7 +138,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colors: []
-  playerSpeed: 5
+  activeSpeed: 5
+  dashSpeed: 10
+  dashLength: 0.5
+  dashCoolDown: 1
   healthBar: {fileID: 0}
   progressBar: {fileID: 0}
   m_HpText: {fileID: 0}
