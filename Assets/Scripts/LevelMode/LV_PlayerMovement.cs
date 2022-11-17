@@ -15,8 +15,8 @@ public class LV_PlayerMovement : MonoBehaviour
     private TextMeshProUGUI nextColorText;
     private string returnColor;
 
-    // private Color circleAreaColor_0;
-    // private Color circleAreaColor_1;
+    public Color circleAreaColor_0;
+    public Color circleAreaColor_1;
     
     [Header("Connect to UI_States")]
     public float playerSpeed = 5f;
@@ -105,8 +105,8 @@ public class LV_PlayerMovement : MonoBehaviour
         RefreshHpText();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
-
-        
+        circleAreaColor_0 = new Color();
+        circleAreaColor_1 = new Color(0f, 0f, 0f, 0.8f);
         // _key.SetActive(true); 
         // _key.GetComponent<Renderer> ().material.color = new Color(249, 253, 157, 80);
         // _endpoint.SetActive(true);
@@ -196,24 +196,26 @@ public class LV_PlayerMovement : MonoBehaviour
             shapeIdx++;
             shapeIdx = shapeIdx % playerShapes.Length;
             
-            // GameObject area = GameObject.FindGameObjectWithTag("CircleArea");
-            // circleAreaColor_0 = area.GetComponent<SpriteRenderer>().color;
-            // circleAreaColor_0.a = 0;
-            // circleAreaColor_1 = area.GetComponent<SpriteRenderer>().color;
+            GameObject area = GameObject.FindGameObjectWithTag("CircleArea");
+            
+
             if (shapeIdx == 0)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = playerShapes[0];
-                // area.GetComponent<SpriteRenderer>().color = circleAreaColor_1;
+                
+                area.GetComponent<Renderer>().material.color = circleAreaColor_1;
             }
             else if (shapeIdx == 1)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = playerShapes[1];
-                // area.GetComponent<SpriteRenderer>().color = circleAreaColor_0;
+             
+                area.GetComponent<Renderer>().material.color = circleAreaColor_0;
             }
             else if (shapeIdx == 2)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = playerShapes[2];
-                // area.GetComponent<SpriteRenderer>().color = circleAreaColor_0;
+
+                area.GetComponent<Renderer>().material.color = circleAreaColor_0;
             }
             else
             {
