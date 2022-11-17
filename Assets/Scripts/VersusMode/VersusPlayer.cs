@@ -62,11 +62,43 @@ public class VersusPlayer : MonoBehaviour, IColor
             h = Input.GetAxis("Player2 Horizontal"); // player2: left, right
             v = Input.GetAxis("Player2 Vertical");   // player2: up, down
         }
-
+        
         Vector2 pos = transform.position;
         pos.x += h * speed * Time.deltaTime;
         pos.y += v * speed * Time.deltaTime;
         transform.position = pos;
+        
+        if (name == "Player2")
+        {
+            float minDistance = Mathf.Infinity;
+            Transform closestTransform = null;
+            foreach (Transform bulletTransform in manager.bulletNode.transform)
+            {
+                float distance = Vector3.Distance(transform.position, bulletTransform.position);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    closestTransform = bulletTransform;
+                }
+            }
+            if (closestTransform != null)
+            {
+                VersusBullet closestBullet = closestTransform.GetComponent<VersusBullet>();
+                if (closestBullet.Color == Color)
+                {
+                    transform.position = Vector2.MoveTowards(transform.position, closestTransform.position, 2.5f * Time.deltaTime);
+                }
+                else
+                {
+                    transform.position = Vector2.MoveTowards(transform.position, -closestTransform.position, 2.5f * Time.deltaTime);
+                }
+            }
+            
+            if (manager.propPanel2.gameObject.activeSelf)
+            {
+                manager.propPanel2.CreateProp(manager.player2);
+            }
+        }
     }
     
     public void Heal(int amount)

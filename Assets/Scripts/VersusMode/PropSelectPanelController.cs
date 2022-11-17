@@ -37,6 +37,16 @@ public class PropSelectPanelController : MonoBehaviour
         card2 = Instantiate(manager.AvailableCards[take2], card2Root);
         card2.name = manager.AvailableCards[take2].name; // to remove the `(Clone)` suffix for the anylytics purpose
     }
+    
+    public void CreateProp(VersusPlayer player, CardController card = null)
+    {
+        card = (card == null)? card1 : card;
+        PropPrototype prop = Instantiate(card.prop);
+        prop.name = card.prop.name;
+        player.UseProp(prop);
+        gameObject.SetActive(false);
+        manager.PropUsage[card.name] += 1;
+    }
 
     // Update is called once per frame
     void Update()
@@ -45,38 +55,22 @@ public class PropSelectPanelController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                PropPrototype prop = Instantiate(card1.prop);
-                prop.name = card1.prop.name;
-                manager.player1.UseProp(prop);
-                gameObject.SetActive(false);
-                manager.PropUsage[card1.name] += 1;
+                CreateProp(manager.player1, card1);
             }
             else if (Input.GetKeyDown(KeyCode.G))
             {
-                PropPrototype prop = Instantiate(card2.prop);
-                prop.name = card2.prop.name;
-                manager.player1.UseProp(prop);
-                gameObject.SetActive(false);
-                manager.PropUsage[card2.name] += 1;
+                CreateProp(manager.player1, card2);
             }
         }
         else if (name == "PropPanel2")
         {
             if (Input.GetKeyDown(KeyCode.Comma))
             {
-                PropPrototype prop = Instantiate(card1.prop);
-                prop.name = card1.prop.name;
-                manager.player2.UseProp(prop);
-                gameObject.SetActive(false);
-                manager.PropUsage[card1.name] += 1;
+                CreateProp(manager.player2, card1);
             }
             else if (Input.GetKeyDown(KeyCode.Period))
             {
-                PropPrototype prop = Instantiate(card2.prop);
-                prop.name = card2.prop.name;
-                manager.player2.UseProp(prop);
-                gameObject.SetActive(false);
-                manager.PropUsage[card2.name] += 1;
+                CreateProp(manager.player2, card2);
             }
         }
     }

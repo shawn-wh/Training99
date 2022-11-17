@@ -29,6 +29,8 @@ public class VersusGameManager : MonoBehaviour
     [SerializeField] private DataManager dataManager;
     public Dictionary<string, int> PropUsage = new Dictionary<string, int>();
     
+    private int bulletCounter = 0;
+    
     void Start()
     {
         // Init PropUsage dictionary
@@ -49,6 +51,8 @@ public class VersusGameManager : MonoBehaviour
     public VersusBullet CreateBullet(Vector3 position)
     {
         VersusBullet bullet = Instantiate(clone, position, Quaternion.identity, bulletNode.transform);
+        bullet.name = bulletCounter.ToString();
+        bulletCounter++;
         return bullet;
     }
 
