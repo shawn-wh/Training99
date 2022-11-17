@@ -16,7 +16,13 @@ public class LV_PlayerMovement : MonoBehaviour
     private string returnColor;
     
     [Header("Connect to UI_States")]
-    public float playerSpeed = 5f;
+    private float playerSpeed;
+
+    public float activeSpeed = 5f;
+    public float dashSpeed;
+    public float dashLength = .5f, dashCoolDown = 1f;
+    private float dashCounter;
+    private float dashCoolCounter;
 
     public HealthBar healthBar;
 
@@ -102,6 +108,8 @@ public class LV_PlayerMovement : MonoBehaviour
         RefreshHpText();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+
+        playerSpeed = activeSpeed;
 
         
         // _key.SetActive(true); 
@@ -190,6 +198,7 @@ public class LV_PlayerMovement : MonoBehaviour
         if (enableShapeChanging 
             && (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))) 
         {
+            Debug.Log("Change Shape!");
             shapeIdx++;
             shapeIdx = shapeIdx % playerShapes.Length;
             if (shapeIdx == 0)
@@ -454,6 +463,26 @@ public class LV_PlayerMovement : MonoBehaviour
                 Debug.Log("Error! Cannot find the corresponding skill for the current shape.");
             }
         }
+
+        // Part of Dashing
+        if (gameObject.GetComponent<SpriteRenderer>().sprite.name == "Triangle")
+        {
+            if (dashCounter > 0)
+            {
+                dashCounter -= Time.deltaTime;
+                if (dashCounter <= 0)
+                {
+                    playerSpeed = activeSpeed;
+                    dashCoolCounter = dashCoolDown;
+                }
+            }
+
+            if (dashCoolCounter > 0)
+            {
+                dashCoolCounter -= Time.deltaTime;
+            }
+        }
+        
     }
 
     // Load the corresponding skill for each shape
@@ -465,6 +494,12 @@ public class LV_PlayerMovement : MonoBehaviour
     private void LoadSkill2()
     {
         Debug.Log("Using Skill2");
+        
+        if (dashCoolCounter <= 0 && dashCounter <= 0)
+        {
+            playerSpeed = dashSpeed;
+            dashCounter = dashLength;
+        }
     }
 
     private void LoadSkill3()
