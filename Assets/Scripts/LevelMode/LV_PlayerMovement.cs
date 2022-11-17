@@ -14,6 +14,9 @@ public class LV_PlayerMovement : MonoBehaviour
     private Color nextColor;
     private TextMeshProUGUI nextColorText;
     private string returnColor;
+
+    public Color circleAreaColor_0;
+    public Color circleAreaColor_1;
     
     [Header("Connect to UI_States")]
     private float playerSpeed;
@@ -110,8 +113,10 @@ public class LV_PlayerMovement : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
 
         playerSpeed = activeSpeed;
-
         
+        circleAreaColor_0 = new Color();
+        circleAreaColor_1 = new Color(0f, 0f, 0f, 0.8f);
+
         // _key.SetActive(true); 
         // _key.GetComponent<Renderer> ().material.color = new Color(249, 253, 157, 80);
         // _endpoint.SetActive(true);
@@ -201,17 +206,27 @@ public class LV_PlayerMovement : MonoBehaviour
             Debug.Log("Change Shape!");
             shapeIdx++;
             shapeIdx = shapeIdx % playerShapes.Length;
+            
+            GameObject area = GameObject.FindGameObjectWithTag("CircleArea");
+            
+
             if (shapeIdx == 0)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = playerShapes[0];
+                
+                area.GetComponent<Renderer>().material.color = circleAreaColor_1;
             }
             else if (shapeIdx == 1)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = playerShapes[1];
+             
+                area.GetComponent<Renderer>().material.color = circleAreaColor_0;
             }
             else if (shapeIdx == 2)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = playerShapes[2];
+
+                area.GetComponent<Renderer>().material.color = circleAreaColor_0;
             }
             else
             {
@@ -488,12 +503,24 @@ public class LV_PlayerMovement : MonoBehaviour
     // Load the corresponding skill for each shape
     private void LoadSkill1()
     {
-        Debug.Log("Using Skill1");
+        Debug.Log("Using Skill1 circle");
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Bullets");
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        foreach (GameObject obj in objs)
+        {
+            float distance = Vector3.Distance(player.transform.position, obj.transform.position);
+            // Debug.Log("distance is: " + distance);
+            if (distance <= 2)
+            {
+                obj.SetActive(false);
+            }
+        }
     }
 
     private void LoadSkill2()
     {
-        Debug.Log("Using Skill2");
+        Debug.Log("Using Skill2 triangle");
         
         if (dashCoolCounter <= 0 && dashCounter <= 0)
         {
@@ -504,6 +531,6 @@ public class LV_PlayerMovement : MonoBehaviour
 
     private void LoadSkill3()
     {
-        Debug.Log("Using Skill3");
+        Debug.Log("Using Skill3 square");
     }
 } // class
