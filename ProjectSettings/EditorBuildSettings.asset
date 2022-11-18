@@ -51,7 +51,7 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelMenu.unity
     guid: a990b85080c7c4addbff3d71ee80d822
   - enabled: 1
-    path: Assets/Scenes/VersusScene.unity
+    path: Assets/Scenes/VersusLobby.unity
     guid: 2ce59463169f94a57942fc804b17a25a
   - enabled: 1
     path: Assets/Scenes/LV_GameOver.unity
@@ -74,4 +74,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level3.unity
     guid: 385552c6bc7434db1ac1b5bd121cc6a5
+  - enabled: 1
+    path: Assets/Scenes/VersusScene.unity
+    guid: f8b1187abd3334c1886cde931d258462
   m_configObjects: {}

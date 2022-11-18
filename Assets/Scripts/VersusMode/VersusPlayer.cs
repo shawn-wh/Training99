@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class VersusPlayer : MonoBehaviour, IColor
 {
+    public bool IsComputer = false;
     public PropPrototype Prop { get; set; }
     public Color OrignalColor;
     public bool isInvincible { get; set; } = false;
@@ -68,7 +69,7 @@ public class VersusPlayer : MonoBehaviour, IColor
         pos.y += v * speed * Time.deltaTime;
         transform.position = pos;
         
-        if (name == "Player2")
+        if (IsComputer)
         {
             float minDistance = Mathf.Infinity;
             Transform closestTransform = null;
@@ -94,7 +95,11 @@ public class VersusPlayer : MonoBehaviour, IColor
                 }
             }
             
-            if (manager.propPanel2.gameObject.activeSelf)
+            if (name == "Player1" && manager.propPanel1.gameObject.activeSelf)
+            {
+                manager.propPanel1.CreateProp(manager.player1);
+            }
+            else if (name == "Player2" && manager.propPanel2.gameObject.activeSelf)
             {
                 manager.propPanel2.CreateProp(manager.player2);
             }
@@ -153,12 +158,7 @@ public class VersusPlayer : MonoBehaviour, IColor
         // Game over condition
         if (m_Hp <= 0)
         {
-            string winner = "Player1";
-            if (name == "Player1")
-            {
-                winner = "Player2";
-            }
-            VersusGameManager.winner = winner;
+            VersusGameManager.winner = Opponent.name;
             manager.SendForm();
             SceneManager.LoadScene("VersusGameOver");
         }

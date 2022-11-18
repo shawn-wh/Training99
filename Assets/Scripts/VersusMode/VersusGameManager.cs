@@ -24,6 +24,8 @@ public class VersusGameManager : MonoBehaviour
     public float BulletSpeed;
     
     public static string winner = null;
+    public static bool isPlayer1Computer = false;
+    public static bool isPlayer2Computer = true;
 
     [Header("Data Management")]
     [SerializeField] private DataManager dataManager;
@@ -38,6 +40,8 @@ public class VersusGameManager : MonoBehaviour
         {
             PropUsage.Add(card.name, 0);
         }
+        player1.IsComputer = isPlayer1Computer;
+        player2.IsComputer = isPlayer2Computer;
     }
     
     public void SendForm()
