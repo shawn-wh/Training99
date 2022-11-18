@@ -14,9 +14,9 @@ public class VersusLobbyManager : MonoBehaviour
     private bool isPlayer1Computer = false;
     private bool isPlayer2Computer = true;
 
-    public void goToVersus()
+    public void LoadScene(string sceneName)
     {
-        SceneManager.LoadScene("VersusScene");
+        SceneManager.LoadScene(sceneName);
     }
 
     // Update is called once per frame
