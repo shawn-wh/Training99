@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class VersusPlayer : MonoBehaviour, IColor
 {
+    public bool IsComputer = false;
     public PropPrototype Prop { get; set; }
     public Color OrignalColor;
     public bool isInvincible { get; set; } = false;
@@ -62,11 +63,47 @@ public class VersusPlayer : MonoBehaviour, IColor
             h = Input.GetAxis("Player2 Horizontal"); // player2: left, right
             v = Input.GetAxis("Player2 Vertical");   // player2: up, down
         }
-
+        
         Vector2 pos = transform.position;
         pos.x += h * speed * Time.deltaTime;
         pos.y += v * speed * Time.deltaTime;
         transform.position = pos;
+        
+        if (IsComputer)
+        {
+            float minDistance = Mathf.Infinity;
+            Transform closestTransform = null;
+            foreach (Transform bulletTransform in manager.bulletNode.transform)
+            {
+                float distance = Vector3.Distance(transform.position, bulletTransform.position);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    closestTransform = bulletTransform;
+                }
+            }
+            if (closestTransform != null)
+            {
+                VersusBullet closestBullet = closestTransform.GetComponent<VersusBullet>();
+                if (closestBullet.Color == Color)
+                {
+                    transform.position = Vector2.MoveTowards(transform.position, closestTransform.position, 2.5f * Time.deltaTime);
+                }
+                else
+                {
+                    transform.position = Vector2.MoveTowards(transform.position, -closestTransform.position, 2.5f * Time.deltaTime);
+                }
+            }
+            
+            if (name == "Player1" && manager.propPanel1.gameObject.activeSelf)
+            {
+                manager.propPanel1.CreateProp(manager.player1);
+            }
+            else if (name == "Player2" && manager.propPanel2.gameObject.activeSelf)
+            {
+                manager.propPanel2.CreateProp(manager.player2);
+            }
+        }
     }
     
     public void Heal(int amount)
@@ -121,12 +158,7 @@ public class VersusPlayer : MonoBehaviour, IColor
         // Game over condition
         if (m_Hp <= 0)
         {
-            string winner = "Player1";
-            if (name == "Player1")
-            {
-                winner = "Player2";
-            }
-            VersusGameManager.winner = winner;
+            VersusGameManager.winner = Opponent.name;
             manager.SendForm();
             SceneManager.LoadScene("VersusGameOver");
         }

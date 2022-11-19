@@ -54,4 +54,11 @@ public class PauseManager : MonoBehaviour
         // Whenever load a new scence, need to change timeScale to normal
         Time.timeScale = 1f;
     }
+    
+    public void LoadTutorial()
+    {
+        SceneManager.LoadScene("VersusHowToPlay");
+        // Whenever load a new scence, need to change timeScale to normal
+        Time.timeScale = 1f;
+    }
 }

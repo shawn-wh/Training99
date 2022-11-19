@@ -24,10 +24,14 @@ public class VersusGameManager : MonoBehaviour
     public float BulletSpeed;
     
     public static string winner = null;
+    public static bool isPlayer1Computer = false;
+    public static bool isPlayer2Computer = true;
 
     [Header("Data Management")]
     [SerializeField] private DataManager dataManager;
     public Dictionary<string, int> PropUsage = new Dictionary<string, int>();
+    
+    private int bulletCounter = 0;
     
     void Start()
     {
@@ -36,6 +40,8 @@ public class VersusGameManager : MonoBehaviour
         {
             PropUsage.Add(card.name, 0);
         }
+        player1.IsComputer = isPlayer1Computer;
+        player2.IsComputer = isPlayer2Computer;
     }
     
     public void SendForm()
@@ -49,6 +55,8 @@ public class VersusGameManager : MonoBehaviour
     public VersusBullet CreateBullet(Vector3 position)
     {
         VersusBullet bullet = Instantiate(clone, position, Quaternion.identity, bulletNode.transform);
+        bullet.name = bulletCounter.ToString();
+        bulletCounter++;
         return bullet;
     }
 
