@@ -139,7 +139,9 @@ public class LV_PlayerMovement : MonoBehaviour
 
     
     
-    // Update is called once per frame
+
+     // Update is called once per frame
+    // FixedUpdate is called once every 0.02 seconds
     void Update()
     {
         float h = Input.GetAxis("Horizontal"); // key: A, D, left, right

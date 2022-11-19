@@ -9,7 +9,7 @@ public class LV_BulletPatrol : MonoBehaviour
     private GameObject player = null;
     private Transform target;
 
-    [SerializeField] private Color[] colors = {new Color32(0,0,0,255), new Color32(153,0,0,255), new Color32(244,187,15,255), new Color32(39,116,174,255)};// Black, Red, Yellow, Blue
+    [SerializeField] private Color[] colors;  
     private Color currentColor;
     private Color playerColor;
 
@@ -30,8 +30,16 @@ public class LV_BulletPatrol : MonoBehaviour
     private GameObject bubbleObj;
     
     // Start is called before the first frame update
-    void Start()
+    void Start()  
     {   
+        // Set colors if no specific colors are assigned 
+        if (colors.Length == 0)
+        { 
+            // black, Red, yellow, blue, ;
+            Color[] defaultColors = {new Color32(0,0,0,255), new Color32(220,38,127,255), new Color32(255,176,0,255), new Color32(100,143,255,255)};
+            colors = defaultColors;
+        }
+
         // Initial color setup 
         if (colors.Length < 1)
         {
