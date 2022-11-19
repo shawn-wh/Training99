@@ -24,7 +24,7 @@ public class LV_ActiveSkill0 : MonoBehaviour
     // Get next color
     private GameObject player = null;
     private Color playerColor;
-    private Color[] colors = { new Color32(153,0,0,255), new Color32(244,187,15,255), new Color32(39,116,174,255)};   // Red, Yellow, Blue
+    private Color[] colors = { new Color32(220,38,127,255), new Color32(255,176,0,255), new Color32(100,143,255,255)};   // Red, Yellow, Blue
 
 
     void GetNextColor()
@@ -53,8 +53,10 @@ public class LV_ActiveSkill0 : MonoBehaviour
         }
         else
         {
-            nextColor = Color.white;
+            nextColor = Color.green;
+            // Something wrong!
         } 
+        // Debug.Log("nextColor = " + nextColor);
         button.GetComponent<Image>().color = nextColor;
     }
 

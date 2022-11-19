@@ -8,8 +8,8 @@ using UnityEngine.SceneManagement;
 public class LV_PlayerMovement : MonoBehaviour
 {
 
-    // colors array: red, yellow, blue ; // set aphla = 1
-    public Color[] colors;
+    // colors array: red, yellow, blue ; // set aphla = 1 = 255
+    [SerializeField] Color[] colors = { new Color32(220,38,127,255), new Color32(255,176,0,255), new Color32(100,143,255,255)};   // Red, Yellow, Blue;
     
     private Color nextColor;
     private TextMeshProUGUI nextColorText;
