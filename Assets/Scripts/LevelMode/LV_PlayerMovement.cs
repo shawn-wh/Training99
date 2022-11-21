@@ -90,7 +90,7 @@ public class LV_PlayerMovement : MonoBehaviour
     // Shape skills:
     [Header("Shape Related")]
     [SerializeField] private Sprite[] playerShapes = new Sprite[3];
-    [SerializeField] bool enableShapeChanging = false;  // Default is disable.
+    [SerializeField] private bool enableShapeChanging = false;  // Default is disable.
     // [SerializeField] private bool[] isShapeSkillEnabled = new bool[3];  // Default is false 
     private int shapeIdx = 0;
 
@@ -206,10 +206,9 @@ public class LV_PlayerMovement : MonoBehaviour
 
     private void ChangeShape()
     {
-        // if (enableShapeChanging 
+        // if (enableShapeChanging
         //     && (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))) 
-        if (enableShapeChanging 
-            && (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))) 
+        if (enableShapeChanging && Input.GetKeyDown(KeyCode.Q))
         {
             Debug.Log("Change Shape!");
             shapeIdx++;
@@ -464,8 +463,9 @@ public class LV_PlayerMovement : MonoBehaviour
     // Find the corresponding skill for each shape
     private void FindShapeSkill()
     {
-        if (enableShapeChanging 
-            && (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)))         
+        // if (enableShapeChanging 
+        //     && (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)))         
+        if (enableShapeChanging && Input.GetKeyDown(KeyCode.E))
         {
             // Check current player's shape
             Sprite currentShape = gameObject.GetComponent<SpriteRenderer>().sprite;
@@ -588,5 +588,9 @@ public class LV_PlayerMovement : MonoBehaviour
             obj.GetComponent<LV_Brush>().SetMoveDirection(objDirection);
             angle += angleStep;
         }
+    }
+
+    public bool GetEnableShapeChanging() {
+        return enableShapeChanging;
     }
 } // class
