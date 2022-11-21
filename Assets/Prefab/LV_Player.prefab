@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: 59c76940b91cf4393a335fc0c77ef604, type: 3}
-  m_Color: {r: 0.15294118, g: 0.45490196, b: 0.68235296, a: 1}
+  m_Color: {r: 0.39215687, g: 0.56078434, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -138,6 +138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colors: []
+  circleAreaColor_0: {r: 0, g: 0, b: 0, a: 0}
+  circleAreaColor_1: {r: 0, g: 0, b: 0, a: 0}
   activeSpeed: 5
   dashSpeed: 10
   dashLength: 0.5
@@ -167,6 +169,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   enableShapeChanging: 0
+  shootAmount: 8
+  repeatRate: 2
 --- !u!114 &7160798802907528549
 MonoBehaviour:
   m_ObjectHideFlags: 0
