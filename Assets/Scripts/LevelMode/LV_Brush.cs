@@ -5,8 +5,8 @@ using UnityEngine;
 public class LV_Brush : MonoBehaviour
 {
     [SerializeField] private Vector2 moveDirection;
-    [SerializeField] private float moveSpeed = 1f;
-    [SerializeField] private float liveTime_Const = 10f;
+    [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] private float liveTime_Const = 3f;
     private Color[] colors = { new Color32(220,38,127,255), new Color32(255,176,0,255), new Color32(100,143,255,255)};   // Red, Yellow, Blue;
 
     // Start is called before the first frame update

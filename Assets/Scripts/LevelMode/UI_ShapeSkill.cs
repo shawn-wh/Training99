@@ -28,6 +28,8 @@ public class UI_ShapeSkill : MonoBehaviour
     
     [SerializeField] private Sprite[] skillSprite = new Sprite[3];
 
+    private float[] skillsCooldownSetup = new float[3];
+
     private void SetSkillSprite()
     {
         skillSprite[0] = Resources.Load<Sprite>("Sprites/ShapeSkill_bomb");         // Must exist in "Resources" folder
@@ -47,16 +49,19 @@ public class UI_ShapeSkill : MonoBehaviour
         {
             Debug.Log("Read player's shape = " + currentShape.name);
             gameObject.GetComponent<Image>().sprite = skillSprite[0];
+            cooldownTimeLimit = skillsCooldownSetup[0]; 
         }
         else if (currentShape.name == "Triangle")
         {
             Debug.Log("Read player's shape = " + currentShape.name);
             gameObject.GetComponent<Image>().sprite = skillSprite[1];
+            cooldownTimeLimit = skillsCooldownSetup[1]; 
         }
         else if (currentShape.name == "Square")
         {
             Debug.Log("Read player's shape = " + currentShape.name);
             gameObject.GetComponent<Image>().sprite = skillSprite[2];
+            cooldownTimeLimit = skillsCooldownSetup[2]; 
         }
         else
         {
@@ -79,6 +84,12 @@ public class UI_ShapeSkill : MonoBehaviour
         }
     }
 
+    void GetCooldownSetup()
+    {
+        skillsCooldownSetup = player.GetComponent<LV_PlayerMovement>().GetShapeSkillsCooldown();
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -97,7 +108,7 @@ public class UI_ShapeSkill : MonoBehaviour
 
         // Get cooldown time
         // s0CooldownTiime = player.GetComponent<LV_PlayerMovement>().Get();
-
+        GetCooldownSetup();
     }
 
     // Update is called once per frame
@@ -151,5 +162,9 @@ public class UI_ShapeSkill : MonoBehaviour
 
     }
 
+    public void SetCooldownTime(float value)
+    {
+        cooldownTimeLimit = value; 
+    }
 }
 

@@ -99,6 +99,12 @@ public class LV_PlayerMovement : MonoBehaviour
     [SerializeField] private int shootAmount = 8;
     private Vector2 objMoveDirection;
 
+    [SerializeField] private float cooldownTime_skill1 = 3f;
+    [SerializeField] private float cooldownTime_skill2 = 3f;
+    [SerializeField] private float cooldownTime_skill3 = 3f;
+
+    private bool canUseSkill3 = true; 
+
     // For Warped Trap
     private Vector3 loadingRotation = new Vector3(0, 0, 30);
     private bool isInTrap = false;
@@ -507,6 +513,21 @@ public class LV_PlayerMovement : MonoBehaviour
         }
         
     }
+    
+    public float[] GetShapeSkillsCooldown()
+    {
+        float[] skillsCooldownSetup = new float[3];
+        skillsCooldownSetup[0] = cooldownTime_skill1; 
+        skillsCooldownSetup[1] = cooldownTime_skill2; 
+        skillsCooldownSetup[2] = cooldownTime_skill3;
+        return skillsCooldownSetup; 
+    }
+
+    IEnumerator shapeSkillsCooldown(float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        canUseSkill3 = true;
+    }
 
     // Load the corresponding skill for each shape
     private void LoadSkill1()
@@ -540,7 +561,14 @@ public class LV_PlayerMovement : MonoBehaviour
     private void LoadSkill3()
     {
         // Debug.Log("Using Skill3 square");
-        ShootBrush();
+        if (canUseSkill3) 
+        {
+            ShootBrush();
+            // wait for cooldown 
+            canUseSkill3 = false;
+            StartCoroutine(shapeSkillsCooldown(cooldownTime_skill3));
+             
+        }
     }
 
     private void ShootBrush()

@@ -5,7 +5,7 @@ using UnityEngine;
 public class LV_ShootBrush : MonoBehaviour
 {
      [Header("For Square shape skill")]
-    [SerializeField] private int shootAmount = 8;
+    [SerializeField] private int paintBrushAmount = 12;
 
     private Vector2 objMoveDirection;
     [SerializeField] float repeatRate = 2.0f;
@@ -20,10 +20,10 @@ public class LV_ShootBrush : MonoBehaviour
     private void ShootBrush()
     {
         float startAngle = 0f, endAngle = 360f;
-        float angleStep = (endAngle - startAngle) / shootAmount;    // spread in range
+        float angleStep = (endAngle - startAngle) / paintBrushAmount;    // spread in range
         float angle = startAngle;  
 
-        for (int i = 0; i < shootAmount; i++)
+        for (int i = 0; i < paintBrushAmount; i++)
         {
             // Radian Angle = (Degree Angle) x pi/ 180
             float componentX = transform.position.x + Mathf.Cos((angle * Mathf.PI) / 180f);
