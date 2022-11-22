@@ -165,8 +165,8 @@ public class LV_CrossWall : MonoBehaviour
     bool isSameShape(GameObject player, GameObject wall)
     {
         Transform wallFill = wall.transform.Find("fill");
-        Debug.Log("print wall sprite: " + wallFill.GetComponent<SpriteRenderer>().sprite);
-        Debug.Log("print player sprite: " + player.GetComponent<SpriteRenderer>().sprite);
+        // Debug.Log("print wall sprite: " + wallFill.GetComponent<SpriteRenderer>().sprite);
+        // Debug.Log("print player sprite: " + player.GetComponent<SpriteRenderer>().sprite);
         if (player.GetComponent<SpriteRenderer>().sprite == Resources.Load<Sprite>("Sprites/Square") && wallFill.GetComponent<SpriteRenderer>().sprite == Resources.Load<Sprite>("Sprites/Square_small"))
         {
             return true;

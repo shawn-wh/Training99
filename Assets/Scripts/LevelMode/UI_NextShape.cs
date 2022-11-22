@@ -14,7 +14,6 @@ public class UI_NextShape : MonoBehaviour
     [SerializeField] private TextMeshProUGUI skill_text;
 
     private bool enableShapeChanging = false;
-    private bool enableColorChange = true;
 
     // Count the cooldown time
     private bool isCooldown = false;
@@ -107,12 +106,11 @@ public class UI_NextShape : MonoBehaviour
         Skill_ChangeShape();
     }
 
-    // Skill0: color changing
     void Skill_ChangeShape()
     {
         // Chech whether color-changing ability is enable/disable
         enableShapeChanging = player.GetComponent<LV_PlayerMovement>().GetEnableShapeChanging();
-        // Debug.Log("enableColorChange =" + enableColorChange);
+        // Debug.Log("enableShapeChanging =" + enableShapeChanging);
         if (enableShapeChanging == false)
         {
             // when disable, no need to change UI button

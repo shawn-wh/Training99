@@ -15,17 +15,12 @@ public class LV_PlayerMovement : MonoBehaviour
     private TextMeshProUGUI nextColorText;
     private string returnColor;
 
-    public Color circleAreaColor_0;
-    public Color circleAreaColor_1;
+
     
     [Header("Connect to UI_States")]
     private float playerSpeed;
 
-    public float activeSpeed = 5f;
-    public float dashSpeed;
-    public float dashLength = .5f, dashCoolDown = 1f;
-    private float dashCounter;
-    private float dashCoolCounter;
+
 
     public HealthBar healthBar;
 
@@ -69,13 +64,12 @@ public class LV_PlayerMovement : MonoBehaviour
     private GameObject movingCameraBound = null;
 
 
-
     //player changing color parameter
-    [Header(" ")]
+    [Header("Color-changing related")]
     public int colorIdx;
     public float cooldownTime = 0.0f;
     private float nextChangeTime = 0;
-    private bool enableColorChange = true;
+    private bool enableColorChanging = true;
 
     //lock for minimizing
     int yellowLock;
@@ -83,31 +77,45 @@ public class LV_PlayerMovement : MonoBehaviour
     //lock for speeding up
     int blueLock;
 
-    // Active Skill: 
-    [Header("To PassThroughWallButton")]
-    public LV_ActiveSkill1 skill1 = null;
-
     // Shape skills:
     [Header("Shape Related")]
-    [SerializeField] private Sprite[] playerShapes = new Sprite[3];
     [SerializeField] private bool enableShapeChanging = false;  // Default is disable.
+
+    private Sprite[] playerShapes = new Sprite[3];
     // [SerializeField] private bool[] isShapeSkillEnabled = new bool[3];  // Default is false 
     private int shapeIdx = 0;
+
+    [Header("Shape skills CD setup")]
+    [SerializeField] private float cooldownTime_skill1 = 2f;
+    [SerializeField] private float cooldownTime_skill2 = 2f;
+    [SerializeField] private float cooldownTime_skill3 = 2f;
+    private bool canUseSkill1 = true; 
+    private bool canUseSkill3 = true; 
+
+    // Circle shape skill 
+    [Header("For circle shape skill")]
+    public Color circleAreaColor_0;
+    public Color circleAreaColor_1;
+
+    // Triangle shape skill 
+    [Header("For triangle shape skill")]
+    public float activeSpeed = 5f;
+    public float dashSpeed;
+    public float dashLength = .5f; // dashCoolDown = 1f;
+    private float dashCounter;
+    private float dashCoolCounter;
 
     // Square shape skill 
     [Header("For Square shape skill")]
     [SerializeField] private int shootAmount = 8;
     private Vector2 objMoveDirection;
 
-    [SerializeField] private float cooldownTime_skill1 = 3f;
-    [SerializeField] private float cooldownTime_skill2 = 3f;
-    [SerializeField] private float cooldownTime_skill3 = 3f;
 
-    private bool canUseSkill3 = true; 
 
     // For Warped Trap
     private Vector3 loadingRotation = new Vector3(0, 0, 30);
     private bool isInTrap = false;
+    private Sprite previousSprite;
 
     // Start is called before the first frame update
     void Start()
@@ -123,9 +131,6 @@ public class LV_PlayerMovement : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
 
         playerSpeed = activeSpeed;
-        
-        circleAreaColor_0 = new Color();
-        circleAreaColor_1 = new Color(0f, 0f, 0f, 0.8f);
 
         // _key.SetActive(true); 
         // _key.GetComponent<Renderer> ().material.color = new Color(249, 253, 157, 80);
@@ -145,13 +150,13 @@ public class LV_PlayerMovement : MonoBehaviour
         //initialize nextColorText
         // RefreshNextColorText();
         SetPlayerShapes();
+
+        // For circle skill
+        InitCircleArea();
+
     }
 
     
-    
-
-     // Update is called once per frame
-    // FixedUpdate is called once every 0.02 seconds
     void Update()
     {
         float h = Input.GetAxis("Horizontal"); // key: A, D, left, right
@@ -194,7 +199,7 @@ public class LV_PlayerMovement : MonoBehaviour
 
     private void ChangeColor()
     {
-        if (enableColorChange) 
+        if (enableColorChanging) 
         {
             if (Time.time > nextChangeTime)
             {
@@ -220,25 +225,20 @@ public class LV_PlayerMovement : MonoBehaviour
             shapeIdx++;
             shapeIdx = shapeIdx % playerShapes.Length;
             
-            GameObject area = GameObject.FindGameObjectWithTag("CircleArea");
-            
-
+            GameObject area = GameObject.FindGameObjectWithTag("CircleArea");    
             if (shapeIdx == 0)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = playerShapes[0];
-                
                 area.GetComponent<Renderer>().material.color = circleAreaColor_1;
             }
             else if (shapeIdx == 1)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = playerShapes[1];
-             
                 area.GetComponent<Renderer>().material.color = circleAreaColor_0;
             }
             else if (shapeIdx == 2)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = playerShapes[2];
-
                 area.GetComponent<Renderer>().material.color = circleAreaColor_0;
             }
             else
@@ -279,7 +279,7 @@ public class LV_PlayerMovement : MonoBehaviour
     // https://www.youtube.com/watch?v=TRvnN4bfAxM&t=163s&ab_channel=LostRelicGames
     private void ProcessCollision(GameObject collider)
     {
-        if (collider.CompareTag("Bullets"))
+        if (collider.CompareTag("Bullets") || collider.CompareTag("BulletPatrol") )
         {
             DamageOrGain(collider);
         }
@@ -426,13 +426,13 @@ public class LV_PlayerMovement : MonoBehaviour
     // Check color-changing ability
     public bool GetColorChanging()
     {
-       return enableColorChange; 
+       return enableColorChanging; 
     }
 
     // Enable/disable color-changing ability
     public void SetColorChanging(bool value)
     {
-       enableColorChange = value; 
+       enableColorChanging = value; 
     }
 
     // Show Warning Text
@@ -440,6 +440,12 @@ public class LV_PlayerMovement : MonoBehaviour
     {
         WarnText printer = Instantiate(warnTextPrefab, transform.position, Quaternion.identity).GetComponent<WarnText>();
         printer.setContent(warning);
+    }
+
+    public void BeforeTrap()
+    {
+        previousSprite = gameObject.GetComponent<SpriteRenderer>().sprite; 
+        Debug.Log("previousSprite = " + previousSprite);
     }
 
     // When player enter WarpedTrap
@@ -455,7 +461,7 @@ public class LV_PlayerMovement : MonoBehaviour
     {
         isInTrap = false;
         Sprite circleSprite = Resources.Load<Sprite>("Sprites/Circle");  // Must exist in "Resources" folder
-        gameObject.GetComponent<SpriteRenderer>().sprite = circleSprite; 
+        gameObject.GetComponent<SpriteRenderer>().sprite = previousSprite;
     }
 
     private void SetPlayerShapes()
@@ -502,7 +508,7 @@ public class LV_PlayerMovement : MonoBehaviour
                 if (dashCounter <= 0)
                 {
                     playerSpeed = activeSpeed;
-                    dashCoolCounter = dashCoolDown;
+                    dashCoolCounter = cooldownTime_skill2;
                 }
             }
 
@@ -526,13 +532,26 @@ public class LV_PlayerMovement : MonoBehaviour
     IEnumerator shapeSkillsCooldown(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
+        // After the waiting
+        canUseSkill1 = true;
         canUseSkill3 = true;
     }
 
     // Load the corresponding skill for each shape
     private void LoadSkill1()
     {
-        Debug.Log("Using Skill1 circle");
+        // Debug.Log("Using Skill1 circle");
+        if (canUseSkill1) 
+        {
+            Skill1Content();
+            // wait for cooldown 
+            canUseSkill1 = false;
+            StartCoroutine(shapeSkillsCooldown(cooldownTime_skill1));
+        }
+    }
+
+    private void Skill1Content()
+    {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Bullets");
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
@@ -547,10 +566,28 @@ public class LV_PlayerMovement : MonoBehaviour
         }
     }
 
+    void InitCircleArea()
+    {
+        circleAreaColor_0 = new Color();
+        circleAreaColor_1 = new Color(0f, 0f, 0f, 0.8f);
+
+        GameObject area = GameObject.FindGameObjectWithTag("CircleArea");
+
+        // Only show when the level allow to change shape    
+        if (enableShapeChanging)
+        {
+            area.SetActive(true);
+        }
+        else
+        {
+            area.SetActive(false);
+        }
+    }
+
     private void LoadSkill2()
     {
         Debug.Log("Using Skill2 triangle");
-        
+
         if (dashCoolCounter <= 0 && dashCounter <= 0)
         {
             playerSpeed = dashSpeed;
@@ -567,7 +604,6 @@ public class LV_PlayerMovement : MonoBehaviour
             // wait for cooldown 
             canUseSkill3 = false;
             StartCoroutine(shapeSkillsCooldown(cooldownTime_skill3));
-             
         }
     }
 

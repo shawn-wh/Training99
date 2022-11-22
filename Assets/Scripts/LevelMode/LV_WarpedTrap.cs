@@ -26,6 +26,14 @@ public class LV_WarpedTrap : MonoBehaviour
         
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            player.GetComponent<LV_PlayerMovement>().BeforeTrap();
+        }
+    }
+
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -44,7 +52,7 @@ public class LV_WarpedTrap : MonoBehaviour
 
     IEnumerator CreateWarning()
     {
-        player.GetComponent<LV_PlayerMovement>().SetWarning("Trap!\n Cannot change color.");
+        player.GetComponent<LV_PlayerMovement>().SetWarning("Trap!\n No color/shape changing.");
         yield return new WaitForSeconds(5);     // Delay for 4 seconds
         canShow = true;
     }
