@@ -99,7 +99,7 @@ public class LV_PlayerMovement : MonoBehaviour
 
     // Triangle shape skill 
     [Header("For triangle shape skill")]
-    public float activeSpeed = 5f;
+    public float activeSpeed = .5f;
     public float dashSpeed;
     public float dashLength = .5f; // dashCoolDown = 1f;
     private float dashCounter;
@@ -345,7 +345,7 @@ public class LV_PlayerMovement : MonoBehaviour
             else if (bulletColor == colors[2] && blueLock < 3)
             {
                 blueLock += 1;
-                playerSpeed += 1.0f;
+                playerSpeed += 0.8f;
             }
 
             // player collects required type and number of bullets, show the key
