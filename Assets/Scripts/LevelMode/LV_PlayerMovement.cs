@@ -20,7 +20,10 @@ public class LV_PlayerMovement : MonoBehaviour
     [Header("Connect to UI_States")]
     private float playerSpeed;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> d694483865a4c910b31b16292881e119273aaad6
     public float activeSpeed = .5f;
     public float dashSpeed;
     public float dashLength = .5f, dashCoolDown = 1f;
@@ -346,7 +349,11 @@ public class LV_PlayerMovement : MonoBehaviour
             else if (bulletColor == colors[2] && blueLock < 3)
             {
                 blueLock += 1;
+<<<<<<< HEAD
                 playerSpeed += 0.8f;
+=======
+                playerSpeed += .8f;
+>>>>>>> d694483865a4c910b31b16292881e119273aaad6
             }
 
             // player collects required type and number of bullets, show the key
