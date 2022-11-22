@@ -21,7 +21,12 @@ public class LV_PlayerMovement : MonoBehaviour
     private float playerSpeed;
 
 
-
+    public float activeSpeed = .5f;
+    public float dashSpeed;
+    public float dashLength = .5f, dashCoolDown = 1f;
+    private float dashCounter;
+    private float dashCoolCounter;
+    
     public HealthBar healthBar;
 
     // Progress Bar
@@ -99,11 +104,7 @@ public class LV_PlayerMovement : MonoBehaviour
 
     // Triangle shape skill 
     [Header("For triangle shape skill")]
-    public float activeSpeed = .5f;
-    public float dashSpeed;
-    public float dashLength = .5f; // dashCoolDown = 1f;
-    private float dashCounter;
-    private float dashCoolCounter;
+
 
     // Square shape skill 
     [Header("For Square shape skill")]
