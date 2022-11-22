@@ -47,19 +47,19 @@ public class UI_ShapeSkill : MonoBehaviour
         // UI use "Image"
         if (currentShape.name == "Circle")
         {
-            Debug.Log("Read player's shape = " + currentShape.name);
+            // Debug.Log("Read player's shape = " + currentShape.name);
             gameObject.GetComponent<Image>().sprite = skillSprite[0];
             cooldownTimeLimit = skillsCooldownSetup[0]; 
         }
         else if (currentShape.name == "Triangle")
         {
-            Debug.Log("Read player's shape = " + currentShape.name);
+            // Debug.Log("Read player's shape = " + currentShape.name);
             gameObject.GetComponent<Image>().sprite = skillSprite[1];
             cooldownTimeLimit = skillsCooldownSetup[1]; 
         }
         else if (currentShape.name == "Square")
         {
-            Debug.Log("Read player's shape = " + currentShape.name);
+            // Debug.Log("Read player's shape = " + currentShape.name);
             gameObject.GetComponent<Image>().sprite = skillSprite[2];
             cooldownTimeLimit = skillsCooldownSetup[2]; 
         }
