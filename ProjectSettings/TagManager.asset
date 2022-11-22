@@ -12,6 +12,8 @@ TagManager:
   - CrossWalls
   - CrossWall
   - CircleArea
+  - PaintBrush
+  - BulletPatrol
   layers:
   - Default
   - TransparentFX

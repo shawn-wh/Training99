@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class LV_ActiveSkill0 : MonoBehaviour
+public class UI_NextColor : MonoBehaviour
 {
     // -----------------------------------------------------------------------------
     // Skill0

@@ -90,10 +90,20 @@ public class LV_PlayerMovement : MonoBehaviour
     // Shape skills:
     [Header("Shape Related")]
     [SerializeField] private Sprite[] playerShapes = new Sprite[3];
-    [SerializeField] bool enableShapeChanging = false;  // Default is disable.
+    [SerializeField] private bool enableShapeChanging = false;  // Default is disable.
     // [SerializeField] private bool[] isShapeSkillEnabled = new bool[3];  // Default is false 
     private int shapeIdx = 0;
 
+    // Square shape skill 
+    [Header("For Square shape skill")]
+    [SerializeField] private int shootAmount = 8;
+    private Vector2 objMoveDirection;
+
+    [SerializeField] private float cooldownTime_skill1 = 3f;
+    [SerializeField] private float cooldownTime_skill2 = 3f;
+    [SerializeField] private float cooldownTime_skill3 = 3f;
+
+    private bool canUseSkill3 = true; 
 
     // For Warped Trap
     private Vector3 loadingRotation = new Vector3(0, 0, 30);
@@ -202,8 +212,9 @@ public class LV_PlayerMovement : MonoBehaviour
 
     private void ChangeShape()
     {
-        if (enableShapeChanging 
-            && (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))) 
+        // if (enableShapeChanging
+        //     && (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))) 
+        if (enableShapeChanging && Input.GetKeyDown(KeyCode.Q))
         {
             Debug.Log("Change Shape!");
             shapeIdx++;
@@ -458,8 +469,9 @@ public class LV_PlayerMovement : MonoBehaviour
     // Find the corresponding skill for each shape
     private void FindShapeSkill()
     {
-        if (enableShapeChanging 
-            && (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)))         
+        // if (enableShapeChanging 
+        //     && (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)))         
+        if (enableShapeChanging && Input.GetKeyDown(KeyCode.E))
         {
             // Check current player's shape
             Sprite currentShape = gameObject.GetComponent<SpriteRenderer>().sprite;
@@ -501,6 +513,21 @@ public class LV_PlayerMovement : MonoBehaviour
         }
         
     }
+    
+    public float[] GetShapeSkillsCooldown()
+    {
+        float[] skillsCooldownSetup = new float[3];
+        skillsCooldownSetup[0] = cooldownTime_skill1; 
+        skillsCooldownSetup[1] = cooldownTime_skill2; 
+        skillsCooldownSetup[2] = cooldownTime_skill3;
+        return skillsCooldownSetup; 
+    }
+
+    IEnumerator shapeSkillsCooldown(float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        canUseSkill3 = true;
+    }
 
     // Load the corresponding skill for each shape
     private void LoadSkill1()
@@ -533,6 +560,65 @@ public class LV_PlayerMovement : MonoBehaviour
 
     private void LoadSkill3()
     {
-        Debug.Log("Using Skill3 square");
+        // Debug.Log("Using Skill3 square");
+        if (canUseSkill3) 
+        {
+            ShootBrush();
+            // wait for cooldown 
+            canUseSkill3 = false;
+            StartCoroutine(shapeSkillsCooldown(cooldownTime_skill3));
+             
+        }
+    }
+
+    private void ShootBrush()
+    {
+        Color playerColor = gameObject.GetComponent<SpriteRenderer>().color;
+
+        float startAngle = 0f, endAngle = 360f;
+        float angleStep = (endAngle - startAngle) / shootAmount;    // spread in range
+        float angle = startAngle;  
+
+        for (int i = 0; i < shootAmount; i++)
+        {
+            // Radian Angle = (Degree Angle) x pi/ 180
+            float componentX = transform.position.x + Mathf.Cos((angle * Mathf.PI) / 180f);
+            float componentY = transform.position.y + Mathf.Sin((angle * Mathf.PI) / 180f);
+
+            Vector3 objMoveVector3 = new Vector3(componentX, componentY, 0f);
+            Vector2 objDirection = (objMoveVector3 - transform.position).normalized;
+
+            // Assign computation result to object
+            GameObject obj = LV_ObjectPool2.poolInstance.GetObjectFromPool();
+            obj.transform.position = transform.position;
+            
+            obj.transform.rotation = transform.rotation;
+            // obj.transform.rotation = Quaternion.FromToRotation(Vector3.up, objDirection);
+
+            // Change sprite based on player's current color
+            if (playerColor == colors[0])
+            {
+                Sprite redBrush = Resources.Load<Sprite>("Sprites/icons8-brush-64-red");  // Must exist in "Resources" folder
+                obj.GetComponent<SpriteRenderer>().sprite = redBrush;     
+            }
+            else if (playerColor == colors[1])
+            {
+                Sprite yellowBrush = Resources.Load<Sprite>("Sprites/icons8-brush-64-yellow");  // Must exist in "Resources" folder
+                obj.GetComponent<SpriteRenderer>().sprite = yellowBrush;   
+            }
+            else if (playerColor == colors[2]) 
+            {
+                Sprite blueBrush = Resources.Load<Sprite>("Sprites/icons8-brush-64-blue");  // Must exist in "Resources" folder
+                obj.GetComponent<SpriteRenderer>().sprite = blueBrush;  
+            }
+
+            obj.SetActive(true);
+            obj.GetComponent<LV_Brush>().SetMoveDirection(objDirection);
+            angle += angleStep;
+        }
+    }
+
+    public bool GetEnableShapeChanging() {
+        return enableShapeChanging;
     }
 } // class
