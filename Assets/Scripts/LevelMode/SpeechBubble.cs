@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class SpeechBubble : MonoBehaviour
@@ -28,6 +29,15 @@ public class SpeechBubble : MonoBehaviour
     public void SetSpeechText(string content)
     {
         speechText.text = "" + content.ToString();
+    }
+
+    public void ChangeEmoji(Sprite emotion)
+    {
+        // Link to the position of "PatrolFace" in Hierarchy
+        // Image[] childrenImages = gameObject.GetComponentInChildren<Image>();
+        // childrenImages.Last().sprite = emotion; 
+        gameObject.GetComponentInChildren<Image>().sprite = emotion; 
+        // Debug.Log("childrenImages  = " + childrenImages);
     }
 
 

@@ -23,7 +23,8 @@ public class LV_PlayerMovement : MonoBehaviour
 
 
     
-    public HealthBar healthBar;
+    // public HealthBar healthBar;  // old Red color HealthBar
+    public LV_HealthMeter healthBar;    // new HealthMeter that displays on Player
 
     // Progress Bar
     public ProgressBar progressBar;
@@ -102,7 +103,7 @@ public class LV_PlayerMovement : MonoBehaviour
     [Header("For triangle shape skill")]
     public float activeSpeed = .5f;
     public float dashSpeed;
-    public float dashLength = .5f, dashCoolDown = 1f;
+    public float dashLength = .5f; //  dashCoolDown = cooldownTime_skill2 
     private float dashCounter;
     private float dashCoolCounter;
 
@@ -190,11 +191,13 @@ public class LV_PlayerMovement : MonoBehaviour
         if (isInTrap)
         {
             transform.Rotate(loadingRotation * playerSpeed * Time.deltaTime);
+            healthBar.SetActive(false);     // Do not show healthMeter
         }
         else
         {
             // Rotate back to default:(0,0,0)
             transform.localRotation = Quaternion.identity;
+            healthBar.SetActive(true);     // Show healthMeter
         }
     }
 

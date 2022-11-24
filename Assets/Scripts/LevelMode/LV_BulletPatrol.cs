@@ -142,6 +142,7 @@ public class LV_BulletPatrol : MonoBehaviour
 
             // Show speech bubble
             bubbleObj.GetComponent<SpeechBubble>().SetSpeechText("Freeze!\n Don't move!");
+            bubbleObj.GetComponent<SpeechBubble>().ChangeEmoji(Resources.Load<Sprite>("Sprites/Emoji_angry"));
             bubbleObj.transform.position = Vector2.MoveTowards(transform.position, target.position, towardStep); 
         }
         // When playerColor is the same as currentColor
@@ -158,6 +159,7 @@ public class LV_BulletPatrol : MonoBehaviour
 
             // Show speech bubble
             bubbleObj.GetComponent<SpeechBubble>().SetSpeechText("Don't eat me!");
+            bubbleObj.GetComponent<SpeechBubble>().ChangeEmoji(Resources.Load<Sprite>("Sprites/Emoji_scared"));
             bubbleObj.transform.position = Vector2.MoveTowards(transform.position, target.position, towardStep); 
         }
 

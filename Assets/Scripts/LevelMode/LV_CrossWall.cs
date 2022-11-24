@@ -14,9 +14,9 @@ public class LV_CrossWall : MonoBehaviour
     
     [Header("To PassThroughWallButton")]
     public float timer = 5;
-    private float timeRemaining = 5;
+    // private float timeRemaining = 5;
     // private bool timerIsRunning = false;
-    private bool isUsingSkill = false;
+    // private bool isUsingSkill = false;
     
     public LV_ActiveSkill1 skill1;
     // public CrossPowerBar crossPowerBar;
