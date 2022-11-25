@@ -86,41 +86,5 @@ public class LV_ActiveSkillsTutorial: MonoBehaviour
                 SceneManager.LoadScene("LevelCleared");
             }
         }
-        
-        
-        
-        
-        
-        
-        
-        // if (textIndex == 2) {
-            for (int i = 0; i < bulletGenerator.Length; i++)
-            {
-                LV_BulletGenerator bg = bulletGenerator[i];
-                if (bg.CheckTime())
-                {
-                    Vector3 pos = bg.GetRandomPos();
-
-                    //GameObject bullet = LV_BulletGenerator.bulletsPoolInstance.GetPoolObj();
-                    GameObject bullet = bg.GetPoolObj();
-                    if (bullet != null)
-                    {
-                        bullet.SetActive(true);
-                        bullet.transform.position = pos;
-                        //bullet.GetComponent<SpriteRenderer>().color = colors[Random.Range(0, colors.Length)];
-                        //bullet.GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0, sprites.Length)];
-                    }
-
-                    bg.NextTime();
-                }
-            }
-        //     if (key.GetComponent<Renderer> ().material.color == new Color(0, 0, 0, 255)) {
-        //         textIndex++;
-        //     }
-        // } else if (textIndex == 3) {
-        //     if (door.GetComponent<Renderer> ().material.color == new Color(0, 0, 0, 255)) {
-        //         textIndex++;
-        //     }
-        // }
     }
 }
