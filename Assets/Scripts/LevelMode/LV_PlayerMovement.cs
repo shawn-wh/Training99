@@ -119,6 +119,11 @@ public class LV_PlayerMovement : MonoBehaviour
     private bool isInTrap = false;
     private Sprite previousSprite;
 
+
+    // Damage Effect
+    public int flickerAmnt;
+    public float flickerDuration;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -148,6 +153,9 @@ public class LV_PlayerMovement : MonoBehaviour
         nextColor.a = 1f;
         yellowLock = 0;
         blueLock = 0;
+
+        flickerAmnt = 3;
+        flickerDuration = 0.1f;
 
         //initialize nextColorText
         // RefreshNextColorText();
@@ -304,7 +312,7 @@ public class LV_PlayerMovement : MonoBehaviour
             m_Hp += damage;
             currentHealth = m_Hp;
             healthBar.SetHealth(currentHealth);
-
+            StartCoroutine(DamageFlicker());
 
             // Show damage text
             FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
@@ -660,5 +668,19 @@ public class LV_PlayerMovement : MonoBehaviour
 
     public bool GetEnableShapeChanging() {
         return enableShapeChanging;
+    }
+    IEnumerator DamageFlicker()
+    {
+        Color playerBlink = gameObject.GetComponent<SpriteRenderer>().color;
+        Color playerOriginal = gameObject.GetComponent<SpriteRenderer>().color;
+        playerBlink.a = 0.4f;
+        for (int i = 0; i < flickerAmnt; i++)
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = playerBlink;
+            yield return new WaitForSeconds(flickerDuration);
+            gameObject.GetComponent<SpriteRenderer>().color = playerOriginal;
+            yield return new WaitForSeconds(flickerDuration);
+        }
+        
     }
 } // class
