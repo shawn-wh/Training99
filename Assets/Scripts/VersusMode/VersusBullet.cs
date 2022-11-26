@@ -60,7 +60,11 @@ public class VersusBullet : MonoBehaviour, IColor
             }
             else
             {
-                Destroy(gameObject);
+                if (player.m_Hp > 1)
+                {
+                    Destroy(gameObject);
+                }
+                
             }
         }
     }

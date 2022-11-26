@@ -28,7 +28,7 @@ public class VersusPlayer : MonoBehaviour, IColor
 
     private Color color;
     private float speed;
-    private int m_Hp;
+    public int m_Hp { get; private set; }
     private int m_Energy;
     
     [SerializeField] private HealthBar healthBar;
