@@ -476,6 +476,11 @@ public class LV_PlayerMovement : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().sprite = previousSprite;
     }
 
+    public bool TrapStatus()
+    {
+        return isInTrap;
+    }
+
     private void SetPlayerShapes()
     {
         playerShapes[0] = Resources.Load<Sprite>("Sprites/Circle");         // Must exist in "Resources" folder
@@ -669,6 +674,7 @@ public class LV_PlayerMovement : MonoBehaviour
     public bool GetEnableShapeChanging() {
         return enableShapeChanging;
     }
+
     IEnumerator DamageFlicker()
     {
         Color playerBlink = gameObject.GetComponent<SpriteRenderer>().color;

@@ -87,7 +87,7 @@ public class LV_HealthMeter : MonoBehaviour
 
         // damage ration = fill amount
         damageRatio.fillAmount =  (maxHP - currentHP) / maxHP;
-        Debug.Log("damageRatio = " + damageRatio.fillAmount);  
+        // Debug.Log("damageRatio = " + damageRatio.fillAmount);  
     }
 
     public void SetActive(bool displayStatus) 
