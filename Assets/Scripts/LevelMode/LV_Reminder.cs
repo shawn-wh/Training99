@@ -9,7 +9,7 @@ public class LV_Reminder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        reminderPrefab.SetActive(false);
     }
 
     // Update is called once per frame
@@ -21,7 +21,8 @@ public class LV_Reminder : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
-        {
+        {   
+            Debug.Log("Encounter Reminder trigger.");
             reminderPrefab.SetActive(true);
             StartCoroutine(TimeDelay());
         }
@@ -29,7 +30,7 @@ public class LV_Reminder : MonoBehaviour
 
     IEnumerator TimeDelay()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(6);
         reminderPrefab.SetActive(false);
     }
 }

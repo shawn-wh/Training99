@@ -29,6 +29,12 @@ public class UI_NextColor : MonoBehaviour
 
     void GetNextColor()
     {
+        // If player is in the trap, no need to get next UI.
+        if (player.GetComponent<LV_PlayerMovement>().TrapStatus() == true)
+        {
+            return;
+        }
+
         // detecting playerColor
         playerColor = player.GetComponent<SpriteRenderer>().color;
 

@@ -38,6 +38,12 @@ public class UI_NextShape : MonoBehaviour
 
     void GetNextShape()
     {
+        // If player is in the trap, no need to get next UI.
+        if (player.GetComponent<LV_PlayerMovement>().TrapStatus() == true)
+        {
+            return;
+        }
+
         // Check current player's shape
         Sprite currentShape = player.GetComponent<SpriteRenderer>().sprite;
 

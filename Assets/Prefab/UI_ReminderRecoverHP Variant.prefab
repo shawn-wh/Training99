@@ -61,11 +61,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5973871513117973452, guid: afe88f8af525c4965ae1f62f7ff7bd06, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 500
+      value: 550
       objectReference: {fileID: 0}
     - target: {fileID: 5973871513117973452, guid: afe88f8af525c4965ae1f62f7ff7bd06, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 120
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5973871513117973452, guid: afe88f8af525c4965ae1f62f7ff7bd06, type: 3}
       propertyPath: m_LocalPosition.x
@@ -118,6 +118,10 @@ PrefabInstance:
     - target: {fileID: 5973871513117973455, guid: afe88f8af525c4965ae1f62f7ff7bd06, type: 3}
       propertyPath: m_Name
       value: UI_ReminderRecoverHP Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5973871513117973455, guid: afe88f8af525c4965ae1f62f7ff7bd06, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5973871513209494749, guid: afe88f8af525c4965ae1f62f7ff7bd06, type: 3}
       propertyPath: m_text
