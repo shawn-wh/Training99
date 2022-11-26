@@ -12,7 +12,7 @@ public class VersusGameOverManager : MonoBehaviour
 
     void Start()
     {
-        Winner.text = VersusGameManager.winner;
+        Winner.text = "";
     }
 
     public void LoadScene(string sceneName)
