@@ -28,13 +28,13 @@ public class VersusPlayer : MonoBehaviour, IColor
 
     private Color color;
     private float speed;
-    private int m_Hp;
+    public int m_Hp { get; private set; }
     private int m_Energy;
     
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private HealthBar energyBar;
     [SerializeField] private VersusGameManager manager;
-    [SerializeField] private GameObject floatingTextPrefab; // Prefab to show damage/collectable text
+    [SerializeField] private FloatingText floatingTextPrefab; // Prefab to show damage/collectable text
 
     // Start is called before the first frame update
     void Start()
@@ -142,7 +142,7 @@ public class VersusPlayer : MonoBehaviour, IColor
 
         Color colllisionColor = collision.gameObject.GetComponent<IColor>().Color;
 
-        FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
+        FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity, manager.printerNode.transform);
         if (colllisionColor == OrignalColor) 
         {
             m_Energy += 1;
@@ -158,9 +158,9 @@ public class VersusPlayer : MonoBehaviour, IColor
         // Game over condition
         if (m_Hp <= 0)
         {
-            VersusGameManager.winner = Opponent.name;
-            manager.SendForm();
-            SceneManager.LoadScene("VersusGameOver");
+            manager.SendForm(Opponent.name);
+            manager.ShowGameOver(Opponent);
+            
         }
         
         if (m_Energy >= manager.Energy_max)
