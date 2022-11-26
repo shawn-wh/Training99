@@ -313,6 +313,7 @@ public class LV_PlayerMovement : MonoBehaviour
             currentHealth = m_Hp;
             healthBar.SetHealth(currentHealth);
             StartCoroutine(DamageFlicker());
+            gameObject.GetComponent<SpriteRenderer>().color = playerColor;
 
             // Show damage text
             FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
