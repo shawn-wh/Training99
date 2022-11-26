@@ -6,6 +6,8 @@ using TMPro;
 
 public class VersusGameManager : MonoBehaviour
 {
+    public VersusCameraController MainCamera;
+    
     [Header("Prefabs")]
     [SerializeField] private CreateArea[] createAreas;
     [SerializeField] private VersusBullet clone;
@@ -70,6 +72,14 @@ public class VersusGameManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.U))
         {
             propPanel2.gameObject.SetActive(true);
+        }
+        else if (Input.GetKeyDown(KeyCode.R))
+        {
+            MainCamera.StartTransition(3.0f, player1.transform.position);
+        }
+        else if (Input.GetKeyDown(KeyCode.T))
+        {
+            MainCamera.Reset();
         }
         
         

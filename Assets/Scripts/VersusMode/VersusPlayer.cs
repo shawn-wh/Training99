@@ -160,7 +160,11 @@ public class VersusPlayer : MonoBehaviour, IColor
         {
             VersusGameManager.winner = Opponent.name;
             manager.SendForm();
-            SceneManager.LoadScene("VersusGameOver");
+            Time.timeScale = 0f;
+            // SceneManager.LoadScene("VersusGameOver");
+            manager.MainCamera.StartTransition(3f, transform.position);
+            
+            
         }
         
         if (m_Energy >= manager.Energy_max)
