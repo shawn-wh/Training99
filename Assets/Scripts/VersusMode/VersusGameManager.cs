@@ -94,14 +94,6 @@ public class VersusGameManager : MonoBehaviour
         {
             propPanel2.gameObject.SetActive(true);
         }
-        else if (Input.GetKeyDown(KeyCode.R))
-        {
-            MainCamera.StartTransition(3.0f, player1.transform.position);
-        }
-        else if (Input.GetKeyDown(KeyCode.T))
-        {
-            MainCamera.Reset();
-        }
         
         
         foreach (CreateArea ca in createAreas)
