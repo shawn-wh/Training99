@@ -52,7 +52,7 @@ public class LV_WarpedTrap : MonoBehaviour
 
     IEnumerator CreateWarning()
     {
-        player.GetComponent<LV_PlayerMovement>().SetWarning("Trap!\n No color/shape changing.");
+        player.GetComponent<LV_PlayerMovement>().SetWarning("The floor is lava!\n No color/shape changing.");
         yield return new WaitForSeconds(5);     // Delay for 4 seconds
         canShow = true;
     }
