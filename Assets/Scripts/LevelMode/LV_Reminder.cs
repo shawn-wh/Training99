@@ -22,7 +22,7 @@ public class LV_Reminder : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {   
-            Debug.Log("Encounter Reminder trigger.");
+            // Debug.Log("Encounter Reminder trigger.");
             reminderPrefab.SetActive(true);
             StartCoroutine(TimeDelay());
         }

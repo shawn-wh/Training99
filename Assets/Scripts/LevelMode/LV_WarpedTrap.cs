@@ -15,7 +15,7 @@ public class LV_WarpedTrap : MonoBehaviour
         // Find target player
         if (player == null)
         {
-            player = GameObject.FindGameObjectsWithTag("Player")[0];
+            player = GameObject.FindGameObjectWithTag("Player");
             originalSpeed = player.GetComponent<LV_PlayerMovement>().GetPlayerSpeed();
         }        
     }
