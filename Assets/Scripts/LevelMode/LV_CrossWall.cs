@@ -34,7 +34,7 @@ public class LV_CrossWall : MonoBehaviour
         //{
         //    crossWall.GetComponent<SpriteRenderer>().color = wallColors[Random.Range(0, wallColors.Length)];
         //}
-        Debug.Log("walls: " + crossWalls.Length);
+        // Debug.Log("walls: " + crossWalls.Length);
 
     }
 
@@ -85,7 +85,7 @@ public class LV_CrossWall : MonoBehaviour
     {
         foreach(GameObject crossWall in crossWalls)
         {
-            Debug.Log("Player: " + player.GetComponent<SpriteRenderer>().color);
+            // Debug.Log("Player: " + player.GetComponent<SpriteRenderer>().color);
 
 
             //if (isSameColor(player, crossWall))

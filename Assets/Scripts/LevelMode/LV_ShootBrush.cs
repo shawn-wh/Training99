@@ -37,10 +37,6 @@ public class LV_ShootBrush : MonoBehaviour
             obj.transform.position = transform.position;
             
             obj.transform.rotation = transform.rotation;
-            // obj.transform.rotation = Quaternion.FromToRotation(Vector3.up, objDirection);
-
-            // obj.transform.localEulerAngles = new Vector3(0,0,angle);
-            // obj.transform.rotation = Quaternion.Euler(0,0,angle);
 
             obj.SetActive(true);
             obj.GetComponent<LV_Brush>().SetMoveDirection(objDirection);
