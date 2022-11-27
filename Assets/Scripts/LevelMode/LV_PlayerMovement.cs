@@ -123,6 +123,8 @@ public class LV_PlayerMovement : MonoBehaviour
     // Damage Effect
     public int flickerAmnt;
     public float flickerDuration;
+    public bool canTakeDamage;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -156,6 +158,8 @@ public class LV_PlayerMovement : MonoBehaviour
 
         flickerAmnt = 3;
         flickerDuration = 0.1f;
+        canTakeDamage = true;
+
 
         //initialize nextColorText
         // RefreshNextColorText();
@@ -188,11 +192,13 @@ public class LV_PlayerMovement : MonoBehaviour
         ChangeColor();
         ChangeShape();
         // RefreshNextColorText();
-        
+    
         FindShapeSkill();
         TrappedEffect();
     }
 
+    
+    
     private void TrappedEffect()
     {
         // Rotate transform when in WarpedTrap
@@ -307,13 +313,16 @@ public class LV_PlayerMovement : MonoBehaviour
 
         int damage = -1;
         // Different color, player take damage
-        if (playerColor != bulletColor || bulletColor.Equals(Color.black))
+        if ( (playerColor != bulletColor || bulletColor.Equals(Color.black)) && canTakeDamage == true)
         {
             m_Hp += damage;
             currentHealth = m_Hp;
             healthBar.SetHealth(currentHealth);
-            StartCoroutine(DamageFlicker());
-            gameObject.GetComponent<SpriteRenderer>().color = playerColor;
+            //StartCoroutine(DamageFlicker());
+            GetComponent<ParticleSystem>().Play();
+           
+
+
 
             // Show damage text
             FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
@@ -674,20 +683,5 @@ public class LV_PlayerMovement : MonoBehaviour
 
     public bool GetEnableShapeChanging() {
         return enableShapeChanging;
-    }
-
-    IEnumerator DamageFlicker()
-    {
-        Color playerBlink = gameObject.GetComponent<SpriteRenderer>().color;
-        Color playerOriginal = gameObject.GetComponent<SpriteRenderer>().color;
-        playerBlink.a = 0.4f;
-        for (int i = 0; i < flickerAmnt; i++)
-        {
-            gameObject.GetComponent<SpriteRenderer>().color = playerBlink;
-            yield return new WaitForSeconds(flickerDuration);
-            gameObject.GetComponent<SpriteRenderer>().color = playerOriginal;
-            yield return new WaitForSeconds(flickerDuration);
-        }
-        
     }
 } // class
