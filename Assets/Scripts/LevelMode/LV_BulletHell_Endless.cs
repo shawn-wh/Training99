@@ -10,8 +10,8 @@ public class LV_BulletHell_Endless : MonoBehaviour
     private float angle = 0f;  
     [SerializeField] private float angleStep = 20f;
     [SerializeField] private int pattern1_or_2 = 1;
+    [SerializeField] private float startShootingTime = 5f;
     [SerializeField] private float bulletGenerateInterval = 0.5f;
- 
 
     private Color[] colors = { new Color32(220,38,127,255), new Color32(255,176,0,255), new Color32(100,143,255,255)};   // Red, Yellow, Blue;
     private int colorIdx = 0;
@@ -22,14 +22,14 @@ public class LV_BulletHell_Endless : MonoBehaviour
     void Start()
     {
         // Starting in 2 seconds, launched every 0.3 seconds
-        float startTime = 5f;  
+          
         if (pattern1_or_2 == 1)
         {
-            InvokeRepeating("ShootPattern1", startTime, bulletGenerateInterval);
+            InvokeRepeating("ShootPattern1", startShootingTime, bulletGenerateInterval);
         }
         else 
         {
-            InvokeRepeating("ShootPattern2", startTime, bulletGenerateInterval); 
+            InvokeRepeating("ShootPattern2", startShootingTime, bulletGenerateInterval); 
         }
 
     }
@@ -40,6 +40,8 @@ public class LV_BulletHell_Endless : MonoBehaviour
 
     }
 
+
+    // Spiral pattern
     private void ShootPattern1()
     {
         // Unity Angle definition = clockwised
@@ -99,6 +101,7 @@ public class LV_BulletHell_Endless : MonoBehaviour
         }
     }
 
+    // Circle pattern
     private void ShootPattern2()
     {
         int shootAmount = (int)(360f / angleStep);

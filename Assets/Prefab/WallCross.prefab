@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df677d2b8e88547a480614111b0865fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reminderPrefab: {fileID: 833228513243921816, guid: 253d25149dc8341e7bd0d49196b1d31b, type: 3}
+  reminderPrefab: {fileID: 4681554721663916674, guid: 253d25149dc8341e7bd0d49196b1d31b, type: 3}
 --- !u!58 &3135102849727501625
 CircleCollider2D:
   m_ObjectHideFlags: 0
