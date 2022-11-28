@@ -48,22 +48,22 @@ public class LV_HealthMeter : MonoBehaviour
     void DetectPlayerShape()
     {
         playerShape = player.GetComponent<SpriteRenderer>().sprite;
+        // Only set damageRatio sprite in the following 3 cases
         if (playerShape.name == "Circle")
         {
             damageRatio.GetComponent<Image>().sprite = shapes[0];
         }
-        else if (playerShape.name == "Triangle")
+        
+        if (playerShape.name == "Triangle")
         {
             damageRatio.GetComponent<Image>().sprite = shapes[1];
         }
-        else if (playerShape.name == "Square")
+        
+        if (playerShape.name == "Square")
         {
             damageRatio.GetComponent<Image>().sprite = shapes[2];
         }
-        else
-        {
-            Debug.Log("Error! Cannot find the corresponding shape.");
-        }
+
     }
 
     public void SetMaxHealth(int maxValue)

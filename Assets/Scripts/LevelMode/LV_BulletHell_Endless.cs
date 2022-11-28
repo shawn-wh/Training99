@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LV_BulletHell : MonoBehaviour
+public class LV_BulletHell_Endless : MonoBehaviour
 {
 
     // private Sprite ball;
@@ -62,7 +62,10 @@ public class LV_BulletHell : MonoBehaviour
 
         // Get actual bullet object
         obj.SetActive(true);
-        obj.GetComponent<LV_BallBounce>().SetMoveDirection(objDirection);
+
+        //*********  Endless  ***********
+        obj.GetComponent<LV_BallBounce_Endless>().SetMoveDirection(objDirection); 
+        //*********  Endless  ***********      
 
         // Set color
         if (colorIdx == 0)
@@ -115,8 +118,11 @@ public class LV_BulletHell : MonoBehaviour
 
             // Get actual bullet object
             obj.SetActive(true);
-            obj.GetComponent<LV_BallBounce>().SetMoveDirection(objDirection);
-            
+
+            //*********  Endless  ***********
+            obj.GetComponent<LV_BallBounce_Endless>().SetMoveDirection(objDirection); 
+            //*********  Endless  ***********  
+
             // Set color
             obj.GetComponent<SpriteRenderer>().color = colors[colorIdx];
             angle += angleStep;

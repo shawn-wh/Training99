@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7710911143777204224}
   - component: {fileID: 1274839539080227644}
   - component: {fileID: 7780179017201864753}
-  - component: {fileID: 2911455081663475279}
+  - component: {fileID: 6016721419107246051}
   m_Layer: 0
-  m_Name: BallBounce
+  m_Name: BallBounce_Endless
   m_TagString: Bullets
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,7 +125,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &2911455081663475279
+--- !u!114 &6016721419107246051
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,9 +134,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2630343498076987187}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05a194f6fee02462fbb00c3205010191, type: 3}
+  m_Script: {fileID: 11500000, guid: eb12b0d1444324582a034781d833f0c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  accelateInterval: 10
 --- !u!1 &4119526008137226731
 GameObject:
   m_ObjectHideFlags: 0
