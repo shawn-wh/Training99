@@ -151,7 +151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1863644498841253125
 Transform:
   m_ObjectHideFlags: 0
@@ -165,7 +165,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3318553283824375943}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1278490998781207516
 SpriteRenderer:
@@ -254,9 +254,9 @@ Transform:
   m_LocalScale: {x: 86.39999, y: 86.39999, z: 107.999985}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3708659967017745593}
   - {fileID: 1863644498841253125}
   - {fileID: 5419049037321122495}
-  - {fileID: 3708659967017745593}
   - {fileID: 8990314821167515447}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -5275,7 +5275,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3318553283824375943}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2943056256761541419
 MonoBehaviour:
@@ -5532,7 +5532,7 @@ GameObject:
   - component: {fileID: 4095146862353385750}
   m_Layer: 0
   m_Name: playerHalo
-  m_TagString: CircleArea
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5550,7 +5550,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3318553283824375943}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4095146862353385750
 SpriteRenderer:
