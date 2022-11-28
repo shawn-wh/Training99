@@ -17,9 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelShapeChanging.unity
     guid: a9e6b48421e5644a4add1a55c087f9a3
-  - enabled: 1
-    path: Assets/Scenes/Level1-1.unity
-    guid: fc2cf96b24d964362a39168283bb2000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Level0.unity
     guid: 4b6c4d21f07644298b2b4747d8dd6619
@@ -68,6 +68,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level7.unity
     guid: 897d55fcae3fc4035a741da2844219a9
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: 1c62da44dacee466b8a5305fb621ce1a
+  - enabled: 1
+    path: Assets/Scenes/Level8_Backup.unity
+    guid: 31dc311e84a484492a7939eff2d2fd59
+  - enabled: 1
+    path: Assets/Scenes/Level9.unity
+    guid: 60b9dbdd0cf6e514392a0f43155e307d
+  - enabled: 1
+    path: Assets/Scenes/Level10.unity
+    guid: 93ed498a75a4043c6858bea3ce3b0dd7
+  - enabled: 1
+    path: Assets/Scenes/Level_ActiveSkills.unity
+    guid: 0ff91f1916c2647ca8ae408214bef5e0
   - enabled: 1
     path: Assets/Scenes/Level6.unity
     guid: 281b4107f5bdc47ae809bcb3e04de756
