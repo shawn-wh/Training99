@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class LV_BallBounce : MonoBehaviour
+public class LV_BallBounce_Endless : MonoBehaviour
 {
     private Vector2 moveDirection;
     private float moveSpeed = 3f;
@@ -10,6 +11,10 @@ public class LV_BallBounce : MonoBehaviour
     
     private Color[] colors = { new Color32(220,38,127,255), new Color32(255,176,0,255), new Color32(100,143,255,255)};   // Red, Yellow, Blue;
 
+    //*********  Endless  ***********
+    public float accelateInterval = 10.0f;  // Tune this
+    //*********  Endless  ***********
+    
     // To allow bounce after hitting wall
     Rigidbody2D rb;
     // Vector3 ballVelocity;
@@ -37,8 +42,15 @@ public class LV_BallBounce : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.Translate(moveDirection * Time.fixedDeltaTime * moveSpeed * 0.3f);
-        // ballVelocity = rb.velocity;
+        //*********  Endless  ***********
+        float startSpeed = 2f;
+        
+        moveSpeed = startSpeed; 
+        float accelation = (float)(Math.Floor(Time.timeSinceLevelLoad / accelateInterval));  // accelates every  interval
+        moveSpeed += accelation; 
+
+        transform.Translate(moveDirection * Time.fixedDeltaTime * moveSpeed * 0.3f); // previous
+        //*********  Endless  ***********
 
         // Debug.Log("rb.velocity = " + rb.velocity);
     }

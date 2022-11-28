@@ -15,6 +15,9 @@ public class LV_GameManager : MonoBehaviour
     public Color[] colors = new Color[3];
     public Sprite[] sprites = new Sprite[3];
     
+    // Whether show dialogue box or not
+    [SerializeField] private bool showingDialogueBox = true;
+    
     // Load the dialogue box 
     public GameObject dialogueBox;
 
@@ -22,7 +25,10 @@ public class LV_GameManager : MonoBehaviour
     void Start()
     {
         // Load dialogue box
-        dialogueBox.SetActive(true);
+        if (showingDialogueBox)
+        {
+            dialogueBox.SetActive(true);
+        }
     }
 
     // Update is called once per frame

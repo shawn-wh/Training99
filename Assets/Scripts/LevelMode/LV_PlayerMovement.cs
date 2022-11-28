@@ -111,7 +111,7 @@ public class LV_PlayerMovement : MonoBehaviour
     [Header("For Square shape skill")]
     [SerializeField] private int shootAmount = 8;
     private Vector2 objMoveDirection;
-
+    private Sprite[] paintBrushes = new Sprite[3]; 
 
 
     // For Warped Trap
@@ -129,6 +129,11 @@ public class LV_PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (colors.Length == 0)
+        {
+            Debug.Log("Error! Player's colors are not given.");
+        }
+
         sRenderer = GetComponent<SpriteRenderer>();
         if (movingCameraBound == null )
         {
@@ -168,6 +173,8 @@ public class LV_PlayerMovement : MonoBehaviour
         // For circle skill
         InitCircleArea();
 
+        // Square skilll
+        SetPaintBrushes();
     }
 
     
@@ -187,7 +194,7 @@ public class LV_PlayerMovement : MonoBehaviour
         // transform.position = pos;
 
         // Time.timeSinceLevelLoad  will reset time when loading new scence.
-        // m_TimeText.text = "Survived: " + Time.timeSinceLevelLoad.ToString("0.0");
+        m_TimeText.text = "Survived: " + Time.timeSinceLevelLoad.ToString("0.0");
 
         ChangeColor();
         ChangeShape();
@@ -195,9 +202,10 @@ public class LV_PlayerMovement : MonoBehaviour
     
         FindShapeSkill();
         TrappedEffect();
+    
     }
 
-    
+
     
     private void TrappedEffect()
     {
@@ -313,7 +321,7 @@ public class LV_PlayerMovement : MonoBehaviour
 
         int damage = -1;
         // Different color, player take damage
-        if ( (playerColor != bulletColor || bulletColor.Equals(Color.black)) && canTakeDamage == true)
+        if ( (playerColor != bulletColor || bulletColor.Equals(Color.black))) // && canTakeDamage == true)
         {
             m_Hp += damage;
             currentHealth = m_Hp;
@@ -645,34 +653,29 @@ public class LV_PlayerMovement : MonoBehaviour
         for (int i = 0; i < shootAmount; i++)
         {
             // Radian Angle = (Degree Angle) x pi/ 180
-            float componentX = transform.position.x + Mathf.Cos((angle * Mathf.PI) / 180f);
-            float componentY = transform.position.y + Mathf.Sin((angle * Mathf.PI) / 180f);
+            float componentX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f); // Unity angle is clockwised to 12.
+            float componentY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);
 
             Vector3 objMoveVector3 = new Vector3(componentX, componentY, 0f);
             Vector2 objDirection = (objMoveVector3 - transform.position).normalized;
 
             // Assign computation result to object
-            GameObject obj = LV_ObjectPool2.poolInstance.GetObjectFromPool();
+            GameObject obj = LV_ObjectPool2.poolInstance.GetObjectFromPool(); // Pool3 for BallBounce, Pool2 for paint Brush
             obj.transform.position = transform.position;
+            obj.transform.rotation = transform.rotation; 
             
-            obj.transform.rotation = transform.rotation;
-            // obj.transform.rotation = Quaternion.FromToRotation(Vector3.up, objDirection);
-
             // Change sprite based on player's current color
             if (playerColor == colors[0])
             {
-                Sprite redBrush = Resources.Load<Sprite>("Sprites/icons8-brush-64-red");  // Must exist in "Resources" folder
-                obj.GetComponent<SpriteRenderer>().sprite = redBrush;     
+                obj.GetComponent<SpriteRenderer>().sprite = paintBrushes[0];     
             }
             else if (playerColor == colors[1])
             {
-                Sprite yellowBrush = Resources.Load<Sprite>("Sprites/icons8-brush-64-yellow");  // Must exist in "Resources" folder
-                obj.GetComponent<SpriteRenderer>().sprite = yellowBrush;   
+                obj.GetComponent<SpriteRenderer>().sprite = paintBrushes[1];   
             }
             else if (playerColor == colors[2]) 
             {
-                Sprite blueBrush = Resources.Load<Sprite>("Sprites/icons8-brush-64-blue");  // Must exist in "Resources" folder
-                obj.GetComponent<SpriteRenderer>().sprite = blueBrush;  
+                obj.GetComponent<SpriteRenderer>().sprite = paintBrushes[2];  
             }
 
             obj.SetActive(true);
@@ -680,6 +683,14 @@ public class LV_PlayerMovement : MonoBehaviour
             angle += angleStep;
         }
     }
+
+    private void SetPaintBrushes()
+    {
+        paintBrushes[0] = Resources.Load<Sprite>("Sprites/icons8-brush-64-red");  // Must exist in "Resources" folder
+        paintBrushes[1] = Resources.Load<Sprite>("Sprites/icons8-brush-64-yellow");  // Must exist in "Resources" folder
+        paintBrushes[2] = Resources.Load<Sprite>("Sprites/icons8-brush-64-blue");  // Must exist in "Resources" folder
+        
+    }    
 
     public bool GetEnableShapeChanging() {
         return enableShapeChanging;

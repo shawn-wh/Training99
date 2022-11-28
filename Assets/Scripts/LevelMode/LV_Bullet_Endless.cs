@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
-public class LV_Bullet : MonoBehaviour
+public class LV_Bullet_Endless : MonoBehaviour
 {
     private GameObject targetPlayer = null;
 
@@ -13,7 +14,13 @@ public class LV_Bullet : MonoBehaviour
     private Color _color;
     private SpriteRenderer spriteRenderer;
     
-    
+            
+    //*********  Endless  ***********
+    // [Endless] player change rate
+    private float[] speedSetup = {1, 1.5f, 2, 2.5f, 3, 3.5f, 4, 4.5f, 5, 5.5f, 6, 6.5f, 7, 7.5f, 8};
+    public float accelateInterval = 6.0f;  // Tune this
+    //*********  Endless  ***********
+
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +53,22 @@ public class LV_Bullet : MonoBehaviour
     // FixedUpdate is called once every 0.02 seconds
     void FixedUpdate()    
     {
-        transform.Translate(Vector3.up * Time.fixedDeltaTime * bulletSpeed * 0.3f);
+        //*********  Endless  ***********
+        float startSpeed = 1f;
+        
+        bulletSpeed = startSpeed; 
+        float accelation = (float)(Math.Floor(Time.timeSinceLevelLoad / accelateInterval));  // accelates every  interval
+        bulletSpeed += accelation; 
+
+        // if (Time.timeSinceLevelLoad >= 10.0) {
+        //     bulletSpeed = 16;
+        // }else {
+        //     bulletSpeed = speedSetup[Convert.ToInt32(Math.Floor(Time.timeSinceLevelLoad / 20.0))];
+        // }
+
+        // transform.Translate(Vector3.up * Time.fixedDeltaTime * bulletSpeed * 0.3f); // previous 
+        transform.Translate(Vector3.up * Time.fixedDeltaTime * bulletSpeed); // Endless 
+        //*********  Endless  ***********
 
         liveTime -= Time.fixedDeltaTime;
         if (liveTime <= 0)
