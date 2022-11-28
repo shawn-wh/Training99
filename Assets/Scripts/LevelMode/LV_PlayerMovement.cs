@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class LV_PlayerMovement : MonoBehaviour
 {
-
+    // modify level menu ui
     // colors array: red, yellow, blue ; // set aphla = 1 = 255
     [SerializeField] Color[] colors = { new Color32(220,38,127,255), new Color32(255,176,0,255), new Color32(100,143,255,255)};   // Red, Yellow, Blue;
     
