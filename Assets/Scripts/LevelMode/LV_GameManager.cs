@@ -20,6 +20,8 @@ public class LV_GameManager : MonoBehaviour
     
     // Load the dialogue box 
     public GameObject dialogueBox;
+    
+    public static bool IsGameOver = false;
 
     // Start is called before the first frame update
     void Start()

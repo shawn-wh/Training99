@@ -303,6 +303,7 @@ public class LV_PlayerMovement : MonoBehaviour
         dm.Send(currentLevel, "-1");
         Destroy(dm);
 
+        LV_GameManager.IsGameOver = true;
         Time.timeScale = 0f;
         GameOverPanel.SetActive(true);
         MainCamera.StartTransition(3f, transform.position);
