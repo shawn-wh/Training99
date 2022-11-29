@@ -128,6 +128,9 @@ public class LV_PlayerMovement : MonoBehaviour
     public float flickerDuration;
     public bool canTakeDamage;
     
+    public LV_CameraController MainCamera;
+    public GameObject GameOverPanel;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -296,24 +299,27 @@ public class LV_PlayerMovement : MonoBehaviour
     private void GameOver_LevelMode()
     {
         DataManager dm = gameObject.GetComponent<DataManager>();
-        // Debug.Log("player dead time: " + Time.timeSinceLevelLoad.ToString("0.0"));
         string currentLevel = SceneManager.GetActiveScene().name;
         dm.Send(currentLevel, "-1");
         Destroy(dm);
-        gameObject.SetActive(false);
-        SceneManager.LoadScene("LV_GameOver");
+
+        Time.timeScale = 0f;
+        GameOverPanel.SetActive(true);
+        MainCamera.StartTransition(3f, transform.position);
     }
 
     private void GameOver_EndlessMode()
     {
         DataManager dm = gameObject.GetComponent<DataManager>();
-        // Debug.Log(Time.timeSinceLevelLoad.ToString("0.0"));
         float endlessTimeScore =  Time.timeSinceLevelLoad;
         // endlessTimeScore += score;   // use survived time only 
         GameManager.endlessTimeScore = endlessTimeScore;
         dm.Send("Endless", endlessTimeScore.ToString("0.0"));
         Destroy(dm);
-        SceneManager.LoadScene("GameOver");        
+
+        Time.timeScale = 0f;
+        GameOverPanel.SetActive(true);
+        MainCamera.StartTransition(3f, transform.position); 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
