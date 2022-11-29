@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class LV_PlayerMovement : MonoBehaviour
 {
+    public bool isInEndlessMode = false;
+    private float score = 0; // For leaderboard score
+
     // modify level menu ui
     // colors array: red, yellow, blue ; // set aphla = 1 = 255
     [SerializeField] Color[] colors = { new Color32(220,38,127,255), new Color32(255,176,0,255), new Color32(100,143,255,255)};   // Red, Yellow, Blue;
@@ -279,14 +282,38 @@ public class LV_PlayerMovement : MonoBehaviour
         // Game over condition
         if (m_Hp <= 0)
         {
-            DataManager dm = gameObject.GetComponent<DataManager>();
-            // Debug.Log("player dead time: " + Time.timeSinceLevelLoad.ToString("0.0"));
-            string currentLevel = SceneManager.GetActiveScene().name;
-            dm.Send(currentLevel, "-1");
-            Destroy(dm);
-            gameObject.SetActive(false);
-            SceneManager.LoadScene("LV_GameOver");
+            if (isInEndlessMode)
+            {
+                GameOver_EndlessMode();
+            }
+            else
+            {
+                GameOver_LevelMode();
+            }
         }
+    }
+
+    private void GameOver_LevelMode()
+    {
+        DataManager dm = gameObject.GetComponent<DataManager>();
+        // Debug.Log("player dead time: " + Time.timeSinceLevelLoad.ToString("0.0"));
+        string currentLevel = SceneManager.GetActiveScene().name;
+        dm.Send(currentLevel, "-1");
+        Destroy(dm);
+        gameObject.SetActive(false);
+        SceneManager.LoadScene("LV_GameOver");
+    }
+
+    private void GameOver_EndlessMode()
+    {
+        DataManager dm = gameObject.GetComponent<DataManager>();
+        // Debug.Log(Time.timeSinceLevelLoad.ToString("0.0"));
+        float endlessTimeScore =  Time.timeSinceLevelLoad;
+        // endlessTimeScore += score;   // use survived time only 
+        GameManager.endlessTimeScore = endlessTimeScore;
+        dm.Send("Endless", endlessTimeScore.ToString("0.0"));
+        Destroy(dm);
+        SceneManager.LoadScene("GameOver");        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -330,8 +357,6 @@ public class LV_PlayerMovement : MonoBehaviour
             GetComponent<ParticleSystem>().Play();
            
 
-
-
             // Show damage text
             FloatingText printer = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity).GetComponent<FloatingText>();
             printer.SetFloatingValue(damage);   // damage = negative value
@@ -343,14 +368,17 @@ public class LV_PlayerMovement : MonoBehaviour
             if (bulletType.name == "Circle")
             {
                 collectables[0] += 1;
+                score += 3;     // add leadboard score
             }
             else if (bulletType.name == "Triangle")
             {
                 collectables[1] += 1;
+                score += 3;     // add leadboard score
             }
             else if (bulletType.name == "Square")
             {
                 collectables[2] += 1;
+                score += 3;     // add leadboard score
             }
 
 
