@@ -32,6 +32,7 @@ public class LV_GameManager : MonoBehaviour
             dialogueBox.SetActive(true);
         }
         IsGameOver = false;  // Need to reset after restart
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame
