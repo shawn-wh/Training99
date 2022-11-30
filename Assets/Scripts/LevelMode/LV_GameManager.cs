@@ -20,6 +20,8 @@ public class LV_GameManager : MonoBehaviour
     
     // Load the dialogue box 
     public GameObject dialogueBox;
+    
+    public static bool IsGameOver = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,8 @@ public class LV_GameManager : MonoBehaviour
         {
             dialogueBox.SetActive(true);
         }
+        IsGameOver = false;  // Need to reset after restart
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame

@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VersusCameraController : MonoBehaviour
+public class CameraController : MonoBehaviour
 {   
     public float zoomInDuration = 2.0f;
     public float transformDuration = 2.0f;
     
     private Camera mainCamera;
     private Vector3 originalPosition;
-    private float zoomEnd;
+    private float zoomScale;
     private bool isTransition = false;
     private float elapsed = 0f;
     private Vector3 target;
@@ -27,7 +27,7 @@ public class VersusCameraController : MonoBehaviour
         if (isTransition)
         {
             elapsed += Time.unscaledDeltaTime;
-            mainCamera.orthographicSize = Mathf.SmoothStep(5.0f, zoomEnd, elapsed / zoomInDuration);
+            mainCamera.orthographicSize = Mathf.SmoothStep(5.0f, zoomScale, elapsed / zoomInDuration);
             transform.position = new Vector3(
                 Mathf.SmoothStep(originalPosition.x, target.x, 2 * elapsed / transformDuration),
                 Mathf.SmoothStep(originalPosition.x, target.y, 2 * elapsed / transformDuration),
@@ -52,7 +52,7 @@ public class VersusCameraController : MonoBehaviour
     public void StartTransition(float zoomEnd, Vector3 target)
     {
         this.isTransition = true;
-        this.zoomEnd = zoomEnd;
+        this.zoomScale = zoomEnd;
         this.target = target;
         this.target.z = transform.position.z;
     }

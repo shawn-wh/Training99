@@ -6,7 +6,7 @@ using TMPro;
 
 public class VersusGameManager : MonoBehaviour
 {
-    public VersusCameraController MainCamera;
+    public CameraController MainCamera;
     
     [Header("Prefabs")]
     [SerializeField] private CreateArea[] createAreas;
