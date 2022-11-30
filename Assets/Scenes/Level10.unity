@@ -8576,18 +8576,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[0]
-      value: "Hi, this level will be challenging. You have to use all your power-ups
-        to win.  \n\nPress 'Space' --> change your color to collect same color bullets.\n\nPress
-        'Q' --> to change your shape. Each shape has a corresponding ability.  \nGood
-        luck!"
+      value: "Hi, this level will be challenging. You have to use all your active
+        skills and power-ups to win. \n\nAlso, look out for the cannon attacks!"
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[1]
-      value: 
+      value: 'Press ''Space'' --> change your color.
+
+
+        Press ''Q'' --> change
+        your shape.
+
+
+        Press ''E'' --> use active skill.
+
+
+        Good luck! '
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436300, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: m_Pivot.x
