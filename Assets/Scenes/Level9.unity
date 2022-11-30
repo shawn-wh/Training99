@@ -2850,8 +2850,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4035667561152436299, guid: df14f7cdafae94030ab304b5c1762bb7, type: 3}
       propertyPath: speakingLines.Array.data[0]
-      value: 'Use your color changing ability to defeat patrols having the same color
-        with you. Your task goal is to defeat 4 triangle patrols.
+      value: 'Your task goal is to defeat 4 triangle patrols.
 
 
         Be careful
