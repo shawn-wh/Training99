@@ -50,7 +50,17 @@ public class LV_PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
-        SceneManager.LoadScene("LevelMenu");
+        
+        string currentScene = SceneManager.GetActiveScene().name;
+        if (currentScene == "Endless_new") 
+        {
+            SceneManager.LoadScene("Menu");
+        }
+        else 
+        {
+            SceneManager.LoadScene("LevelMenu");
+        }
+        
 
         // Whenever load a new scence, need to change timeScale to normal
         Time.timeScale = 1f;
