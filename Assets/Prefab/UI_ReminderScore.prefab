@@ -129,7 +129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5973871513209494749, guid: afe88f8af525c4965ae1f62f7ff7bd06, type: 3}
       propertyPath: m_text
-      value: "You final score = \n\tSurvived time \n       + Collected bullets"
+      value: "You final score = \n\tSurvived time !\n"
       objectReference: {fileID: 0}
     - target: {fileID: 6906650190603326271, guid: afe88f8af525c4965ae1f62f7ff7bd06, type: 3}
       propertyPath: m_AnchoredPosition.x

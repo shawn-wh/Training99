@@ -5,7 +5,7 @@ using UnityEngine;
 public class LV_WarpedTrap : MonoBehaviour
 {
     private GameObject player = null;
-    private float originalSpeed = 0f;
+    private float originalSpeed = 5f;
     [SerializeField] float speedLimit = 3f;
     private bool canShow = true;
 
@@ -31,6 +31,8 @@ public class LV_WarpedTrap : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             player.GetComponent<LV_PlayerMovement>().BeforeTrap();
+            originalSpeed = player.GetComponent<LV_PlayerMovement>().GetPlayerSpeed();
+            Debug.Log("Player's speed: " + originalSpeed);
         }
     }
 
@@ -61,7 +63,7 @@ public class LV_WarpedTrap : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            // Debug.Log("Player got out of the trap.");
+            Debug.Log("Player got out of the trap.");
             player.GetComponent<LV_PlayerMovement>().SetPlayerSpeed(originalSpeed);
             player.GetComponent<LV_PlayerMovement>().SetColorChanging(true); 
             player.GetComponent<LV_PlayerMovement>().OutOfWarpedTrap(); 

@@ -191,7 +191,14 @@ public class LV_PlayerMovement : MonoBehaviour
 
         // Normalized to have the same moving speed for all directions
         Vector3 direction = new Vector3(h, v, 0).normalized;
-        transform.position += direction * playerSpeed * Time.deltaTime;
+        if (playerSpeed > 0)
+        {
+            transform.position += direction * playerSpeed * Time.deltaTime;
+        }
+        else
+        {
+            Debug.Log("Player's speed == 0 now!");
+        }
 
         // Replaced codes (Degree 45, 135, 225, 315 will be faster than 4 directions)
         // Vector2 pos = transform.position;
@@ -526,7 +533,7 @@ public class LV_PlayerMovement : MonoBehaviour
     {
         isInTrap = false;
         Sprite circleSprite = Resources.Load<Sprite>("Sprites/Circle");  // Must exist in "Resources" folder
-        gameObject.GetComponent<SpriteRenderer>().sprite = previousSprite;
+        gameObject.GetComponent<SpriteRenderer>().sprite = previousSprite;    // reset to circle
     }
 
     public bool TrapStatus()

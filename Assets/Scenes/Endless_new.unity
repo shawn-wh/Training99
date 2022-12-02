@@ -6460,6 +6460,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3100430174503310001, guid: 9ab0d5592059e426ab13515481551a54, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 773855856}
+    - target: {fileID: 3100430174503310001, guid: 9ab0d5592059e426ab13515481551a54, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseGame
+      objectReference: {fileID: 0}
     - target: {fileID: 8027415754629809589, guid: 9ab0d5592059e426ab13515481551a54, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

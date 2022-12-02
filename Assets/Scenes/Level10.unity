@@ -1496,6 +1496,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5079101864515278162, guid: c1ffcdb6d7a17451090b2d1562e3c971, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 773855856}
+    - target: {fileID: 5079101864515278162, guid: c1ffcdb6d7a17451090b2d1562e3c971, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5079101865235356230, guid: c1ffcdb6d7a17451090b2d1562e3c971, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 773855856}
+    - target: {fileID: 5079101865235356230, guid: c1ffcdb6d7a17451090b2d1562e3c971, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Restart
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1ffcdb6d7a17451090b2d1562e3c971, type: 3}
 --- !u!224 &389524459 stripped
@@ -1770,7 +1786,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0537627, y: 1.85041, z: -10}
+  m_LocalPosition: {x: -1.0537634, y: 1.85041, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8091,6 +8107,14 @@ PrefabInstance:
     - target: {fileID: 800621877431529432, guid: 93f742fbc8b9242519cb09240a139f67, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3100430174503310001, guid: 93f742fbc8b9242519cb09240a139f67, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 773855856}
+    - target: {fileID: 3100430174503310001, guid: 93f742fbc8b9242519cb09240a139f67, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseGame
       objectReference: {fileID: 0}
     - target: {fileID: 8027415754629809589, guid: 93f742fbc8b9242519cb09240a139f67, type: 3}
       propertyPath: m_Pivot.x
